@@ -1,0 +1,7 @@
+[user]
+	name = Matt Weller
+	email = hellmitre@gmail.com
+[alias]
+	unadd = reset HEAD
+[push]
+	default = matching
