@@ -1,0 +1,22 @@
+#!/bin/sh
+# kill all ssh sessions and unmount sshfs dirs
+
+case "$1" in
+	hibernate|suspend)
+		if ps aux | grep "[s]sh" > /dev/null;
+		then
+			killall ssh
+		fi
+		if [ -d /home/hlmtre/remote/mnt/ ];
+		then
+			fusermount -u /home/hlmtre/remote
+		fi
+		;;
+	thaw|resume) 
+		# do nothing
+		;;
+	*) exit $NA
+		;;
+esac
+
+exit 0
