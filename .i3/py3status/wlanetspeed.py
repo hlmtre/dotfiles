@@ -1,6 +1,8 @@
 from time import time
 from subprocess import check_output
+
 class Py3status:
+
   def kill(self, i3status_output_json, i3status_config):
     pass
 
@@ -8,16 +10,15 @@ class Py3status:
     pass
 
   def netspeed(self, i3status_output_json, i3status_config):
-    if not self._isup('enp0s25'):
+    if not self._isup('wlp3s0'):
       text = ""
     else:
-      text = self._get_network_bytes('enp0s25')
+      text = self._get_network_bytes('wlp3s0')
     response = {'cached_until': time(), 'full_text': text, 'name': 'netspeed', 'instance': 'first'}
     return (0, response)
 
   def _isup(self, interface):
-    f = check_output(('ip link show ' + interface).split())
-    if 'state UP' in f:
+    if 'state UP' in check_output(('ip link show ' + interface).split()):
       return True
     return False
 
@@ -27,9 +28,9 @@ class Py3status:
         data = line.split('%s:' % interface)[1].split()
         rx_bytes, tx_bytes = (data[0], data[8])
         try:
-          f = open('/tmp/netspeedenp0s25', 'r+')
+          f = open('/tmp/netspeedwlp3s0', 'r+')
         except IOError:
-          f = open('/tmp/netspeedenp0s25', 'w+')
+          f = open('/tmp/netspeedwlp3s0', 'w+')
         line = f.readline()
         prev_rx = 0
         prev_tx = 0

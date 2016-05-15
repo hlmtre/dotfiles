@@ -79,10 +79,10 @@ bindsym $mod+a focus parent
 #bindcode $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1: irc
-bindsym $mod+2 workspace 2: web
-bindsym $mod+3 workspace 3: terminals
-bindsym $mod+4 workspace 4: vm
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -157,9 +157,9 @@ bar {
 }
 
 # single monitor
-bindsym $mod+Control+Shift+1 exec xrandr --output LVDS1 auto
-# two
-bindsym $mod+Control+Shift+2 exec xrandr --output VGA1 auto --right-of LVDS1
+#bindsym $mod+Control+Shift+1 exec xrandr --output LVDS1 auto
+## two
+#bindsym $mod+Control+Shift+2 exec xrandr --output VGA1 auto --right-of LVDS1
 
 #zt
 bindsym $mod+Control+Shift+s exec /home/hlmtre/zt/zt
@@ -168,16 +168,35 @@ bindsym $mod+Control+Shift+s exec /home/hlmtre/zt/zt
 #lockscreen
 bindsym $mod+Control+Shift+l exec i3lock
 # reset desktop wallpapers
-exec --no-startup-id nitrogen --restore
+#exec --no-startup-id nitrogen --restore
 
 # network manager
 exec --no-startup-id nm-applet
 
+# disable touchpad movement
+# clit mouse 4 lyfe
+exec --no-startup-id synclient TouchpadOff=1
+exec --no-startup-id /home/hlmtre/src/mocp-scrobbler/mocp-scrobbler.py --daemon
+exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id /home/hlmtre/bin/xflux -z 95973
+
+#bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
+
+#volume
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+
 #brightness 
+#bindcode XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+#bindcode XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 bindsym XF86MonBrightnessDown exec python /home/hlmtre/src/brightness/client.py down
 bindsym XF86MonBrightnessUp exec python /home/hlmtre/src/brightness/client.py up
 
-#volume
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+# screens (docked and undocked)
+bindsym XF86Display exec ~/bin/screens.sh
+#font
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font pango:DejaVu Sans Mono 10
+#font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
+#font pango:Terminus 11px
