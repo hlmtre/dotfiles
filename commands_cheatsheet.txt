@@ -1,0 +1,61 @@
+# log out of iscsi targets
+iscsiadm -m node -u
+
+# discover iscsi targets exposed by ip
+iscsiadm -m discovery -t st -p 172.16.1.1
+
+# log into exposed iscsi targets
+iscsiadm -m node -l
+
+#log out of specific iscsi target
+iscsiadm -m node -u -T <Complete Target Name>-p <Group IP address>:3260
+
+# deactivate volume group (before disconnecting)
+vgchange -an <vg_name>
+
+# scan for available volume groups
+vgscan 
+
+# re activate
+vgchange -ay <vg_name>
+
+# create vm 
+xen-create-image --hostname=HOSTNAME --memory=MEMORYm --vcpus=1 --lvm=VGNAME --dhcp --pygrub --dist=trusty --size=DISK_SIZEg
+
+# mount freenas samba share
+mount -t cifs //freenas/freenas /mnt/tmp
+
+# create snapshot logical volume of name $vm-$date
+lvcreate -L $VM_SIZE -s -n $VM_NAME-`date "+%m-%d-%Y"` $VM_SOURCE_DISK
+
+# create new volume for copying backup
+lvcreate -L $VM_SIZE -n $VM_NAME-`date "+%m-%d-%Y"` $TARGET_VG
+
+# dd, with rate limit of 10MB/s
+dd if=/dev/iscsi/win8-vm-backup-07-31-2015 | pv -L 10m | dd of=/dev/backup/win8-backup-07-31-2015
+
+# convert vmware ova to raw (for use with LVM or whatever)
+~/bin/ova2free.py -f raw graylog.ova
+
+# expand lvm volume
+lvextend -L +10G iscsi/librenms
+
+# switch to multibus (from round robin, say) multipathing
+multipath -r multibus
+/etc/init.d/multipath-tools restart
+
+# take path offline
+echo offline > /sys/block/$DEVICE/device/state # sda, for example
+
+# remove device from scsi 
+echo 1 > /sys/block/$DEVICE/device/delete # sda, for example
+
+# install on kvm with virt-install
+virt-install --name vyos --ram 512 --disk /dev/muhvirtuals/vyos --cdrom /home/mech/vyos-1.1.7-amd64.iso
+
+# ssl instructions for ubnt
+cat cert2.pem > server.pem
+cat privkey2.pem >> server.pem
+cp server.pem /etc/lighttpd/server.pem
+kill -SIGTERM $(cat /var/run/lighttpd.pid)
+/usr/sbin/lighttpd -f /etc/lighttpd/lighttpd.conf
