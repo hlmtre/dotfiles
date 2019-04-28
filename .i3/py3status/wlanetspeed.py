@@ -2,20 +2,15 @@ from time import time
 from subprocess import check_output
 
 class Py3status:
+  my_interface = "wlp110s0"
 
-  def kill(self, i3status_output_json, i3status_config):
-    pass
-
-  def on_click(self, i3status_output_json, i3status_config, event):
-    pass
-
-  def netspeed(self, i3status_output_json, i3status_config):
-    if not self._isup('wlp3s0'):
+  def netspeed(self):
+    if not self._isup(self.my_interface):
       text = ""
     else:
-      text = self._get_network_bytes('wlp3s0')
-    response = {'cached_until': time(), 'full_text': text, 'name': 'netspeed', 'instance': 'first'}
-    return (0, response)
+      text = self._get_network_bytes(self.my_interface)
+    response = {'cached_until': self.py3.time_in(seconds=1), 'full_text': text, 'name': 'netspeed', 'instance': 'first'}
+    return (response)
 
   def _isup(self, interface):
     if 'state UP' in check_output(('ip link show ' + interface).split()):
@@ -28,9 +23,9 @@ class Py3status:
         data = line.split('%s:' % interface)[1].split()
         rx_bytes, tx_bytes = (data[0], data[8])
         try:
-          f = open('/tmp/netspeedwlp3s0', 'r+')
+          f = open('/tmp/netspeed' + self.my_interface, 'r+')
         except IOError:
-          f = open('/tmp/netspeedwlp3s0', 'w+')
+          f = open('/tmp/netspeed' + self.my_interface, 'w+')
         line = f.readline()
         prev_rx = 0
         prev_tx = 0
@@ -45,5 +40,5 @@ class Py3status:
 
 # if we assume this is being updated every second... it becomes bytes per second.
         if prev_rx == 0 or prev_tx == 0:
-          return interface + ": " +  str(int(rx_bytes) / 1024) + "v|^" + str(int(tx_bytes) / 1024) + " kB/s"
-        return interface + ": " + str((int(rx_bytes) - int(prev_rx)) / 1024) + "v|^" + str((int(tx_bytes) - int(prev_tx)) / 1024) + " kB/s"
+          return interface + ": " +  str(int(rx_bytes) / 1024 ) + "v|^" + str(int(tx_bytes) / 1024) + " kB/s"
+        return interface + ": " + str((int(rx_bytes) - int(prev_rx)) / 1024) + "v|^" + str((int(tx_bytes) - int(prev_tx)) / 1024 ) + " kB/s"

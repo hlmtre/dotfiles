@@ -153,7 +153,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	tray_output primary
-        status_command py3status -c ~/.i3status.conf -i /home/hlmtre/.i3/py3status
+  status_command py3status -c ~/.i3status.conf
 }
 
 # single monitor
@@ -162,7 +162,7 @@ bar {
 #bindsym $mod+Control+Shift+2 exec xrandr --output VGA1 auto --right-of LVDS1
 
 #zt
-bindsym $mod+Control+Shift+s exec /home/hlmtre/zt/zt
+#bindsym $mod+Control+Shift+s exec /home/hlmtre/zt/zt
 #bindsym $mod+Control+Shift+s exec /home/hlmtre/zt/zt
 
 #lockscreen
@@ -175,10 +175,11 @@ exec --no-startup-id nm-applet
 
 # disable touchpad movement
 # clit mouse 4 lyfe
-exec --no-startup-id synclient TouchpadOff=1
-exec --no-startup-id /home/hlmtre/src/mocp-scrobbler/mocp-scrobbler.py --daemon
-exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id /home/hlmtre/bin/xflux -z 95973
+#exec --no-startup-id synclient TouchpadOff=1
+#exec --no-startup-id /home/hlmtre/src/mocp-scrobbler/mocp-scrobbler.py --daemon
+#exec --no-startup-id gnome-settings-daemon
+#exec --no-startup-id /home/hlmtre/bin/xflux -z 95973
+exec --no-startup-id redshift
 
 #bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
@@ -187,14 +188,17 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
+# disable window borders for chrome
+for_window [class="google-chrome"] border none
+
 #brightness 
 #bindcode XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 #bindcode XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-bindsym XF86MonBrightnessDown exec python /home/hlmtre/src/brightness/client.py down
-bindsym XF86MonBrightnessUp exec python /home/hlmtre/src/brightness/client.py up
+#bindsym XF86MonBrightnessDown exec python /home/hlmtre/src/brightness/client.py down
+#bindsym XF86MonBrightnessUp exec python /home/hlmtre/src/brightness/client.py up
 
 # screens (docked and undocked)
-bindsym XF86Display exec ~/bin/screens.sh
+#bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 #font pango:DejaVu Sans Mono 10
