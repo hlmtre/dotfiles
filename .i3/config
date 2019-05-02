@@ -160,18 +160,22 @@ bar {
 #bindsym $mod+Control+Shift+1 exec xrandr --output LVDS1 auto
 ## two
 #bindsym $mod+Control+Shift+2 exec xrandr --output VGA1 auto --right-of LVDS1
+#exec --no-startup-id xrandr --output HDMI-0 --auto --primary --output DP-3 --auto --left-of HDMI-0 --output DP-0 --off
+exec --no-startup-id xrandr --output HDMI-0 --auto --primary --output DP-3 --mode auto --left-of HDMI-0 --output DP-0 --off
 
 #zt
 #bindsym $mod+Control+Shift+s exec /home/hlmtre/zt/zt
 #bindsym $mod+Control+Shift+s exec /home/hlmtre/zt/zt
 
 #lockscreen
-bindsym $mod+Control+Shift+l exec i3lock
+bindsym ctrl+$mod+l exec i3lock -c 000000
 # reset desktop wallpapers
 #exec --no-startup-id nitrogen --restore
 
 # network manager
 exec --no-startup-id nm-applet
+# pasystray (volume control)
+exec --no-startup-id pasystray
 
 # disable touchpad movement
 # clit mouse 4 lyfe
@@ -200,7 +204,7 @@ for_window [class="google-chrome"] border none
 # screens (docked and undocked)
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
-#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-#font pango:DejaVu Sans Mono 10
-#font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
-#font pango:Terminus 11px
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
+font pango:Terminus 11px
