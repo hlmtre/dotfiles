@@ -1,0 +1,4 @@
+[submodule "hlmtremacs"]
+	path = hlmtremacs
+	url = git@bitbucket.org:hlmtre/hlmtremacs.git
+	branch = develop
