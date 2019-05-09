@@ -1,6 +1,10 @@
 function fish_prompt --description 'Write out the prompt'
 	set laststatus $status
 
+	if not set -q __fish_prompt_hostname
+		  set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
+	end
+
     if set -l git_branch (command git symbolic-ref HEAD 2>/dev/null | string replace refs/heads/ '')
         set git_branch (set_color -o blue)"$git_branch"
         if command git diff-index --quiet HEAD --
@@ -36,7 +40,7 @@ function fish_prompt --description 'Write out the prompt'
     end
 
     set_color -b black
-    printf '%s%s%s%s%s%s%s%s%s%s%s%s%s' (set_color -o white) '❰' (set_color green) $USER (set_color white) '❙' (set_color yellow) (echo $PWD | sed -e "s|^$HOME|~|") (set_color white) $git_info (set_color white) '❱' (set_color white)
+    printf '%s%s%s%s%s%s%s%s%s%s%s%s%s' (set_color -o white) '❰' (set_color green) $USER (set_color white) '@' (set_color purple)$__fish_prompt_hostname (set_color white)'❙' (set_color yellow) (echo $PWD | sed -e "s|^$HOME|~|") (set_color white) $git_info (set_color white) '❱' (set_color white)
     if test $laststatus -eq 0
         printf "%s✔%s≻%s " (set_color -o green) (set_color white) (set_color normal)
     else
