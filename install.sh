@@ -40,3 +40,9 @@ if [ -e ~/.config/fish ]; then
     mv ~/.config/fish ~/.config/fish.backup
 fi
 ln -s $cur/fish ~/.config/fish
+
+if [ -e ~/.config/rofi ]; then
+    echo "~/.config/rofi exists; renaming for safety..."
+    mv ~/.config/rofi ~/.config/rofi.backup
+fi
+ln -s $cur/rofi ~/.config/rofi
