@@ -23,6 +23,12 @@ if [ -e ~/.i3 ]; then
 fi
 ln -s $cur/.i3 ~/.i3
 
+if [ -e ~/.i3status.conf ]; then
+    echo "~/.i3status.conf exists; renaming for safety..."
+    mv ~/.i3status.conf ~/.i3status.conf.backup
+fi
+ln -s $cur/.i3/py3status/.i3status.conf ~/.i3status.conf
+
 if [ -e ~/.vimrc ]; then
     echo "~/.vimrc exists; renaming for safety..."
     mv ~/.vimrc ~/.vimrc.backup
