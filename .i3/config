@@ -13,9 +13,6 @@ set $mod Mod1
 
 focus_follows_mouse yes
 
-# font for window titles. ISO 10646 = Unicode
-#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -191,8 +188,8 @@ exec --no-startup-id redshift
 #bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
 #volume
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% && notify-send `pulsemixer --get-volume | awk '{print $1}'` -t 1000
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% && notify-send `pulsemixer --get-volume | awk '{print $1}'` -t 1000
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # disable window borders for chrome
@@ -208,7 +205,7 @@ for_window [class="google-chrome-beta"] border none
 # screens (docked and undocked)
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-#font pango:DejaVu Sans Mono 6
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:DejaVu Sans Mono 6
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 11px
