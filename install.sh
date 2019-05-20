@@ -52,3 +52,9 @@ if [ -e ~/.config/rofi ]; then
     mv ~/.config/rofi ~/.config/rofi.backup
 fi
 ln -s $cur/rofi ~/.config/rofi
+
+if [ -e ~/.config/dunst ]; then
+    echo "~/.config/dunst exists; renaming for safety..."
+    mv ~/.config/dunst ~/.config/dunst.backup
+fi
+ln -s $cur/dunst ~/.config/dunst
