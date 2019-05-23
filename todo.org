@@ -1,0 +1,19 @@
+* TODO Chico network closet cleanup [1/6]
+  - [X] Patch panel/switch cable mapping
+    - [X] Identify special ports/cables
+    - [X] Label patch panels and switches
+  - [ ] Identify new rack cabinet location
+    - [ ] Which rack to pick? Wall mount 15U? Floor bolt 42U?
+  - [ ] Coordinate with Travis to assist
+  - [ ] Identify maintenance window
+    - [ ] Notify IHS of maintenance work
+    - [ ] Set LibreNMS maintenance window
+  - [ ] Clean up existing rack
+    - [ ] Unplug all cables from patch panels and switches in current rack 
+    - [ ] Disconnect and mark/organize uplink cabling
+  - [ ] Clean set-up
+    - [ ] Fix power with known-good UPSes and clean power strip placement
+    - [ ] Mount new rack (wherever it goes)
+    - [ ] 
+
+ 
