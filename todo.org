@@ -1,22 +1,38 @@
-* TODO Chico network closet cleanup [1/8] [12%]
-  - [X] Patch panel/switch cable mapping
-    - [X] Identify special ports/cables
-    - [X] Label patch panels and switches
-  - [ ] Identify new rack cabinet
-    - [ ] Which rack to pick? Wall mount 15U? Floor bolt 42U?
-  - [ ] Coordinate with Travis to assist
-  - [ ] Identify maintenance window
-    - [ ] Notify IHS of maintenance work
-    - [ ] Set LibreNMS maintenance window
-  - [ ] Clean up & remove existing rack
-    - [ ] Unplug all cables from patch panels and switches in current rack 
-    - [ ] Disconnect and mark/organize uplink cabling
-  - [ ] Prepare closet for new setup
-    - [ ] Fix power with known-good UPSes and clean power strip placement
-    - [ ] Mount new rack (wherever it goes)
-    - [ ] Re-mount all patch panels (hopefully in order is possible)
-    - [ ] Mount all switches
-    - [ ] Mount all provider equipment/routers
-  - [ ] Wire!
-  - [ ] Verify all routing is back up and happy
-  - [ ] Ensure all APs at Chico site are up and running on their correct ports
+* Things to get done
+** TODO Chico network closet cleanup [1/8] [12%]
+   - [X] Patch panel/switch cable mapping
+     - [X] Identify special ports/cables
+     - [X] Label patch panels and switches
+   - [ ] Identify new rack cabinet
+     - [ ] Which rack to pick? Wall mount 15U? Floor bolt 42U?
+   - [ ] Coordinate with Travis to assist
+   - [ ] Identify maintenance window
+     - [ ] Notify IHS of maintenance work
+     - [ ] Set LibreNMS maintenance window
+   - [ ] Clean up & remove existing rack
+     - [ ] Unplug all cables from patch panels and switches in current rack 
+     - [ ] Disconnect and mark/organize uplink cabling
+   - [ ] Prepare closet for new setup
+     - [ ] Fix power with known-good UPSes and clean power strip placement
+     - [ ] Mount new rack (wherever it goes)
+     - [ ] Re-mount all patch panels (hopefully in order is possible)
+     - [ ] Mount all switches
+     - [ ] Mount all provider equipment/routers
+   - [ ] Wire!
+   - [ ] Verify all routing is back up and happy
+   - [ ] Ensure all APs at Chico site are up and running on their correct ports
+** TODO Sacramento router swap [0/8] [0%]
+   - [ ] Bring manjaro
+   - [ ] Swap laptop battery with neon in Sacramento
+   - [ ] Ensure router config written
+   - [ ] Pull config off old router and write to new router
+   - [ ] Install new router and ensure local ping
+   - [ ] Ensure ping to each site
+     - [ ] CHEA
+     - [ ] CHCO
+     - [ ] CHCA
+     - [ ] WLWS
+     - [ ] WDLD
+     - [ ] RBLF
+   - [ ] Confirm reachable by the NOSC
+   - [ ] Confirm eCW launches successfully from another site
