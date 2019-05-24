@@ -21,15 +21,16 @@
    - [ ] Wire!
    - [ ] Verify all routing is back up and happy
    - [ ] Ensure all APs at Chico site are up and running on their correct ports
-** TODO Sacramento router swap [0/4] [0%]
-   - [-] To bring:
+** TODO Sacramento router swap [1/4] [25%]
+   - [X] To bring:
      - [X] manjaro laptop
      - [X] Backpack, console cables, laptop power
      - [X] Earbuds!
-     - [ ] Labelmaker
-     - [ ] Printer for Cody
-     - [ ] Box o' cables
-     - [ ] USB car adapter and cables for things
+     - [X] Labelmaker
+     - [X] Printer for Cody
+     - [X] Box o' cables
+     - [X] USB car adapter and cables for things
+     - [X] Router!
    - [ ] Swap laptop battery with neon in Sacramento
    - [ ] Swap routers
      - [ ] Ensure router config written
@@ -40,6 +41,7 @@
        - [ ] CHEA
        - [ ] CHCO
        - [ ] CHCA
+       - [ ] CHSP
        - [ ] WLWS
        - [ ] WDLD
        - [ ] RBLF
