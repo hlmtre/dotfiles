@@ -151,9 +151,24 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
+#bar {
+#	tray_output primary
+#  status_command py3status -c ~/.i3status.conf
+#}
+
 bar {
-	tray_output primary
-  status_command py3status -c ~/.i3status.conf
+    font pango:DejaVu Sans Mono, FontAwesome 6
+    position bottom
+    status_command /usr/local/bin/i3status-rs ~/.i3/config.toml
+    colors {
+        separator #666666
+        background #000000
+        statusline #000000
+        focused_workspace #000000 #000000 #ffffff
+        active_workspace #000000 #000000 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
 }
 
 ## two
@@ -184,7 +199,7 @@ exec --no-startup-id pasystray
 #exec --no-startup-id gnome-settings-daemon
 #exec --no-startup-id /home/hlmtre/bin/xflux -z 95973
 exec --no-startup-id redshift
-exec --no-startup-id emacs --daemon
+#exec --no-startup-id emacs --daemon
 
 #bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
@@ -192,10 +207,21 @@ exec --no-startup-id emacs --daemon
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% && notify-send `pulsemixer --get-volume | awk '{print $1}'` -t 1000
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% && notify-send `pulsemixer --get-volume | awk '{print $1}'` -t 1000
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioPause exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
 
 # disable window borders for chrome
+#for_window [class=".*"] border pixel 1
 for_window [class="google-chrome"] border none
 for_window [class="google-chrome-beta"] border none
+for_window [class="Firefox"] border none
+# i3-gaps
+#gaps inner 3
+#smart_gaps on
+# default_floating_border normal
+
+#hide_edge_borders smart
 
 #brightness 
 #bindcode XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
