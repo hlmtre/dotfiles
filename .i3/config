@@ -164,8 +164,8 @@ bar {
         separator #666666
         background #000000
         statusline #000000
-        focused_workspace #000000 #000000 #ffffff
-        active_workspace #000000 #000000 #ffffff
+        focused_workspace #0088CC #0088cc #ffffff
+        active_workspace #333333 #333333 #ffffff
         inactive_workspace #333333 #333333 #888888
         urgent_workspace #2f343a #900000 #ffffff
     }
@@ -204,8 +204,8 @@ exec --no-startup-id redshift
 #bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
 #volume
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% && notify-send `pulsemixer --get-volume | awk '{print $1}'` -t 1000
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% && notify-send `pulsemixer --get-volume | awk '{print $1}'` -t 1000
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 bindsym XF86AudioPause exec mpc toggle
 bindsym XF86AudioNext exec mpc next
