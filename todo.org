@@ -46,3 +46,4 @@
        - [X] WDLD
        - [X] RBLF 
      - [X] Confirm reachable by the NOSC
+     - [X] Confirm eCW launches successfully from another site
