@@ -21,7 +21,7 @@
    - [ ] Wire!
    - [ ] Verify all routing is back up and happy
    - [ ] Ensure all APs at Chico site are up and running on their correct ports
-** TODO Sacramento router swap [1/4] [25%]
+** TODO Sacramento router swap [4/4] [100%]
    - [X] To bring:
      - [X] manjaro laptop
      - [X] Backpack, console cables, laptop power
@@ -31,19 +31,18 @@
      - [X] Box o' cables
      - [X] USB car adapter and cables for things
      - [X] Router!
-   - [ ] Swap laptop battery with neon in Sacramento
-   - [ ] Swap routers
-     - [ ] Ensure router config written
-     - [ ] Pull config off old router and write to new router
-     - [ ] Install new router and ensure local ping
-   - [ ] Verify connectivity
-     - [ ] Ensure ping to each site
-       - [ ] CHEA
-       - [ ] CHCO
-       - [ ] CHCA
-       - [ ] CHSP
-       - [ ] WLWS
-       - [ ] WDLD
-       - [ ] RBLF
-     - [ ] Confirm reachable by the NOSC
-     - [ ] Confirm eCW launches successfully from another site
+   - [X] Swap laptop battery with neon in Sacramento
+   - [X] Swap routers
+     - [X] Ensure router config written
+     - [X] Pull config off old router and write to new router
+     - [X] Install new router and ensure local ping
+   - [X] Verify connectivity
+     - [X] Ensure ping to each site
+       - [X] CHEA
+       - [X] CHCO
+       - [X] CHCA
+       - [X] CHSP
+       - [X] WLWS
+       - [X] WDLD
+       - [X] RBLF 
+     - [X] Confirm reachable by the NOSC
