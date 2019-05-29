@@ -189,8 +189,8 @@ exec --no-startup-id nitrogen --restore
 
 # network manager
 exec --no-startup-id nm-applet
-# pasystray (volume control)
-exec --no-startup-id pasystray
+# pasystray (volume control) (not needed with i3status-rust)
+# exec --no-startup-id pasystray
 
 # disable touchpad movement
 # clit mouse 4 lyfe
