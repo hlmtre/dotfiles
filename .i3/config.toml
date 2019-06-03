@@ -12,13 +12,22 @@ icons = "awesome"
 #alert = 10.0
 
 [[block]]
+block = "focused_window"
+max_width = 21
+
+[[block]]
 block = "net"
 device = "wlp110s0"
 ssid = true
 ip = true
 speed_up = true
-graph_up = true
 interval = 1
+
+#[[block]]
+#block = "xrandr"
+#icons = true
+#resolution = true
+#interval = 2
 
 [[block]]
 block = "temperature"
