@@ -21,14 +21,15 @@ client.placeholder      $grey $bg $bg    $bg   $bg
 client.background       $bg
 
 # border & title.. Must be set to border pixel for gaps to work
-for_window [class="^.*"] border pixel 2, title_format "<b> %class >> %title </b>"
+#for_window [class="^.*"] border pixel 2, title_format "<b> %class >> %title </b>"
+for_window [class="^.*"] border pixel 2
 
 # gaps
 gaps inner 9
 gaps outer 5
 
 # font
-font pango:monospace 10
+font pango:monospace 9
 
 # $Mod = Super or Alt?
 set $Mod Mod4
@@ -71,9 +72,11 @@ exec_always --no-startup-id xrdb -load ~/.Xresources
 # run once
 exec --no-startup-id xfsettingsd
 exec --no-startup-id al-compositor --start
+# exec --no-startup-id emacs --daemon
+exec --no-startup-id xrandr --output DP-4 --auto --primary --output DP-0 --left-of DP-4
 
 # needed for super to launch rofi through ksuperkey, see ~/.xprofile
-bindsym $Mod+d exec --no-startup-id rofi_run -r
+bindsym $Mod+d exec --no-startup-id rofi -show run
 
 ###########################################################
 #############         Bindings           ##################
@@ -246,6 +249,7 @@ focus_on_window_activation   focus
 bindsym $Mod+b split h
 bindsym $Mod+v split v
 bindsym $Mod+w layout tabbed
+bindsym $Mod+e layout toggle split
 #bindsym $Mod+Shift+s layout stacking
 #bindsym $Mod+Shift+b layout toggle split
 
