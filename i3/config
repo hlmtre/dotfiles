@@ -72,6 +72,7 @@ exec_always --no-startup-id xrdb -load ~/.Xresources
 # run once
 exec --no-startup-id xfsettingsd
 exec --no-startup-id al-compositor --start
+exec --no-startup-id autocutsel &
 # exec --no-startup-id emacs --daemon
 exec --no-startup-id xrandr --output DP-4 --auto --primary --output DP-0 --left-of DP-4
 
