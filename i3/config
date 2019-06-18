@@ -22,10 +22,10 @@ client.background       $bg
 
 # border & title.. Must be set to border pixel for gaps to work
 #for_window [class="^.*"] border pixel 2, title_format "<b> %class >> %title </b>"
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
 
 # gaps
-gaps inner 9
+gaps inner 7
 gaps outer 5
 
 # font
@@ -110,10 +110,13 @@ bindsym $Mod+x exec --no-startup-id rofi_run -l
 bindsym Print exec --no-startup-id "scrot '%S.png' -e 'mv $f $$(xdg-user-dir PICTURES)/ArchLabs-%S-$wx$h.png ; feh $$(xdg-user-dir PICTURES)/ArchLabs-%S-$wx$h.png'"
 
 # audio
-bindsym XF86AudioPlay        exec --no-startup-id playerctl play-pause
-bindsym XF86AudioNext        exec --no-startup-id playerctl next
-bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
-bindsym XF86AudioStop        exec --no-startup-id playerctl stop
+#bindsym XF86AudioPlay        exec --no-startup-id playerctl play-pause
+#bindsym XF86AudioNext        exec --no-startup-id playerctl next
+#bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
+#bindsym XF86AudioStop        exec --no-startup-id playerctl stop
+bindsym XF86AudioPause exec --no-startup-id mpc toggle
+bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
 bindsym XF86AudioMute        exec --no-startup-id pamixer -t
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 2
 bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 2
@@ -292,7 +295,7 @@ for_window [class="(?i)(?:geany|firefox)"]  focus
 
 # Assign Applications to specific workspace
 # get class with xprop
-assign [class="(?i)(?:firefox)"] → $WS1
+#assign [class="(?i)(?:firefox)"] → $WS1
 assign [class="(?i)(?:geany)"]   → $WS2
 assign [class="(?i)(?:thunar)"]  → $WS3
 
