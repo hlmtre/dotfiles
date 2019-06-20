@@ -49,22 +49,26 @@
      - [X] Confirm eCW launches successfully from another site
    - [X] Write the non-critical config
    - [X] Confirm NOSC TACACS login
-** TODO Medication labeler [2/10] [20%]
-   - [ ] Generic text for dental meds
-   - [ ] Display current printer selected for printing
-   - [ ] Generic user permissions (op-wlws, op-rblf)
+** TODO Medication labeler [8/11] [72%]
+   - [X] Generic text for dental meds
+   - [X] Display current printer selected for printing
+   - [X] Generic user permissions (op-wlws, op-rblf)
    - [X] Install for Anna Vasquez
    - [X] Install Willows dental label printer
    - [ ] Install for Tanisha Carnell
    - [ ] Install Woodland dental label printer
    - [ ] Install Cohasset dental label printer
-   - [ ] Install Red Bluff dental label printer
-   - [ ] Install for Rachelle Romano
+   - [X] Install Red Bluff dental label printer
+   - [X] Install for Rachelle Romano
+   - [X] Clear date in new prescription to force user to add expiration date
 
 ** TODO IHS network scanning/slowdown investigation [3/3] [100%]
    - [X] Pull Brandi's packet capture
    - [X] Block known IHS scanning networks at router level
    - [X] Talk to Dan Grinnell at IHS about ForeScout meeting
-** TODO Miscellaneous [0/2] [0%]
-   - [ ] Dr Austin direct EBO link
-   - [ ] Medication labeler on wlws-lptp-0265 for Diana
+** TODO Miscellaneous [3/5] [60%]
+   - [X] Dr Austin direct EBO link
+   - [X] Medication labeler on wlws-lptp-0265 for Diana
+   - [ ] CHC Clerical calendar for Megan Burgess - destroy with prejudice
+   - [X] Sam scanner - uninstall, power off, boot, install Paperstream generic driver
+   - [ ] Truck XDR issues and fixes documentation
