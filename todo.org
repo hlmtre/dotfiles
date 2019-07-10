@@ -49,20 +49,22 @@
      - [X] Confirm eCW launches successfully from another site
    - [X] Write the non-critical config
    - [X] Confirm NOSC TACACS login
-** TODO [#B] Medication labeler [9/14] [64%]
+** TODO [#B] Medication labeler [11/15] [73%]
    - [X] Generic text for dental meds
    - [X] Display current printer selected for printing
    - [X] Generic user permissions (op-wlws, op-rblf)
    - [X] Install for Anna Vasquez
    - [X] Install Willows dental label printer
    - [ ] Install for Tanisha Carnell
-   - [ ] Install Woodland dental label printer
+   - [X] Install Woodland dental label printer
    - [X] Install Cohasset dental label printer
    - [X] Install Red Bluff dental label printer
    - [X] Install for Rachelle Romano
    - [X] Clear date in new prescription to force user to add expiration date
    - [ ] Furnisher generic text discussion with Kristal/Dr Austin re: Betsy
    - [ ] Documentation!
+   - [X] QoL fixes
+     - [X] Prevent exploding on invalid input
    - [-] Install for these people: [3/4]
      - [X] Griselda Calderon
      - [X] Nayeli Montoya
