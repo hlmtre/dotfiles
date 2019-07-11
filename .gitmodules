@@ -1,6 +1,6 @@
 [submodule "hlmtremacs"]
 	path = hlmtremacs
-	url = git@bitbucket.org:hlmtre/hlmtremacs.git
+	url = https://hlmtre@bitbucket.org/hlmtre/hlmtremacs.git
 	branch = develop
 [submodule "zt"]
 	path = zt

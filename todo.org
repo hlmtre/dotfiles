@@ -49,13 +49,13 @@
      - [X] Confirm eCW launches successfully from another site
    - [X] Write the non-critical config
    - [X] Confirm NOSC TACACS login
-** TODO [#B] Medication labeler [11/15] [73%]
+** TODO [#B] Medication labeler [12/16] [75%]
    - [X] Generic text for dental meds
    - [X] Display current printer selected for printing
    - [X] Generic user permissions (op-wlws, op-rblf)
    - [X] Install for Anna Vasquez
    - [X] Install Willows dental label printer
-   - [ ] Install for Tanisha Carnell
+   - [X] Install for Tanisha Carnell
    - [X] Install Woodland dental label printer
    - [X] Install Cohasset dental label printer
    - [X] Install Red Bluff dental label printer
@@ -70,6 +70,7 @@
      - [X] Nayeli Montoya
      - [X] Dolores (Irene) Williams
      - [ ] Zoey Cramer
+   - [ ] Generic/RDA workstation in Woodland
 
 ** TODO CHSP<->CHEA issues [0/2] [0%]
    - [ ] ???
@@ -78,6 +79,9 @@
    - [X] Pull Brandi's packet capture
    - [X] Block known IHS scanning networks at router level
    - [X] Talk to Dan Grinnell at IHS about ForeScout meeting
+** TODO Phone delays [1/2] [50%]
+   - [X] Packet capture for Inflow troubleshooting
+   - [ ] 
 ** TODO [#C] Miscellaneous [5/6] [83%]
    - [X] Dr Austin direct EBO link
    - [X] Medication labeler on wlws-lptp-0265 for Diana
@@ -88,9 +92,8 @@
      - [X] Install printer
      - [X] Configure share
 
-** TODO [#A] Phone stuff [3/4] [75%] 
+** TODO [#A] Phone stuff [4/4] [100%] 
    - [X] Calls not going to voicemail for Shelly Hudson
-   - [X] Packet capture for Inflow troubleshooting
    - [X] Workgroups for Willows/Woodland per Kristal (#25814)
      - [X] Create workgroups
      - [X] Assign workgroup licenses to people
@@ -104,5 +107,6 @@
        - [X] Willows Medical AA
        - [X] Willows Main AA on-hours
        - [X] Willows main AA off-hours
-   - [ ] Emergency call issues per Alexandra (#25872)
-     - [ ] Contact TPx/Inflow
+   - [X] Emergency call issues per Alexandra (#25872)
+     - [X] Contact TPx/Inflow
+     - [X] Training issue. 9-911 routes through Willows; just 911 through whatever local site. Confirmed with Louis and done myself.
