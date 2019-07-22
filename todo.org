@@ -49,7 +49,7 @@
      - [X] Confirm eCW launches successfully from another site
    - [X] Write the non-critical config
    - [X] Confirm NOSC TACACS login
-** TODO [#B] Medication labeler [12/16] [75%]
+** TODO [#B] Medication labeler [14/17] [82%]
    - [X] Generic text for dental meds
    - [X] Display current printer selected for printing
    - [X] Generic user permissions (op-wlws, op-rblf)
@@ -63,14 +63,15 @@
    - [X] Clear date in new prescription to force user to add expiration date
    - [ ] Furnisher generic text discussion with Kristal/Dr Austin re: Betsy
    - [ ] Documentation!
+   - [ ] Update security/Modify to get username/password and use those creds
    - [X] QoL fixes
      - [X] Prevent exploding on invalid input
-   - [-] Install for these people: [3/4]
+   - [X] Install for these people: [4/4]
      - [X] Griselda Calderon
      - [X] Nayeli Montoya
      - [X] Dolores (Irene) Williams
-     - [ ] Zoey Cramer
-   - [ ] Generic/RDA workstation in Woodland
+     - [X] Zoey Cramer
+   - [X] Generic/RDA workstation in Woodland
 
 ** TODO CHSP<->CHEA issues [0/2] [0%]
    - [ ] ???
@@ -110,3 +111,34 @@
    - [X] Emergency call issues per Alexandra (#25872)
      - [X] Contact TPx/Inflow
      - [X] Training issue. 9-911 routes through Willows; just 911 through whatever local site. Confirmed with Louis and done myself.
+** TODO PCI Compliance [9/10] [90%]
+   - [X] Red Bluff - 8008261250
+     - [X] Survey
+     - [X] Scan
+   - [X] Willows - 8008261144
+     - [X] Survey
+     - [X] Scan
+   - [X] Willows Fiscal - 8031107793
+     - [X] Survey
+     - [X] Scan
+   - [X] Chico Medical - 8008261243
+     - [X] Survey
+     - [X] Scan
+   - [X] Chico Dental Front - 8008261185
+     - [X] Survey
+     - [X] Scan
+   - [ ] CHC - 8023021564 FIXME incorrect username or password
+     - [ ] Survey
+     - [ ] Scan
+   - [X] Cohasset - 8029741561
+     - [X] Survey
+     - [X] Scan
+   - [X] Woodland 1 - 8022561586
+     - [X] Survey
+     - [X] Scan
+   - [X] Woodland 2 - 8022561545
+     - [X] Survey
+     - [X] Scan
+   - [X] MDC - 8023904355
+     - [X] Survey
+     - [X] Scan
