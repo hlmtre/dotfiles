@@ -49,7 +49,7 @@
      - [X] Confirm eCW launches successfully from another site
    - [X] Write the non-critical config
    - [X] Confirm NOSC TACACS login
-** TODO [#B] Medication labeler [14/17] [82%]
+** TODO [#B] Medication labeler [15/17] [88%]
    - [X] Generic text for dental meds
    - [X] Display current printer selected for printing
    - [X] Generic user permissions (op-wlws, op-rblf)
@@ -63,7 +63,7 @@
    - [X] Clear date in new prescription to force user to add expiration date
    - [ ] Furnisher generic text discussion with Kristal/Dr Austin re: Betsy
    - [ ] Documentation!
-   - [ ] Update security/Modify to get username/password and use those creds
+   - [X] Update security/Modify to get username/password and use those creds
    - [X] QoL fixes
      - [X] Prevent exploding on invalid input
    - [X] Install for these people: [4/4]
@@ -111,7 +111,7 @@
    - [X] Emergency call issues per Alexandra (#25872)
      - [X] Contact TPx/Inflow
      - [X] Training issue. 9-911 routes through Willows; just 911 through whatever local site. Confirmed with Louis and done myself.
-** TODO PCI Compliance [9/10] [90%]
+** TODO PCI Compliance [10/10] [100%]
    - [X] Red Bluff - 8008261250
      - [X] Survey
      - [X] Scan
@@ -127,9 +127,9 @@
    - [X] Chico Dental Front - 8008261185
      - [X] Survey
      - [X] Scan
-   - [ ] CHC - 8023021564 FIXME incorrect username or password
-     - [ ] Survey
-     - [ ] Scan
+   - [X] CHC - 8023021564 FIXME incorrect username or password
+     - [X] Survey
+     - [X] Scan
    - [X] Cohasset - 8029741561
      - [X] Survey
      - [X] Scan
