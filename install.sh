@@ -61,3 +61,9 @@ ln -s $cur/dunst ~/.config/dunst
 
 mkdir -p ~/bin/
 ln -s $cur/ssh-agent-procure.bash ~/bin/
+
+if [ -e ~/.tmux.conf ]; then
+  echo "~/.tmux.conf exists; renaming for safety..."
+  mv ~/.tmux.conf ~/.tmux.conf.backup
+fi
+ln -s $cur/.tmux.conf ~/.tmux.conf
