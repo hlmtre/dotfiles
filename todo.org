@@ -49,7 +49,7 @@
      - [X] Confirm eCW launches successfully from another site
    - [X] Write the non-critical config
    - [X] Confirm NOSC TACACS login
-** TODO [#B] Medication labeler [15/17] [88%]
+** TODO [#B] Medication labeler [15/18] [83%]
    - [X] Generic text for dental meds
    - [X] Display current printer selected for printing
    - [X] Generic user permissions (op-wlws, op-rblf)
@@ -72,6 +72,8 @@
      - [X] Dolores (Irene) Williams
      - [X] Zoey Cramer
    - [X] Generic/RDA workstation in Woodland
+   - [ ] Medical/dental differentiation in reports (inventory, dispensed, etc)
+   - [ ] Reconciled date in inventory report
 
 ** TODO CHSP<->CHEA issues [0/2] [0%]
    - [ ] ???
@@ -142,3 +144,5 @@
    - [X] MDC - 8023904355
      - [X] Survey
      - [X] Scan
+** TODO CHCO operatory & signature pads
+ - [ ] 0178, 0300, 0301, 0302, 0303, 0304, 0305, 0306, 0308

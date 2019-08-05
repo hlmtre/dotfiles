@@ -58,3 +58,6 @@ if [ -e ~/.config/dunst ]; then
     mv ~/.config/dunst ~/.config/dunst.backup
 fi
 ln -s $cur/dunst ~/.config/dunst
+
+mkdir -p ~/bin/
+ln -s $cur/ssh-agent-procure.bash ~/bin/
