@@ -84,7 +84,7 @@
    - [X] Talk to Dan Grinnell at IHS about ForeScout meeting
 ** TODO Phone delays [1/2] [50%]
    - [X] Packet capture for Inflow troubleshooting
-   - [ ] 
+   - [ ] Speedtest between machine on Cal Park phone network and Willows Admin phone network
 ** TODO [#C] Miscellaneous [5/6] [83%]
    - [X] Dr Austin direct EBO link
    - [X] Medication labeler on wlws-lptp-0265 for Diana
@@ -146,3 +146,6 @@
      - [X] Scan
 ** TODO CHCO operatory & signature pads
  - [ ] 0178, 0300, 0301, 0302, 0303, 0304, 0305, 0306, 0308
+** TODO Stuff for Will [0/2] [0%]
+   - [ ] Grab laptop from Willows
+   - [ ] Build simple VM
