@@ -67,3 +67,9 @@ if [ -e ~/.tmux.conf ]; then
   mv ~/.tmux.conf ~/.tmux.conf.backup
 fi
 ln -s $cur/.tmux.conf ~/.tmux.conf
+
+if [ -e ~/.bashrc ]; then
+  echo "~/.bashrc exists; renaming for safety..."
+  mv ~/.bashrc ~/.bashrc.backup
+fi
+ln -s $cur/.bashrc ~/.bashrc
