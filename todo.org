@@ -75,16 +75,17 @@
    - [ ] Medical/dental differentiation in reports (inventory, dispensed, etc)
    - [ ] Reconciled date in inventory report
 
-** TODO CHSP<->CHEA issues [0/2] [0%]
+** TODO CHSP<->CHEA issues [1/2] [50%]
    - [ ] ???
-   - [ ] Contact NOSC
+   - [X] Contact NOSC
 ** TODO IHS network scanning/slowdown investigation [3/3] [100%]
    - [X] Pull Brandi's packet capture
    - [X] Block known IHS scanning networks at router level
    - [X] Talk to Dan Grinnell at IHS about ForeScout meeting
-** TODO Phone delays [1/2] [50%]
+** TODO Phone delays [2/3] [66%]
    - [X] Packet capture for Inflow troubleshooting
-   - [ ] Speedtest between machine on Cal Park phone network and Willows Admin phone network
+   - [X] Speedtest between machine on Cal Park phone network and Willows Admin phone network
+   - [ ] ???
 ** TODO [#C] Miscellaneous [5/6] [83%]
    - [X] Dr Austin direct EBO link
    - [X] Medication labeler on wlws-lptp-0265 for Diana
@@ -154,6 +155,11 @@
  - [ ] 0305
  - [X] 0306
  - [X] 0308
-** TODO Stuff for Will [0/2] [0%]
+** TODO Stuff for Will [1/3] [33%]
    - [ ] Grab laptop from Willows
-   - [ ] Build simple VM
+   - [X] Build simple VM
+** TODO New CHEA host
+   - [X] LAN/mgmt 4, 5, 6, 7
+   - [X] vmotion 3, 8
+   - [X] storage 0, 1
+   - [X] ipmi
