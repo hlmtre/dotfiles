@@ -145,17 +145,17 @@
    - [X] MDC - 8023904355
      - [X] Survey
      - [X] Scan
-** TODO CHCO operatory & signature pads [6/9] [66%]
+** TODO CHCO operatory & signature pads [9/9] [100%]
  - [X] 0178
  - [X] 0300 
- - [ ] 0301
- - [ ] 0302
+ - [X] 0301
+ - [X] 0302
  - [X] 0303
  - [X] 0304
- - [ ] 0305
+ - [X] 0305
  - [X] 0306
  - [X] 0308
-** TODO Stuff for Will [1/3] [33%]
+** TODO Stuff for Will [1/2] [50%]
    - [ ] Grab laptop from Willows
    - [X] Build simple VM
 ** TODO New CHEA host
@@ -163,3 +163,8 @@
    - [X] vmotion 3, 8
    - [X] storage 0, 1
    - [X] ipmi
+** TODO Alt gw providers
+   - Cafferata
+   - Reinking
+   - Mauro
+   - Marcus
