@@ -163,8 +163,13 @@
    - [X] vmotion 3, 8
    - [X] storage 0, 1
    - [X] ipmi
-** TODO Alt gw providers
+** Alt gw
    - Cafferata
    - Reinking
    - Mauro
    - Marcus
+   - Stroing
+   - White
+   - Libao
+   - Wise
+   - Elizabeth Rivera
