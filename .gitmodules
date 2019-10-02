@@ -8,3 +8,6 @@
 [submodule "polybar/nettraffic"]
 	path = polybar/nettraffic
 	url = git@github.com:hlmtre/nettraffic.git
+[submodule "SpaceVim"]
+	path = SpaceVim
+	url = https://github.com/SpaceVim/SpaceVim
