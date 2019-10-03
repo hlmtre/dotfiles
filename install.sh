@@ -73,3 +73,15 @@ if [ -e ~/.bashrc ]; then
   mv ~/.bashrc ~/.bashrc.backup
 fi
 ln -s $cur/.bashrc ~/.bashrc
+
+if [ -e ~/.SpaceVim.d ]; then
+  echo "~/.SpaceVim.d exists; renaming for safety..."
+  mv ~/.SpaceVim.d ~/.SpaceVim.d.backup
+fi
+ln -s $cur/.SpaceVim.d ~/.SpaceVim.d
+
+if [ -e ~/.SpaceVim ]; then
+  echo "~/.SpaceVim exists; renaming for safety..."
+  mv ~/.SpaceVim ~/.SpaceVim.backup
+fi
+ln -s $cur/SpaceVim ~/.SpaceVim
