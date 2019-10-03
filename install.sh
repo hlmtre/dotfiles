@@ -85,3 +85,7 @@ if [ -e ~/.SpaceVim ]; then
   mv ~/.SpaceVim ~/.SpaceVim.backup
 fi
 ln -s $cur/SpaceVim ~/.SpaceVim
+
+if [ ! -d ~/.vim ]; then 
+  curl -sLf https://spacevim.org/install.sh | bash
+fi
