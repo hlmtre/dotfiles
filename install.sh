@@ -80,12 +80,11 @@ if [ -e ~/.SpaceVim.d ]; then
 fi
 ln -s $cur/.SpaceVim.d ~/.SpaceVim.d
 
-if [ -e ~/.SpaceVim ]; then
-  echo "~/.SpaceVim exists; renaming for safety..."
-  mv ~/.SpaceVim ~/.SpaceVim.backup
-fi
-ln -s $cur/SpaceVim ~/.SpaceVim
+bash ./neovim.sh
 
-if [ ! -d ~/.vim ]; then 
-  curl -sLf https://spacevim.org/install.sh | bash
+# if it exists and is empty
+if [ -z "(ls -A ~/.SpaceVim)" ]; then
+  rm -rf ~/.SpaceVim
 fi
+
+curl -sLf https://spacevim.org/install.sh | bash
