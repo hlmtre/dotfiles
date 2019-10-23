@@ -118,3 +118,5 @@ export DISPLAY=:0
 source ~/bin/ssh-agent-procure.bash
 ssh-add ~/.ssh/mwellerNVIH_id_rsa
 ssh-add ~/.ssh/id_rsa
+
+export EDITOR=nvim
