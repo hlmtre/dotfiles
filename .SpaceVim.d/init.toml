@@ -24,6 +24,8 @@
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
     relativenumber = false
+    enable_vimfiler_gitstatus = true
+    filemanager = "defx"
 
 # Enable autocomplete layer
 [[layers]]
@@ -59,3 +61,9 @@ name = 'sudo'
 
 [[layers]]
 name = 'colorscheme'
+
+[[layers]]
+name = 'fzf'
+
+[[layers]]
+name = 'tools'
