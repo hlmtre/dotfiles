@@ -26,6 +26,7 @@
     relativenumber = false
     enable_vimfiler_gitstatus = true
     filemanager = "defx"
+    autoread = true
 
 # Enable autocomplete layer
 [[layers]]
@@ -38,8 +39,11 @@ name = 'shell'
 default_position = 'top'
 default_height = 30
 
+#[[layers]]
+#name = 'git'
+
 [[layers]]
-name = 'git'
+name = 'VersionControl'
 
 [[layers]]
 name = 'lang#python'
@@ -67,3 +71,6 @@ name = 'fzf'
 
 [[layers]]
 name = 'tools'
+
+[[custom_plugins]]
+name = 'PProvost/vim-ps1'
