@@ -25,8 +25,9 @@
     enable_statusline_mode = false
     relativenumber = false
     enable_vimfiler_gitstatus = true
-    filemanager = "defx"
+    filemanager = "vimfiler"
     autoread = true
+    bootstrap_after = "myconfig#after"
 
 # Enable autocomplete layer
 [[layers]]
@@ -39,8 +40,8 @@ name = 'shell'
 default_position = 'top'
 default_height = 30
 
-#[[layers]]
-#name = 'git'
+[[layers]]
+name = 'git'
 
 [[layers]]
 name = 'VersionControl'
