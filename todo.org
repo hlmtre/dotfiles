@@ -114,8 +114,8 @@
    - [X] Emergency call issues per Alexandra (#25872)
      - [X] Contact TPx/Inflow
      - [X] Training issue. 9-911 routes through Willows; just 911 through whatever local site. Confirmed with Louis and done myself.
-** TODO PCI Compliance [10/11] [90%]
-   - [ ] PW: La0919**
+** TODO PCI Compliance [11/11] [100%]
+   - [X] PW: La0919**
    - [X] Red Bluff - 8008261250
      - [X] Survey
      - [X] Scan

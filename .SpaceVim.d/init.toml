@@ -25,7 +25,7 @@
     enable_statusline_mode = false
     relativenumber = false
     enable_vimfiler_gitstatus = true
-    filemanager = "vimfiler"
+    filemanager = "nerdtree"
     autoread = true
     bootstrap_after = "myconfig#after"
 
@@ -59,6 +59,9 @@ name = 'lang#html'
 name = 'lang#rust'
 
 [[layers]]
+name = 'lang#lisp'
+
+[[layers]]
 name = 'ui'
 
 [[layers]]
@@ -75,3 +78,6 @@ name = 'tools'
 
 [[custom_plugins]]
 name = 'PProvost/vim-ps1'
+
+[[custom_plugins]]
+name = 'saltstack/salt-vim'
