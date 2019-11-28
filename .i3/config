@@ -45,7 +45,7 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec urxvt
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 #bindsym $mod+Return exec termite
 
 # kill focused window
@@ -252,8 +252,8 @@ for_window [class="Firefox"] border none
 #hide_edge_borders smart
 
 #brightness 
-#bindcode XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-#bindcode XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindcode XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindcode XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 #bindsym XF86MonBrightnessDown exec python /home/hlmtre/src/brightness/client.py down
 #bindsym XF86MonBrightnessUp exec python /home/hlmtre/src/brightness/client.py up
 
@@ -261,6 +261,6 @@ for_window [class="Firefox"] border none
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans Mono 6
+font pango:DejaVu Sans Mono Nerd Font Complete 6
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 11px

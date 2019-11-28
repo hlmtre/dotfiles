@@ -9,4 +9,4 @@ tar xvf v0.4.2.tar.gz
 cd neovim-0.4.2
 make CMAKE_BUILD_TYPE=Release
 sudo make install
-rm v0.4.2.tar.gz
+rm ../v0.4.2.tar.gz
