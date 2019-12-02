@@ -22,6 +22,7 @@ ssid = true
 ip = true
 speed_up = true
 interval = 1
+use_bits = true
 
 #[[block]]
 #block = "xrandr"
@@ -61,4 +62,4 @@ block = "sound"
 [[block]]
 block = "time"
 interval = 1
-format = "%a %m/%d %T"
+format = "%a %m/%d %R"
