@@ -17,7 +17,7 @@ icons = "awesome"
 
 [[block]]
 block = "net"
-device = "wlp110s0"
+device = "wlp3s0"
 ssid = true
 ip = true
 speed_up = true
