@@ -15,3 +15,7 @@
 	path = i3status-rust
 	url = git@github.com:hlmtre/i3status-rust.git
   branch = net-bits
+[submodule "rofi"]
+	path = rofi
+	url = https://github.com/davatorium/rofi.git
+  branch = next
