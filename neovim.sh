@@ -1,12 +1,14 @@
 #!/bin/bash
 
 PACKAGES="ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip build-essential curl wget"
-URL=https://github.com/neovim/neovim/archive/v0.4.2.tar.gz
+VERSION=0.4.3
+TARFILE=v$VERSION.tar.gz
+URL=https://github.com/neovim/neovim/archive/$TARFILE
 
 sudo apt install $PACKAGES
 wget $URL
-tar xvf v0.4.2.tar.gz
-cd neovim-0.4.2
+tar xvf $TARFILE
+cd neovim-$VERSION
 make CMAKE_BUILD_TYPE=Release
 sudo make install
-rm ../v0.4.2.tar.gz
+rm ../$TARFILE
