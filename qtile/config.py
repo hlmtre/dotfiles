@@ -31,6 +31,7 @@ from libqtile import layout, bar, widget
 from typing import List  # noqa: F401
 
 mod = "mod4"
+mod1 = "mod1"
 
 keys = [
     # Switch between windows in current stack pane
@@ -42,6 +43,8 @@ keys = [
     # Move windows up or down in current stack
     Key([mod, "control"], "k", lazy.layout.shuffle_down()),
     Key([mod, "control"], "j", lazy.layout.shuffle_up()),
+    Key([mod, "control"], "h", lazy.layout.shuffle_left()),
+    Key([mod, "control"], "l", lazy.layout.shuffle_right()),
 
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
@@ -56,7 +59,7 @@ keys = [
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
     Key([mod], "Return", lazy.spawn("gnome-terminal")),
     Key([mod], "d", lazy.spawn("rofi -combi-modi window,run -show combi -modi combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'")),
-    Key([mod, "control"], "l", lazy.spawn("i3lock -c 000000")),
+    Key([mod1, "control"], "l", lazy.spawn("i3lock -c 000000")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
@@ -94,7 +97,7 @@ layouts = [
      layout.Tile(),
      layout.TreeTab(),
     # layout.VerticalTile(),
-    # layout.Zoomy(),
+     layout.Zoomy(),
 ]
 
 widget_defaults = dict(
@@ -105,6 +108,23 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 screens = [
+    Screen(
+        bottom=bar.Bar(
+            [
+                widget.CurrentLayout(),
+                widget.GroupBox(),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.CPUGraph(),
+                #widget.Net(interface='wlp3s0'),
+                widget.Net(use_bits=True),
+                widget.Systray(),
+                widget.Battery(),
+                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+            ],
+            24,
+        ),
+    ),
     Screen(
         bottom=bar.Bar(
             [
