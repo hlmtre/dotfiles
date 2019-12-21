@@ -176,7 +176,7 @@ bindsym $mod+r mode "resize"
 #}
 
 bar {
-    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9
+    font pango:DejaVu Sans Mono for Powerline, FontAwesome 6
     position bottom
     status_command /usr/local/bin/i3status-rs ~/.i3/config.toml
     colors {
@@ -255,6 +255,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Deja Vu Sans Mono for Powerline 9
+font pango:Deja Vu Sans Mono for Powerline 6
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 11px
