@@ -88,3 +88,5 @@ if [ -z "(ls -A ~/.SpaceVim)" ]; then
 fi
 
 curl -sLf https://spacevim.org/install.sh | bash
+
+ln -s $cur/.SpaceVim.d/myconfig.vim ~/.SpaceVim/autoload/
