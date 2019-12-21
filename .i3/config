@@ -176,7 +176,7 @@ bindsym $mod+r mode "resize"
 #}
 
 bar {
-    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 6
+    font pango:DejaVu Sans Mono for Powerline, FontAwesome 6
     position bottom
     status_command /usr/local/bin/i3status-rs ~/.i3/config.toml
     colors {

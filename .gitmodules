@@ -4,7 +4,8 @@
 	branch = develop
 [submodule "zt"]
 	path = zt
-	url = https://hlmtre@bitbucket.org/hlmtre/zt.git
+	url = git@github.com:hlmtre/zt.git
+  branch = master
 [submodule "polybar/nettraffic"]
 	path = polybar/nettraffic
 	url = git@github.com:hlmtre/nettraffic.git
