@@ -20,3 +20,6 @@
 	path = rofi
 	url = https://github.com/davatorium/rofi.git
   branch = next
+[submodule "homemaker"]
+	path = homemaker
+	url = git@github.com:hlmtre/homemaker.git

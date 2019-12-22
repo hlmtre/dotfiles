@@ -90,3 +90,8 @@ fi
 curl -sLf https://spacevim.org/install.sh | bash
 
 ln -s $cur/.SpaceVim.d/myconfig.vim ~/.SpaceVim/autoload/
+
+# install rust if not installed
+if [[ ! $(command -v rust) ]] ; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
