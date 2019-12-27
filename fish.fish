@@ -2,7 +2,7 @@
 
 mkdir -p "$HOME/etc/ssh"
 
-function ssh-procure-launch-agent 
+function ssh-procure-launch-agent
     eval (ssh-agent -c -a ~/etc/ssh/ssh-agent-socket)
     ssh-add
 end
