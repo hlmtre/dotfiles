@@ -59,6 +59,9 @@ name = 'lang#html'
 name = 'lang#rust'
 
 [[layers]]
+name = 'lsp'
+
+[[layers]]
 name = 'lang#lisp'
 
 [[layers]]
