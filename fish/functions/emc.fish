@@ -1,3 +1,3 @@
 function emc
-	emacsclient -c -n
+	emacsclient -n --socket-name=primary $argv
 end
