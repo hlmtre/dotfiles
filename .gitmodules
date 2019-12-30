@@ -18,7 +18,7 @@
   branch = net-bits
 [submodule "rofi"]
 	path = rofi
-	url = https://github.com/davatorium/rofi.git
+	url = git@github.com:hlmtre/rofi.git
   branch = next
 [submodule "homemaker"]
 	path = homemaker
