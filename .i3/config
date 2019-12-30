@@ -176,7 +176,7 @@ bindsym $mod+r mode "resize"
 #}
 
 bar {
-    font pango:DejaVu Sans Mono for Powerline, FontAwesome 6
+    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9
     position bottom
     status_command /usr/local/bin/i3status-rs ~/.i3/config.toml
     colors {
@@ -202,7 +202,7 @@ bindsym $mod+Control+Shift+s exec /home/hlmtre/dotfiles/zt/zt
 bindsym $mod+Control+Shift+r exec /home/hlmtre/dotfiles/screen_wake.sh
 
 #lockscreen
-bindsym $mod+Control+l exec i3lock -c 000000
+bindsym $mod+Control+l exec i3lock-fancy
 # reset desktop wallpapers
 exec --no-startup-id nitrogen --restore
 
@@ -226,9 +226,9 @@ exec --no-startup-id xinput set-prop 12 "libinput Accel Speed" -0.4
 #bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
 #volume
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%
-bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
@@ -245,7 +245,7 @@ for_window [class="Firefox"] border none
 
 #hide_edge_borders smart
 
-#brightness 
+#brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 #bindsym XF86MonBrightnessDown exec python /home/hlmtre/src/brightness/client.py down
@@ -255,6 +255,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Deja Vu Sans Mono for Powerline 6
+font pango:DejaVu Sans Mono for Powerline 9
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 11px
