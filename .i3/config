@@ -240,7 +240,8 @@ for_window [class="google-chrome-beta"] border none
 for_window [class="Firefox"] border none
 # i3-gaps
 #gaps inner 3
-#smart_gaps on
+smart_gaps on
+smart_borders on
 # default_floating_border normal
 
 #hide_edge_borders smart
