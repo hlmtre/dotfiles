@@ -14,8 +14,8 @@
 	url = https://github.com/SpaceVim/SpaceVim
 [submodule "i3status-rust"]
 	path = i3status-rust
-	url = git@github.com:hlmtre/i3status-rust.git
-  branch = net-bits
+	url = https://github.com/greshake/i3status-rust.git
+  branch = master
 [submodule "rofi"]
 	path = rofi
 	url = git@github.com:hlmtre/rofi.git
