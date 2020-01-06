@@ -23,6 +23,7 @@ hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close_and_remove
 hc keybind $Mod-Return spawn gnome-terminal
 hc keybind $Mod-d spawn rofi -combi-modi window,run -show combi -modi combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 9'
+hc keybind $Mod-Shift-Control-s spawn /home/hlmtre/dotfiles/zt/zt
 
 # basic movement
 # focusing clients
@@ -157,6 +158,7 @@ hc unlock
 hc set_monitors 3440x1440+0+0 2560x1440+3440+0
 # or simply:
 # hc detect_monitors
+hc set focus_follows_mouse 1
 
 # find the panel
 panel=~/.config/herbstluftwm/panel.sh

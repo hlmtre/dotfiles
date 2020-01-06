@@ -1,4 +1,4 @@
-theme = "plain"
+theme = "slick"
 icons = "awesome"
 
 #[[block]]
@@ -17,7 +17,7 @@ icons = "awesome"
 
 [[block]]
 block = "net"
-device = "wlp110s0"
+device = "enp6s0"
 ssid = true
 ip = true
 speed_up = true
@@ -29,6 +29,13 @@ use_bits = true
 #icons = true
 #resolution = true
 #interval = 2
+[[block]]
+block = "nvidia_gpu"
+label = "RTX 2070"
+show_memory = true
+show_clocks = true
+show_temperature = true
+interval = 1
 
 [[block]]
 block = "temperature"
@@ -51,13 +58,18 @@ block = "load"
 interval = 1
 format = "{1m}"
 
-[[block]]
-block = "battery"
-interval = 10
-format = "{percentage}% {time}"
+#[[block]]
+#block = "battery"
+#interval = 10
+#format = "{percentage}% {time}"
 
 [[block]]
 block = "sound"
+
+[[block]]
+block = "weather"
+format = "{weather} ({location}) {temp}°, {wind} m/s {direction}"
+service = { name = "openweathermap", api_key = "6dc001f4e77cc0985c5013283368be51", city_id = "5336269", units = "metric" }
 
 [[block]]
 block = "time"

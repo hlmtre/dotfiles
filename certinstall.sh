@@ -13,8 +13,8 @@
 ### CA file to install (CUSTOMIZE!)
 ###
 
-certfile="/usr/local/share/ca-certificates/chea-certs.ad.nvih.org_CHEA-CERTS-CA.crt"
-certname="CHEA INTERMEDIATE CA"
+certfile="/usr/local/share/ca-certificates/ipa-ca.crt"
+certname="zero9f9 IPA cert"
 
 
 ###
@@ -37,4 +37,3 @@ do
     certdir=$(dirname ${certDB});
     certutil -A -n "${certname}" -t "TCu,Cu,Tu" -i ${certfile} -d sql:${certdir}
 done
-
