@@ -29,13 +29,6 @@ use_bits = true
 #icons = true
 #resolution = true
 #interval = 2
-[[block]]
-block = "nvidia_gpu"
-label = "RTX 2070"
-show_memory = true
-show_clocks = true
-show_temperature = true
-interval = 1
 
 [[block]]
 block = "temperature"
