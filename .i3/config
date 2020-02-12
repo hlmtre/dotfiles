@@ -43,8 +43,8 @@ bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec "rofi -combi-modi window,run -show combi -modi combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
-#bindsym $mod+d exec rofi -show run
+#bindsym $mod+d exec "rofi -combi-modi window,run -show combi -modi combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
+bindsym $mod+d exec "rofi -show run -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
 
 # change focus
 bindsym $mod+h focus left
