@@ -218,8 +218,8 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id gnome-settings-daemon
 #exec --no-startup-id /home/hlmtre/bin/xflux -z 95973
 exec --no-startup-id redshift
-exec --no-startup-id xinput set-prop 11 "Device Enabled" 0
-exec --no-startup-id xinput set-prop 12 "libinput Accel Speed" -0.6
+exec --no-startup-id xinput set-prop 11 "Device Enabled" 1
+exec --no-startup-id xinput set-prop 11 "libinput Accel Speed" -0.6
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 
 #exec --no-startup-id emacs --daemon
