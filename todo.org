@@ -1,26 +1,26 @@
 * Things to get done
-** TODO [#C] Chico network closet cleanup [1/8] [12%]
+** TODO [#C] Chico network closet cleanup [8/9] [88%]
    - [X] Patch panel/switch cable mapping
      - [X] Identify special ports/cables
      - [X] Label patch panels and switches
-   - [ ] Identify new rack cabinet
-     - [ ] Which rack to pick? Wall mount 15U? Floor bolt 42U?
-   - [ ] Coordinate with Travis to assist
-   - [ ] Identify maintenance window
-     - [ ] Notify IHS of maintenance work
-     - [ ] Set LibreNMS maintenance window
-   - [ ] Clean up & remove existing rack
-     - [ ] Unplug all cables from patch panels and switches in current rack 
-     - [ ] Disconnect and mark/organize uplink cabling
-   - [ ] Prepare closet for new setup
-     - [ ] Fix power with known-good UPSes and clean power strip placement
-     - [ ] Mount new rack (wherever it goes)
+   - [X] Identify new rack cabinet
+     - [X] Which rack to pick? Wall mount 15U? Floor bolt 42U?
+   - [X] Coordinate with Travis to assist
+   - [X] Identify maintenance window
+     - [X] Notify IHS of maintenance work
+     - [X] Set LibreNMS maintenance window
+   - [X] Clean up & remove existing rack
+     - [X] Unplug all cables from patch panels and switches in current rack
+     - [X] Disconnect and mark/organize uplink cabling
+   - [-] Prepare closet for new setup
+     - [X] Fix power with known-good UPSes and clean power strip placement
+     - [X] Mount new rack (wherever it goes)
      - [ ] Re-mount all patch panels (hopefully in order is possible)
-     - [ ] Mount all switches
-     - [ ] Mount all provider equipment/routers
-   - [ ] Wire!
-   - [ ] Verify all routing is back up and happy
-   - [ ] Ensure all APs at Chico site are up and running on their correct ports
+     - [X] Mount all switches
+     - [X] Mount all provider equipment/routers
+   - [X] Wire!
+   - [X] Verify all routing is back up and happy
+   - [X] Ensure all APs at Chico site are up and running on their correct ports
 ** TODO Sacramento router swap [6/6] [100%]
    - [X] To bring:
      - [X] manjaro laptop
@@ -44,12 +44,12 @@
        - [X] CHSP
        - [X] WLWS
        - [X] WDLD
-       - [X] RBLF 
+       - [X] RBLF
      - [X] Confirm reachable by the NOSC
      - [X] Confirm eCW launches successfully from another site
    - [X] Write the non-critical config
    - [X] Confirm NOSC TACACS login
-** TODO [#B] Medication labeler [15/18] [83%]
+** TODO [#B] Medication labeler [18/20] [90%]
    - [X] Generic text for dental meds
    - [X] Display current printer selected for printing
    - [X] Generic user permissions (op-wlws, op-rblf)
@@ -61,7 +61,7 @@
    - [X] Install Red Bluff dental label printer
    - [X] Install for Rachelle Romano
    - [X] Clear date in new prescription to force user to add expiration date
-   - [ ] Furnisher generic text discussion with Kristal/Dr Austin re: Betsy
+   - [X] Furnisher generic text discussion with Kristal/Dr Austin re: Betsy
    - [ ] Documentation!
    - [X] Update security/Modify to get username/password and use those creds
    - [X] QoL fixes
@@ -72,20 +72,14 @@
      - [X] Dolores (Irene) Williams
      - [X] Zoey Cramer
    - [X] Generic/RDA workstation in Woodland
-   - [ ] Medical/dental differentiation in reports (inventory, dispensed, etc)
+   - [X] Medical/dental differentiation in reports (inventory, dispensed, etc)
    - [ ] Reconciled date in inventory report
+   - [X] Save last exported location for reports
 
-** TODO CHSP<->CHEA issues [1/2] [50%]
-   - [ ] ???
-   - [X] Contact NOSC
-** TODO IHS network scanning/slowdown investigation [3/3] [100%]
-   - [X] Pull Brandi's packet capture
-   - [X] Block known IHS scanning networks at router level
-   - [X] Talk to Dan Grinnell at IHS about ForeScout meeting
-** TODO Phone delays [2/3] [66%]
+** TODO Phone delays [3/3] [100%]
    - [X] Packet capture for Inflow troubleshooting
    - [X] Speedtest between machine on Cal Park phone network and Willows Admin phone network
-   - [ ] ???
+   - [X] Whole system upgrade and cleanup
 ** TODO [#C] Miscellaneous [5/6] [83%]
    - [X] Dr Austin direct EBO link
    - [X] Medication labeler on wlws-lptp-0265 for Diana
@@ -96,7 +90,7 @@
      - [X] Install printer
      - [X] Configure share
 
-** TODO [#A] Phone stuff [4/4] [100%] 
+** TODO [#A] Phone stuff [4/4] [100%]
    - [X] Calls not going to voicemail for Shelly Hudson
    - [X] Workgroups for Willows/Woodland per Kristal (#25814)
      - [X] Create workgroups
@@ -131,7 +125,7 @@
    - [X] Chico Dental Front - 8008261185
      - [X] Survey
      - [X] Scan
-   - [X] CHC - 8023021564 FIXME incorrect username or password
+   - [X] CHC - 8023021564 uname ltamble1971
      - [X] Survey
      - [X] Scan
    - [X] Cohasset - 8029741561
@@ -148,7 +142,7 @@
      - [X] Scan
 ** TODO CHCO operatory & signature pads [9/9] [100%]
  - [X] 0178
- - [X] 0300 
+ - [X] 0300
  - [X] 0301
  - [X] 0302
  - [X] 0303
@@ -156,11 +150,31 @@
  - [X] 0305
  - [X] 0306
  - [X] 0308
-** TODO Stuff for Will [1/2] [50%]
-   - [ ] Grab laptop from Willows
+** TODO Stuff for Will [1/1] [100%]
    - [X] Build simple VM
-** TODO New CHEA host
-   - [X] LAN/mgmt 4, 5, 6, 7
-   - [X] vmotion 3, 8
-   - [X] storage 0, 1
-   - [X] ipmi
+** TODO NVIH_Secure / RADIUS [4/6] [66%]
+   - [-] Two RADIUS proxies at each site
+     - [X] CHCA 1
+     - [X] CHCA 2
+     - [X] CHCO 1
+     - [X] CHCO 2
+     - [X] CHEA 1
+     - [ ] CHEA 2
+     - [X] CHSP 1
+     - [ ] CHSP 2
+     - [X] RBLF 1
+     - [ ] RBLF 2
+     - [X] WLWS/WLAD 1
+     - [ ] WLWS/WLAD 2
+     - [X] WDLD 1
+     - [ ] WDLD 2
+   - [X] WiFi networks at each site
+   - [X] RADIUS NPS servers in SACR
+   - [X] Add all APs as RADIUS clients to proxies
+   - [X] Add all proxies as RADIUS clients to NPS masters
+   - [ ] Test RADIUS failover
+** TODO IHS divorce [0/4] [0%]
+   - [ ] Test default gateway through Sacramento at Cal park
+   - [ ] Test removing all IHS routes at Cal Park
+   - [ ] Ditto at RBLF
+   - [ ] Reconfigure Velo to be LAN gw (10.148.82.1/23)
