@@ -43,8 +43,8 @@ bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec "rofi -combi-modi window,run -show combi -modi combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
-#bindsym $mod+d exec rofi -show run
+#bindsym $mod+d exec "rofi -combi-modi window,run -show combi -modi combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
+bindsym $mod+d exec "rofi -show run -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
 
 # change focus
 bindsym $mod+h focus left
@@ -176,7 +176,7 @@ bindsym $mod+r mode "resize"
 #}
 
 bar {
-    font pango:DejaVu Sans Mono for Powerline, FontAwesome 6
+    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9
     position bottom
     status_command /usr/local/bin/i3status-rs ~/.i3/config.toml
     colors {
@@ -202,7 +202,7 @@ bindsym $mod+Control+Shift+s exec /home/hlmtre/dotfiles/zt/zt
 bindsym $mod+Control+Shift+r exec /home/hlmtre/dotfiles/screen_wake.sh
 
 #lockscreen
-bindsym $mod+Control+l exec i3lock -c 000000
+bindsym $mod+Control+l exec i3lock-fancy
 # reset desktop wallpapers
 exec --no-startup-id nitrogen --restore
 
@@ -218,8 +218,8 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id gnome-settings-daemon
 #exec --no-startup-id /home/hlmtre/bin/xflux -z 95973
 exec --no-startup-id redshift
-exec --no-startup-id xinput set-prop 11 "Device Enabled" 0
-exec --no-startup-id xinput set-prop 12 "libinput Accel Speed" -0.6
+exec --no-startup-id xinput set-prop 11 "Device Enabled" 1
+exec --no-startup-id xinput set-prop 11 "libinput Accel Speed" -0.6
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 
 #exec --no-startup-id emacs --daemon
@@ -248,8 +248,8 @@ smart_borders on
 #hide_edge_borders smart
 
 #brightness
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
 #bindsym XF86MonBrightnessDown exec python /home/hlmtre/src/brightness/client.py down
 #bindsym XF86MonBrightnessUp exec python /home/hlmtre/src/brightness/client.py up
 
@@ -257,6 +257,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Deja Vu Sans Mono for Powerline 6
+font pango:DejaVu Sans Mono for Powerline 9
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 11px

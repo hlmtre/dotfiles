@@ -17,7 +17,7 @@ icons = "awesome"
 
 [[block]]
 block = "net"
-device = "enp6s0"
+device = "wlp3s0"
 ssid = true
 ip = true
 speed_up = true
@@ -29,17 +29,17 @@ use_bits = true
 #icons = true
 #resolution = true
 #interval = 2
-[[block]]
-block = "nvidia_gpu"
-label = "RTX 2070"
-show_memory = true
-show_clocks = true
-show_temperature = true
-interval = 1
+#[[block]]
+#block = "nvidia_gpu"
+#label = "RTX 2070"
+#show_memory = true
+#show_clocks = true
+#show_temperature = true
+#interval = 1
 
 [[block]]
 block = "temperature"
-collapsed = false
+collapsed = true
 interval = 10
 format = "{max}° max, {average}° avg"
 
@@ -54,14 +54,9 @@ block = "cpu"
 interval = 1
 
 [[block]]
-block = "load"
-interval = 1
-format = "{1m}"
-
-#[[block]]
-#block = "battery"
-#interval = 10
-#format = "{percentage}% {time}"
+block = "battery"
+interval = 10
+format = "{percentage}% {time}"
 
 [[block]]
 block = "sound"

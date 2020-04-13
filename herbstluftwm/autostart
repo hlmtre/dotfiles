@@ -22,7 +22,7 @@ hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close_and_remove
 hc keybind $Mod-Return spawn gnome-terminal
-hc keybind $Mod-d spawn rofi -combi-modi window,run -show combi -modi combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 9'
+hc keybind $Mod-d spawn rofi -show run -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 9'
 hc keybind $Mod-Shift-Control-s spawn /home/hlmtre/dotfiles/zt/zt
 
 # basic movement
@@ -155,9 +155,9 @@ hc set tree_style '╾│ ├└╼─┐'
 hc unlock
 
 # do multi monitor setup here, e.g.:
-hc set_monitors 3440x1440+0+0 2560x1440+3440+0
+#hc set_monitors 3440x1440+0+0 2560x1440+3440+0
 # or simply:
-# hc detect_monitors
+hc detect_monitors
 hc set focus_follows_mouse 1
 
 # find the panel
