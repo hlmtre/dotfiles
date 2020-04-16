@@ -96,11 +96,19 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindcode $mod+d focus child
 
+set $ws1 "1:irc"
+set $ws2 "2:web"
+set $ws3 "3:cli"
+set $ws4 "4:vpn"
+set $wse "e"
+
+
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+bindsym $mod+grave workspace $wse
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -109,10 +117,11 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+exclam move workspace 1
-bindsym $mod+Shift+at move workspace 2
-bindsym $mod+Shift+numbersign move workspace 3
-bindsym $mod+Shift+dollar move workspace 4
+bindsym $mod+Shift+asciitilde move workspace $wse
+bindsym $mod+Shift+exclam move workspace $ws1
+bindsym $mod+Shift+at move workspace $ws2
+bindsym $mod+Shift+numbersign move workspace $ws3
+bindsym $mod+Shift+dollar move workspace $ws4
 bindsym $mod+Shift+percent move workspace 5
 bindsym $mod+Shift+asciicircum move workspace 6
 bindsym $mod+Shift+ampersand move workspace 7
@@ -179,6 +188,7 @@ bar {
     font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9
     position bottom
     status_command /usr/local/bin/i3status-rs ~/.i3/config.toml
+    strip_workspace_numbers yes
     colors {
         separator #666666
         background #000000
