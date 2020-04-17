@@ -24,3 +24,7 @@
 	path = homemaker
 	url = git@github.com:hlmtre/homemaker.git
   branch = master
+[submodule "doom-emacs"]
+	path = doom/.emacs.d
+	url = https://github.com/hlissner/doom-emacs.git
+	branch = develop
