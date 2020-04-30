@@ -1,13 +1,15 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export EDITOR:emacsclient\x20\x2d\x2dsocket\x2dname\x20primary
+SETUVAR --export EDITOR:emacsclient\x20\x2ds\x20/tmp/emacs151600001/server
 SETUVAR --export ESRVNAME:primary
 SETUVAR --export LC_CTYPE:en_US\x2eUTF\x2d8
 SETUVAR --export NVIM_LISTEN_ADDRESS:/tmp/spacevim_nvim_server
 SETUVAR --export --path RUST_SRC_PATH:/home/hlmtre/\x2erustup/toolchains/nightly\x2dx86_64\x2dunknown\x2dlinux\x2dgnu/lib/rustlib/src/rust/src/
+SETUVAR __fish_classic_git_prompt_initialized:\x1d
 SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
+SETUVAR __fish_initialized:3100
 SETUVAR chain_links:chain\x2elinks\x2eroot\x1echain\x2elinks\x2ejobs\x1echain\x2elinks\x2epwd\x1echain\x2elinks\x2evcs_branch\x1echain\x2elinks\x2evcs_dirty\x1echain\x2elinks\x2evcs_stashed
 SETUVAR fish_color_autosuggestion:969896
 SETUVAR fish_color_cancel:\x2dr
@@ -20,6 +22,7 @@ SETUVAR fish_color_error:d54e53
 SETUVAR fish_color_escape:00a6b2
 SETUVAR fish_color_history_current:\x2d\x2dbold
 SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
 SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
 SETUVAR fish_color_normal:normal
 SETUVAR fish_color_operator:00a6b2
