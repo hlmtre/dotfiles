@@ -63,7 +63,7 @@ block = "sound"
 
 [[block]]
 block = "weather"
-format = "{weather} ({location}) {temp}°, {wind} m/s {direction}"
+format = "{weather} ({location}) {temp}°"
 service = { name = "openweathermap", api_key = "6dc001f4e77cc0985c5013283368be51", city_id = "5336269", units = "metric" }
 
 [[block]]
