@@ -43,8 +43,8 @@ bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-#bindsym $mod+d exec "rofi -combi-modi window,run -show combi -modi combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
-bindsym $mod+d exec "rofi -show run -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
+bindsym $mod+d exec "rofi -combi-modi window,run,ssh -show combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
+#bindsym $mod+d exec "rofi -show run -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
 
 # change focus
 bindsym $mod+h focus left
@@ -191,7 +191,7 @@ bar {
 }
 
 ## two
-#exec --no-startup-id xrandr --output DP-2 --auto --primary --output DP-3 --mode 3440x1440 --rate 99.99 --left-of DP-2 --output DP-0 --off
+exec --no-startup-id xrandr --output DP-2 --mode 2560x1440 --rate 143.91 --primary --output DP-0 --mode 3440x1440 --rate 100.00 --left-of DP-2
 
 #exec --no-startup-id polybar --reload -c ~/.config/polybar/config secondary &
 #exec --no-startup-id polybar --reload -c ~/.config/polybar/config primary &

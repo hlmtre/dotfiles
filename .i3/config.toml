@@ -27,7 +27,6 @@ icons = "awesome"
 [[block]]
 block = "net"
 device = "enp6s0"
-ssid = true
 ip = true
 speed_up = true
 interval = 1
@@ -49,8 +48,8 @@ interval = 1
 
 [[block]]
 block = "temperature"
-collapsed = true
 interval = 10
+collapsed = false
 format = "{max}° max, {average}° avg"
 
 [[block]]
