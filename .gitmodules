@@ -1,6 +1,6 @@
 [submodule "hlmtremacs"]
 	path = hlmtremacs
-	url = https://hlmtre@bitbucket.org/hlmtre/hlmtremacs.git
+	url = git@github.com:hlmtre/hlmtremacs.git
 	branch = develop
 [submodule "zt"]
 	path = zt
@@ -18,7 +18,7 @@
   branch = master
 [submodule "rofi"]
 	path = rofi
-	url = git@github.com:hlmtre/rofi.git
+	url = https://github.com/davatorium/rofi.git
   branch = next
 [submodule "homemaker"]
 	path = homemaker
