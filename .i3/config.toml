@@ -15,10 +15,18 @@ icons = "awesome"
 #block = "focused_window"
 #max_width = 21
 
+#[[block]]
+#block = "net"
+#device = "wlp3s0"
+#ssid = true
+#ip = true
+#speed_up = true
+#interval = 1
+#use_bits = true
+
 [[block]]
 block = "net"
-device = "wlp3s0"
-ssid = true
+device = "enp6s0"
 ip = true
 speed_up = true
 interval = 1
@@ -29,18 +37,19 @@ use_bits = true
 #icons = true
 #resolution = true
 #interval = 2
-#[[block]]
-#block = "nvidia_gpu"
-#label = "RTX 2070"
-#show_memory = true
-#show_clocks = true
-#show_temperature = true
-#interval = 1
+
+[[block]]
+block = "nvidia_gpu"
+label = "RTX 2070"
+show_memory = true
+show_clocks = true
+show_temperature = true
+interval = 1
 
 [[block]]
 block = "temperature"
-collapsed = true
 interval = 10
+collapsed = false
 format = "{max}° max, {average}° avg"
 
 [[block]]
@@ -53,17 +62,17 @@ format_swap = "{SUp}%"
 block = "cpu"
 interval = 1
 
-[[block]]
-block = "battery"
-interval = 10
-format = "{percentage}% {time}"
+#[[block]]
+#block = "battery"
+#interval = 10
+#format = "{percentage}% {time}"
 
 [[block]]
 block = "sound"
 
 [[block]]
 block = "weather"
-format = "{weather} ({location}) {temp}°, {wind} m/s {direction}"
+format = "{weather} ({location}) {temp}°"
 service = { name = "openweathermap", api_key = "6dc001f4e77cc0985c5013283368be51", city_id = "5336269", units = "metric" }
 
 [[block]]
