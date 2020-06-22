@@ -135,17 +135,17 @@ mode "resize" {
           # when pressing left, the window is resized so that it has
           # more space on its left
 
-  bindsym j resize shrink left 10 px or 10 ppt
-  bindsym Shift+J resize grow   left 10 px or 10 ppt
+  bindsym h resize shrink left 10 px or 10 ppt
+  bindsym Shift+H resize grow   left 10 px or 10 ppt
 
-  bindsym k resize shrink down 10 px or 10 ppt
-  bindsym Shift+K resize grow   down 10 px or 10 ppt
+  bindsym j resize shrink down 10 px or 10 ppt
+  bindsym Shift+J resize grow   down 10 px or 10 ppt
 
-  bindsym l resize shrink up 10 px or 10 ppt
-  bindsym Shift+L resize grow   up 10 px or 10 ppt
+  bindsym k resize shrink up 10 px or 10 ppt
+  bindsym Shift+K resize grow   up 10 px or 10 ppt
 
-  bindsym semicolon resize shrink right 10 px or 10 ppt
-  bindsym Shift+colon resize grow   right 10 px or 10 ppt
+  bindsym l resize shrink right 10 px or 10 ppt
+  bindsym Shift+L resize grow   right 10 px or 10 ppt
 
           # same bindings, but for the arrow keys
   bindsym Left resize shrink left 10 px or 10 ppt
@@ -176,7 +176,7 @@ bindsym $mod+r mode "resize"
 #}
 
 bar {
-    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9
+    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9.5
     position bottom
     status_command /usr/local/bin/i3status-rs ~/.i3/config.toml
     colors {
@@ -198,11 +198,13 @@ exec --no-startup-id xrandr --output DP-2 --mode 2560x1440 --rate 143.91 --prima
 
 #zt
 bindsym $mod+Control+Shift+s exec /home/hlmtre/dotfiles/zt/zt
+bindsym $mod+Control+Shift+c exec /home/hlmtre/dotfiles/zt/zt -c
 
 bindsym $mod+Control+Shift+r exec /home/hlmtre/dotfiles/screen_wake.sh
 
 #lockscreen
-bindsym $mod+Control+l exec i3lock-fancy
+#bindsym $mod+Control+l exec i3lock-fancy
+bindsym $mod+Control+l exec i3lock -c 000000
 # reset desktop wallpapers
 exec --no-startup-id nitrogen --restore
 
@@ -257,6 +259,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans Mono for Powerline 9
+font pango:DejaVu Sans Mono for Powerline 9.5
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 11px
