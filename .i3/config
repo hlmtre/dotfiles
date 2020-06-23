@@ -43,8 +43,8 @@ bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-#bindsym $mod+d exec "rofi -combi-modi window,run -show combi -modi combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
-bindsym $mod+d exec "rofi -show run -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
+bindsym $mod+d exec "rofi -combi-modi window,run,ssh -show combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
+#bindsym $mod+d exec "rofi -show run -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
 
 # change focus
 bindsym $mod+h focus left
@@ -185,7 +185,7 @@ bindsym $mod+r mode "resize"
 #}
 
 bar {
-    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9
+    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9.5
     position bottom
     status_command /usr/local/bin/i3status-rs ~/.i3/config.toml
     strip_workspace_numbers yes
@@ -201,7 +201,7 @@ bar {
 }
 
 ## two
-#exec --no-startup-id xrandr --output DP-2 --auto --primary --output DP-3 --mode 3440x1440 --rate 99.99 --left-of DP-2 --output DP-0 --off
+exec --no-startup-id xrandr --output DP-2 --mode 2560x1440 --rate 143.91 --primary --output DP-0 --mode 3440x1440 --rate 100.00 --left-of DP-2
 
 #exec --no-startup-id polybar --reload -c ~/.config/polybar/config secondary &
 #exec --no-startup-id polybar --reload -c ~/.config/polybar/config primary &
@@ -213,7 +213,8 @@ bindsym $mod+Control+Shift+c exec /home/hlmtre/dotfiles/zt/zt -c
 bindsym $mod+Control+Shift+r exec /home/hlmtre/dotfiles/screen_wake.sh
 
 #lockscreen
-bindsym $mod+Control+l exec i3lock-fancy
+#bindsym $mod+Control+l exec i3lock-fancy
+bindsym $mod+Control+l exec i3lock -c 000000
 # reset desktop wallpapers
 exec --no-startup-id nitrogen --restore
 
@@ -268,6 +269,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans Mono for Powerline 9
+font pango:DejaVu Sans Mono for Powerline 9.5
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 11px

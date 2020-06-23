@@ -1,6 +1,6 @@
 [submodule "hlmtremacs"]
 	path = hlmtremacs
-	url = https://hlmtre@bitbucket.org/hlmtre/hlmtremacs.git
+	url = git@github.com:hlmtre/hlmtremacs.git
 	branch = develop
 [submodule "zt"]
 	path = zt
@@ -14,11 +14,11 @@
 	url = https://github.com/SpaceVim/SpaceVim
 [submodule "i3status-rust"]
 	path = i3status-rust
-	url = git@github.com:hlmtre/i3status-rust.git
-  branch = net-bits
+	url = https://github.com/greshake/i3status-rust.git
+  branch = master
 [submodule "rofi"]
 	path = rofi
-	url = git@github.com:hlmtre/rofi.git
+	url = https://github.com/davatorium/rofi.git
   branch = next
 [submodule "homemaker"]
 	path = homemaker
