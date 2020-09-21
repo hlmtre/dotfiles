@@ -173,8 +173,35 @@
    - [X] Add all APs as RADIUS clients to proxies
    - [X] Add all proxies as RADIUS clients to NPS masters
    - [ ] Test RADIUS failover
-** TODO IHS divorce [0/4] [0%]
-   - [ ] Test default gateway through Sacramento at Cal park
-   - [ ] Test removing all IHS routes at Cal Park
-   - [ ] Ditto at RBLF
-   - [ ] Reconfigure Velo to be LAN gw (10.148.82.1/23)
+** TODO IHS divorce [1/6] [16%]
+   - [-] Proof of concept
+     - [ ] Test default gateway through Sacramento at Cal Park
+     - [X] Test removing all IHS routes at Cal Park
+     - [X] Ditto at RBLF
+     - [X] Reconfigure Velo to be LAN gw (10.148.82.1/23)
+   - [-] Point-to-point VPN for VistA access
+     - [X] Email Reese @ CAO for their information
+     - [ ] Configure VPN tunnel endpoint (CHEA? SACR?)
+   - [X] Good config backups of Cisco routers
+   - [-] Secondary IPs for each Cisco router
+     - [ ] WLWS
+     - [X] CHCA - 10.148.82.38
+     - [X] CHEA - 10.148.76.48
+     - [X] CHCO - 10.148.78.38
+     - [X] CHSP - 10.148.80.45
+     - [X] RBLF - 10.148.84.38
+     - [X] WDLD - 10.148.92.38
+     - [ ] SACR - 10.148.88.72
+   - [-] Install media converters on Velos that need it
+     - [X] WLWS
+     - [ ] SACR
+     - [X] CHCO
+   - [-] Stage Velo interfaces with LAN IPs
+     - [ ] WLWS
+     - [X] CHCA
+     - [X] CHEA
+     - [X] CHCO
+     - [X] CHSP
+     - [X] RBLF
+     - [X] WDLD
+     - [X] SACR
