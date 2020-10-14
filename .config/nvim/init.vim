@@ -17,10 +17,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-startify'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " general
 set number
+set showtabline=2
 syntax on
 filetype plugin indent on
 set ts=2
@@ -93,14 +96,3 @@ autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<cr>
 nnoremap <silent> g] <cmd>NextDiagnosticCycle<cr>
-"
-""require'nvim_lsp'.rust_analyzer.setup{}
-"lua <<EOF
-"require'nvim_lsp'.rust_analyzer.setup({
-"	settings = {
-"	  ["rust-analyzer"] = {
-"		  "rust-analyzer.cargo.allFeatures" = true
-"		}
-"	}
-"})
-"EOF
