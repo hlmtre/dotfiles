@@ -19,6 +19,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-gitgutter'
+Plug 'jistr/vim-nerdtree-tabs'
 call plug#end()
 
 " general
@@ -26,22 +27,23 @@ set number
 set showtabline=2
 syntax on
 filetype plugin indent on
+set ai
+set si
 set ts=2
 set shiftwidth=2
+set mouse=a
 autocmd vimenter * colorscheme gruvbox
 let g:NERDTreeWinPos = "right"
 "
 " mapping
-map <F2> :NERDTreeToggle<CR>
+let g:NERDTreeMapActivateNode	= "<tab>"
+map <F2> :NERDTreeTabsToggle<CR>
 nmap <C-P> :FZF<CR>
+nmap <c-l> :tabn<CR>
+nmap <c-h> :tabp<CR>
 
 
 " rust
-"let g:deoplete#enable_at_startup = 1
-"let g:neosnippet#enable_complete_done = 1
-"let g:LanguageClient_serverCommands = {
-"    \ 'rust': ['~/.cargo/bin/ra_lsp_server'],
-"    \ }
 let g:LanguageClient_serverCommands = {  'rust': ['rust-analyzer'], }
 let g:rustfmt_autosave = 1
 let g:rustc_path = $HOME."/.cargo/bin/rustc"
@@ -79,7 +81,6 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-
 nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
 " Visualize diagnostics
 let g:diagnostic_enable_virtual_text = 1
@@ -96,3 +97,4 @@ autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<cr>
 nnoremap <silent> g] <cmd>NextDiagnosticCycle<cr>
+" end rust. whew!
