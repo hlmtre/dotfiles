@@ -201,7 +201,7 @@ bar {
 }
 
 ## two
-exec --no-startup-id /home/hlmtre/dotfiles/two.sh
+exec --no-startup-id xrandr --output DP-2 --mode 2560x1440 --rate 143.91 --primary --output DP-0 --mode 3440x1440 --rate 100.00 --left-of DP-2
 
 #exec --no-startup-id polybar --reload -c ~/.config/polybar/config secondary &
 #exec --no-startup-id polybar --reload -c ~/.config/polybar/config primary &
@@ -229,16 +229,10 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id /home/hlmtre/src/mocp-scrobbler/mocp-scrobbler.py --daemon
 #exec --no-startup-id gnome-settings-daemon
 #exec --no-startup-id /home/hlmtre/bin/xflux -z 95973
-exec --no-startup-id redshift -t 5200:2850
+exec --no-startup-id redshift
 exec --no-startup-id xinput set-prop 11 "Device Enabled" 1
-exec --no-startup-id ~/dotfiles/libinput.sh
+exec --no-startup-id xinput set-prop 11 "libinput Accel Speed" -0.6
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
-exec --no-startup-id xrandr --output DP-4 --primary --rate 143.91 --mode 2560x1440 --output DP-0 --mode 3440x1440 --rate 100.00 --left-of DP-4
-exec --no-startup-id i3-resurrect restore -w 1irc
-exec --no-startup-id i3-resurrect restore -w 2web
-exec --no-startup-id i3-resurrect restore -w 3cli
-exec --no-startup-id i3-resurrect restore -w 4vpn
-exec --no-startup-id i3-resurrect restore -w e
 
 #exec --no-startup-id emacs --daemon
 
