@@ -185,7 +185,7 @@ bindsym $mod+r mode "resize"
 #}
 
 bar {
-    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9.5
+    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 8.5
     position bottom
     status_command /usr/local/bin/i3status-rs ~/.i3/config.toml
     strip_workspace_numbers yes
