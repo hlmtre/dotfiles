@@ -28,3 +28,6 @@
 	path = doom/.emacs.d
 	url = https://github.com/hlissner/doom-emacs.git
 	branch = develop
+[submodule "observer"]
+	path = observer
+	url = ./observer
