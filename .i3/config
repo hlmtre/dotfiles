@@ -185,7 +185,7 @@ bindsym $mod+r mode "resize"
 #}
 
 bar {
-    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9.5
+    font pango:Deja Vu Sans Mono for Powerline, FontAwesome 9
     position bottom
     status_command /usr/local/bin/i3status-rs ~/.i3/config.toml
     strip_workspace_numbers yes
@@ -222,6 +222,9 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 # pasystray (volume control) (not needed with i3status-rust)
 # exec --no-startup-id pasystray
+
+# disable capslock
+exec --no-startup-id setxkbmap -option caps:none
 
 # disable touchpad movement
 # clit mouse 4 lyfe
