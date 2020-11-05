@@ -30,4 +30,4 @@
 	branch = develop
 [submodule "observer"]
 	path = observer
-	url = ./observer
+	url = git@github.com:hlmtre/observer.git
