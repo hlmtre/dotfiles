@@ -23,6 +23,10 @@ icons = "awesome"
 #speed_up = true
 #interval = 1
 #use_bits = true
+[[block]]
+block = "music"
+player = "spotifyd"
+buttons = ["play"]
 
 [[block]]
 block = "net"
@@ -61,6 +65,7 @@ format_swap = "{SUp}%"
 [[block]]
 block = "cpu"
 interval = 1
+format = "{utilization}% {frequency}GHz"
 
 [[block]]
 block = "battery"
