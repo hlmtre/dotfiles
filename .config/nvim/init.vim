@@ -36,6 +36,8 @@ set shiftwidth=2
 set mouse=a
 autocmd vimenter * colorscheme gruvbox
 let g:NERDTreeWinPos = "right"
+set timeoutlen=500
+let g:airline_powerline_fonts = 1
 "
 " mapping
 let g:NERDTreeMapActivateNode	= "<tab>"
@@ -45,8 +47,7 @@ nmap <c-l> :tabn<CR>
 nmap <c-h> :tabp<CR>
 " make esc work in terminal
 tnoremap <Esc> <C-\><C-n>
-
-
+"
 " rust
 let g:LanguageClient_serverCommands = {  'rust': ['rust-analyzer'], }
 let g:rustfmt_autosave = 1
