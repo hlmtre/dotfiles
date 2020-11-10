@@ -20,6 +20,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-gitgutter'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
 call plug#end()
 
 " general
@@ -34,6 +36,8 @@ set shiftwidth=2
 set mouse=a
 autocmd vimenter * colorscheme gruvbox
 let g:NERDTreeWinPos = "right"
+set timeoutlen=500
+let g:airline_powerline_fonts = 1
 "
 " mapping
 let g:NERDTreeMapActivateNode	= "<tab>"
@@ -41,8 +45,9 @@ map <F2> :NERDTreeTabsToggle<CR>
 nmap <C-P> :FZF<CR>
 nmap <c-l> :tabn<CR>
 nmap <c-h> :tabp<CR>
-
-
+" make esc work in terminal
+tnoremap <Esc> <C-\><C-n>
+"
 " rust
 let g:LanguageClient_serverCommands = {  'rust': ['rust-analyzer'], }
 let g:rustfmt_autosave = 1
@@ -51,6 +56,7 @@ let g:rustc_path = $HOME."/.cargo/bin/rustc"
 set completeopt=menuone,noinsert,noselect
 " Avoid showing extra messages when using completion
 set shortmess+=c
+
 lua <<EOF
 
 -- nvim_lsp object
@@ -67,6 +73,7 @@ local on_attach = function(client)
 			nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
 
 EOF
+
 autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
 let g:deoplete#enable_at_startup = 1
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
