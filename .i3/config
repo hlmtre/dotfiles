@@ -102,6 +102,14 @@ set $ws3 "3:cli"
 set $ws4 "4:vpn"
 set $wse "e"
 
+set $left "DP-0"
+set $right "DP-4"
+
+workspace $ws1 output $left
+workspace $ws2 output $right
+workspace $ws3 output $right
+workspace $ws4 output $right
+workspace $wse output $left
 
 # switch to workspace
 bindsym $mod+grave workspace $wse
@@ -231,14 +239,11 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id /home/hlmtre/bin/xflux -z 95973
 exec --no-startup-id redshift -t 5200:2850
 exec --no-startup-id xinput set-prop 11 "Device Enabled" 1
+exec --no-startup-id ~/dotfiles/two.sh
 exec --no-startup-id ~/dotfiles/libinput.sh
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
-exec --no-startup-id xrandr --output DP-4 --primary --rate 143.91 --mode 2560x1440 --output DP-0 --mode 3440x1440 --rate 100.00 --left-of DP-4
-exec --no-startup-id i3-resurrect restore -w 1irc
-exec --no-startup-id i3-resurrect restore -w 2web
-exec --no-startup-id i3-resurrect restore -w 3cli
-exec --no-startup-id i3-resurrect restore -w 4vpn
-exec --no-startup-id i3-resurrect restore -w e
+
+exec --no-startup-id echo XHC0 > /proc/acpi/wakeup
 
 #exec --no-startup-id emacs --daemon
 
@@ -248,9 +253,9 @@ exec --no-startup-id i3-resurrect restore -w e
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPause exec playerctl -p spotifyd play-pause
+bindsym XF86AudioNext exec playerctl -p spotifyd next
+bindsym XF86AudioPrev exec playerctl -p spotifyd previous
 
 # disable window borders for chrome
 #for_window [class=".*"] border pixel 1
