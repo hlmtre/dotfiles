@@ -1,5 +1,5 @@
 * Things to get done
-** TODO [#C] Chico network closet cleanup [8/9] [88%]
+** TODO [#C] Chico network closet cleanup [9/9] [100%]
    - [X] Patch panel/switch cable mapping
      - [X] Identify special ports/cables
      - [X] Label patch panels and switches
@@ -12,10 +12,10 @@
    - [X] Clean up & remove existing rack
      - [X] Unplug all cables from patch panels and switches in current rack
      - [X] Disconnect and mark/organize uplink cabling
-   - [-] Prepare closet for new setup
+   - [X] Prepare closet for new setup
      - [X] Fix power with known-good UPSes and clean power strip placement
      - [X] Mount new rack (wherever it goes)
-     - [ ] Re-mount all patch panels (hopefully in order is possible)
+     - [X] Re-mount all patch panels (hopefully in order is possible)
      - [X] Mount all switches
      - [X] Mount all provider equipment/routers
    - [X] Wire!
@@ -140,11 +140,11 @@
    - [X] MDC - 8023904355
      - [X] Survey
      - [X] Scan
-** TODO CHCO operatory & signature pads [9/9] [100%]
+** TODO CHCO operatory & signature pads [7/9] [77%]
  - [X] 0178
  - [X] 0300
- - [X] 0301
- - [X] 0302
+ - [ ] 0301 - both report https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x44--multiple-irp-complete-requests as bluescreen error
+ - [ ] 0302
  - [X] 0303
  - [X] 0304
  - [X] 0305
@@ -173,31 +173,49 @@
    - [X] Add all APs as RADIUS clients to proxies
    - [X] Add all proxies as RADIUS clients to NPS masters
    - [ ] Test RADIUS failover
-** TODO IHS divorce [1/6] [16%]
-   - [-] Proof of concept
-     - [ ] Test default gateway through Sacramento at Cal Park
+** TODO IHS divorce [8/8] [100%]
+   - [X] Proof of concept
+     - [X] Test default gateway through Sacramento at Cal Park
      - [X] Test removing all IHS routes at Cal Park
      - [X] Ditto at RBLF
      - [X] Reconfigure Velo to be LAN gw (10.148.82.1/23)
-   - [-] Point-to-point VPN for VistA access
+   - [X] Point-to-point VPN for VistA access
      - [X] Email Reese @ CAO for their information
-     - [ ] Configure VPN tunnel endpoint (CHEA? SACR?)
+     - [X] Configure VPN tunnel endpoint (CHEA? SACR?)
    - [X] Good config backups of Cisco routers
-   - [-] Secondary IPs for each Cisco router
-     - [ ] WLWS
-     - [X] CHCA - 10.148.82.38
+   - [X] tcl script, kron policy, and kron occurrence for Cisco routers
+     - [X] WLWS
+     - [X] CHCA
+     - [X] CHEA
+     - [X] CHCO
+     - [X] CHSP
+     - [X] RBLF
+     - [X] WDLD
+     - [X] SACR
+   - [X] Set NTP and ensure correct time and timezone of Cisco routers
+     - [X] WLWS
+     - [X] CHCA
+     - [X] CHEA
+     - [X] CHCO
+     - [X] CHSP
+     - [X] RBLF
+     - [X] WDLD
+     - [X] SACR
+   - [X] Secondary IPs for each Cisco router
      - [X] CHEA - 10.148.76.48
      - [X] CHCO - 10.148.78.38
      - [X] CHSP - 10.148.80.45
+     - [X] CHCA - 10.148.82.38
      - [X] RBLF - 10.148.84.38
+     - [X] WLWS - 10.148.87.215
+     - [X] SACR - 10.148.88.72
      - [X] WDLD - 10.148.92.38
-     - [ ] SACR - 10.148.88.72
-   - [-] Install media converters on Velos that need it
+   - [X] Install media converters on Velos that need it
      - [X] WLWS
-     - [ ] SACR
+     - [X] SACR
      - [X] CHCO
-   - [-] Stage Velo interfaces with LAN IPs
-     - [ ] WLWS
+   - [X] Stage Velo interfaces with LAN IPs
+     - [X] WLWS
      - [X] CHCA
      - [X] CHEA
      - [X] CHCO
