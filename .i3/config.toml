@@ -15,26 +15,26 @@ icons = "awesome"
 #block = "focused_window"
 #max_width = 21
 
-#[[block]]
-#block = "net"
+[[block]]
+block = "net"
 #device = "wlp3s0"
 #ssid = true
-#ip = true
-#speed_up = true
-#interval = 1
-#use_bits = true
+format = "{ssid} {ip} {speed_up} {speed_down}"
+interval = 1
+use_bits = true
+
 [[block]]
 block = "music"
 player = "spotifyd"
 buttons = ["play"]
 
-[[block]]
-block = "net"
-device = "enp6s0"
-ip = true
-speed_up = true
-interval = 1
-use_bits = true
+#[[block]]
+#block = "net"
+#device = "enp6s0"
+#ip = true
+#speed_up = true
+#interval = 1
+#use_bits = true
 
 #[[block]]
 #block = "xrandr"
@@ -53,24 +53,24 @@ use_bits = true
 [[block]]
 block = "temperature"
 interval = 10
-collapsed = false
+collapsed = true
 format = "{max}° max, {average}° avg"
 
-[[block]]
-block = "memory"
-display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+#[[block]]
+#block = "memory"
+#display_type = "memory"
+#format_mem = "{Mup}%"
+#format_swap = "{SUp}%"
 
 [[block]]
 block = "cpu"
 interval = 1
 format = "{utilization}% {frequency}GHz"
 
-#[[block]]
-#block = "battery"
-#interval = 10
-#format = "{percentage}% {time}"
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage}% {time}"
 
 [[block]]
 block = "sound"
