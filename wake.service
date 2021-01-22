@@ -1,0 +1,12 @@
+[Unit]
+Description=post-wake hooks
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+
+[Service]
+ExecStart=/home/hlmtre/dotfiles/wake.sh
+User=hlmtre
+#Environment=DISPLAY=:0
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
