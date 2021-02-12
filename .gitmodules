@@ -31,3 +31,6 @@
 [submodule "observer"]
 	path = observer
 	url = git@github.com:hlmtre/observer.git
+[submodule "dhcpd-rs"]
+	path = dhcpd-rs
+	url = ./dhcpd-rs/
