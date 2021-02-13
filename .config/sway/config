@@ -140,6 +140,7 @@ bindsym $mod+Shift+parenright move workspace 10
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+R exec swaymsg reload
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
 
@@ -221,7 +222,7 @@ bindsym $mod+Control+Shift+c exec /home/hlmtre/dotfiles/zt/zt -c
 
 #lockscreen
 #bindsym $mod+Control+l exec i3lock-fancy
-bindsym $mod+Control+l exec i3lock -c 000000
+#bindsym $mod+Control+l exec i3lock -c 000000
 # wallpaper
 output * bg ~/Pictures/walls/785825.jpg stretch
 
@@ -263,7 +264,8 @@ exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioPause exec playerctl -p spotifyd play-pause
+#bindsym XF86AudioPause exec playerctl -p spotifyd play-pause
+bindsym $mod+Shift+Control+space exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl -p spotifyd next
 bindsym XF86AudioPrev exec playerctl -p spotifyd previous
 
