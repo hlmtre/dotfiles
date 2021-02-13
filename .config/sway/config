@@ -1,13 +1,15 @@
-set_from_resource $bg      background  #393d41
-set_from_resource $fg      foreground  #c5c8c6
-set_from_resource $black   color0      #383a40
-set_from_resource $red     color1      #a54242
-set_from_resource $green   color2      #8c9440
-set_from_resource $yellow  color3      #de935f
-set_from_resource $blue    color4      #5f819d
-set_from_resource $purple  color5      #85678f
-set_from_resource $cyan    color6      #5E8D87
-set_from_resource $grey    color7      #707880
+set $bg      #393d41
+set $fg      #c5c8c6
+set $black   #383a40
+set $red     #a54242
+set $green   #8c9440
+set $yellow  #de935f
+set $blue    #5f819d
+set $purple  #85678f
+set $cyan    #5E8D87
+set $grey    #707880
+
+default_border none
 
 # class                 bd    bg  txt    ind   child_bd
 client.focused          $grey $bg $fg    $blue $grey
@@ -136,10 +138,8 @@ bindsym $mod+Shift+asterisk move workspace 8
 bindsym $mod+Shift+parenleft move workspace 9
 bindsym $mod+Shift+parenright move workspace 10
 
-# reload the configuration file
-bindsym $mod+Shift+C reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+R restart
+bindsym $mod+Shift+R exec swaymsg reload
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
 
@@ -222,11 +222,10 @@ bindsym $mod+Control+Shift+c exec /home/hlmtre/dotfiles/zt/zt -c
 #lockscreen
 #bindsym $mod+Control+l exec i3lock-fancy
 bindsym $mod+Control+l exec i3lock -c 000000
-# reset desktop wallpapers
-exec --no-startup-id nitrogen --restore
+# wallpaper
+output * bg ~/Pictures/walls/785825.jpg stretch
 
-# network manager
-exec --no-startup-id nm-applet
+# network manager nm-applet doesn't work in sway
 # bluetoof
 exec --no-startup-id blueman-applet
 # pasystray (volume control) (not needed with i3status-rust)
@@ -235,19 +234,26 @@ exec --no-startup-id blueman-applet
 # disable capslock
 exec --no-startup-id setxkbmap -option caps:none
 
+input 2:10:TPPS/2_IBM_TrackPoint {
+      pointer_accel -0.6
+}
+input 2:7:SynPS/2_Synaptics_TouchPad {
+      events disabled
+}
+
 # disable touchpad movement
 # clit mouse 4 lyfe
 #exec --no-startup-id synclient TouchpadOff=1
 #exec --no-startup-id /home/hlmtre/src/mocp-scrobbler/mocp-scrobbler.py --daemon
 #exec --no-startup-id gnome-settings-daemon
 #exec --no-startup-id /home/hlmtre/bin/xflux -z 95973
-exec --no-startup-id redshift -t 5200:2850
-exec --no-startup-id xinput set-prop 11 "Device Enabled" 1
-exec --no-startup-id ~/dotfiles/two.sh
-exec --no-startup-id ~/dotfiles/libinput.sh
+exec --no-startup-id redshift -m wayland -t 5200:2850
+#exec --no-startup-id xinput set-prop 11 "Device Enabled" 1
+#exec --no-startup-id ~/dotfiles/two.sh
+#exec --no-startup-id ~/dotfiles/libinput.sh
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 
-exec --no-startup-id echo XHC0 > /proc/acpi/wakeup
+#exec --no-startup-id echo XHC0 > /proc/acpi/wakeup
 
 #exec --no-startup-id emacs --daemon
 

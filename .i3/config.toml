@@ -17,16 +17,14 @@ icons = "awesome"
 
 [[block]]
 block = "net"
-#device = "wlp3s0"
-#ssid = true
 format = "{ssid} {ip} {speed_up} {speed_down}"
 interval = 1
 use_bits = true
 
-[[block]]
-block = "music"
-player = "spotifyd"
-buttons = ["play"]
+#[[block]]
+#block = "music"
+#player = "spotifyd"
+#buttons = ["play"]
 
 #[[block]]
 #block = "net"
@@ -53,7 +51,7 @@ buttons = ["play"]
 [[block]]
 block = "temperature"
 interval = 10
-collapsed = true
+collapsed = false
 format = "{max}° max, {average}° avg"
 
 #[[block]]
@@ -65,11 +63,14 @@ format = "{max}° max, {average}° avg"
 [[block]]
 block = "cpu"
 interval = 1
-format = "{utilization}% {frequency}GHz"
+format = "{utilization}% {frequency}"
 
+# fuckin upower is baller
+# shows all batteries combined into one logical battery
 [[block]]
 block = "battery"
-interval = 10
+device = "DisplayDevice"
+driver = "upower"
 format = "{percentage}% {time}"
 
 [[block]]
@@ -77,7 +78,7 @@ block = "sound"
 
 [[block]]
 block = "weather"
-format = "{weather} ({location}) {temp}°"
+format = "{weather} ({location}) {temp}°C"
 service = { name = "openweathermap", api_key = "6dc001f4e77cc0985c5013283368be51", city_id = "5336269", units = "metric" }
 
 [[block]]
