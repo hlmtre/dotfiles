@@ -27,6 +27,8 @@ for_window [class="^.*"] border pixel 1
 gaps inner 5
 gaps outer 2
 
+titlebar_padding 2 2
+
 set $mod Mod4
 
 focus_follows_mouse yes
@@ -45,7 +47,6 @@ bindsym $mod+Shift+Q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec "rofi -combi-modi window,run,ssh -show combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
-#bindsym $mod+d exec "rofi -show run -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
 
 # change focus
 bindsym $mod+h focus left
@@ -126,17 +127,17 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+asciitilde move workspace $wse
-bindsym $mod+Shift+exclam move workspace $ws1
-bindsym $mod+Shift+at move workspace $ws2
-bindsym $mod+Shift+numbersign move workspace $ws3
-bindsym $mod+Shift+dollar move workspace $ws4
-bindsym $mod+Shift+percent move workspace 5
-bindsym $mod+Shift+asciicircum move workspace 6
-bindsym $mod+Shift+ampersand move workspace 7
-bindsym $mod+Shift+asterisk move workspace 8
-bindsym $mod+Shift+parenleft move workspace 9
-bindsym $mod+Shift+parenright move workspace 10
+bindsym $mod+Shift+grave move container to workspace $wse
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+R exec swaymsg reload
@@ -209,10 +210,10 @@ bar {
 }
 
 ## two
-exec --no-startup-id /home/hlmtre/dotfiles/two.sh
+#exec  /home/hlmtre/dotfiles/two.sh
 
-#exec --no-startup-id polybar --reload -c ~/.config/polybar/config secondary &
-#exec --no-startup-id polybar --reload -c ~/.config/polybar/config primary &
+#exec  polybar --reload -c ~/.config/polybar/config secondary &
+#exec  polybar --reload -c ~/.config/polybar/config primary &
 
 #zt
 bindsym $mod+Control+Shift+s exec /home/hlmtre/dotfiles/zt/zt
@@ -227,13 +228,14 @@ bindsym $mod+Control+Shift+c exec /home/hlmtre/dotfiles/zt/zt -c
 output * bg ~/Pictures/walls/785825.jpg stretch
 
 # network manager nm-applet doesn't work in sway
+exec nm-applet --indicator
 # bluetoof
-exec --no-startup-id blueman-applet
+exec  blueman-applet
 # pasystray (volume control) (not needed with i3status-rust)
-# exec --no-startup-id pasystray
+# exec  pasystray
 
 # disable capslock
-exec --no-startup-id setxkbmap -option caps:none
+exec  setxkbmap -option caps:none
 
 input 2:10:TPPS/2_IBM_TrackPoint {
       pointer_accel -0.6
@@ -244,19 +246,19 @@ input 2:7:SynPS/2_Synaptics_TouchPad {
 
 # disable touchpad movement
 # clit mouse 4 lyfe
-#exec --no-startup-id synclient TouchpadOff=1
-#exec --no-startup-id /home/hlmtre/src/mocp-scrobbler/mocp-scrobbler.py --daemon
-#exec --no-startup-id gnome-settings-daemon
-#exec --no-startup-id /home/hlmtre/bin/xflux -z 95973
-exec --no-startup-id redshift -m wayland -t 5200:2850
-#exec --no-startup-id xinput set-prop 11 "Device Enabled" 1
-#exec --no-startup-id ~/dotfiles/two.sh
-#exec --no-startup-id ~/dotfiles/libinput.sh
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+#exec  synclient TouchpadOff=1
+#exec  /home/hlmtre/src/mocp-scrobbler/mocp-scrobbler.py --daemon
+#exec  gnome-settings-daemon
+#exec  /home/hlmtre/bin/xflux -z 95973
+exec  redshift -m wayland -t 5200:2850
+#exec  xinput set-prop 11 "Device Enabled" 1
+#exec  ~/dotfiles/two.sh
+#exec  ~/dotfiles/libinput.sh
+exec  /usr/lib/gnome-settings-daemon/gsd-xsettings
 
-#exec --no-startup-id echo XHC0 > /proc/acpi/wakeup
+#exec  echo XHC0 > /proc/acpi/wakeup
 
-#exec --no-startup-id emacs --daemon
+#exec  emacs --daemon
 
 #bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
@@ -264,10 +266,9 @@ exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-#bindsym XF86AudioPause exec playerctl -p spotifyd play-pause
 bindsym $mod+Shift+Control+space exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl -p spotifyd next
-bindsym XF86AudioPrev exec playerctl -p spotifyd previous
+bindsym $mod+Shift+Control+right exec playerctl next
+bindsym $mod+Shift+Control+left exec playerctl previous
 
 # disable window borders for chrome
 #for_window [class=".*"] border pixel 1
@@ -297,6 +298,6 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans Mono for Powerline 9.5
+font pango:DejaVu Sans Mono for Powerline 10
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 11px
