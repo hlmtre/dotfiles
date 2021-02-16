@@ -38,8 +38,8 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec urxvt
-bindsym $mod+Return exec gnome-terminal
-#bindsym $mod+Return exec termite
+#bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+Q kill

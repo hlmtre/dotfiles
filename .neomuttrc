@@ -18,6 +18,8 @@ set record = ""
 # Gmail-style keyboard shortcuts
 # unbind g so it doesn't complain about shadowing 'g'
 bind index g noop
+# so you can have spaces in folder names
+bind editor <space> noop
 macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
 macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
 macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
@@ -25,6 +27,7 @@ macro index gs "<change-folder>=[Gmail]/Starred<enter>" "Go to starred messages"
 macro index gt "<change-folder>=[Gmail]/Trash<enter>" "Go to trash"
 macro index,pager d "<save-message>=[Gmail]/Trash<enter><enter>" "Trash"
 macro index,pager y "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive"
+bind index G imap-fetch-mail
 
 #sidebar
 set sidebar_visible = yes

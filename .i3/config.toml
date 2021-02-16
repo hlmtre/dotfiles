@@ -51,7 +51,7 @@ use_bits = true
 [[block]]
 block = "temperature"
 interval = 10
-collapsed = false
+collapsed = true
 format = "{max}° max, {average}° avg"
 
 #[[block]]
@@ -63,7 +63,7 @@ format = "{max}° max, {average}° avg"
 [[block]]
 block = "cpu"
 interval = 1
-format = "{utilization}% {frequency}"
+format = "{utilization} {frequency}"
 
 # fuckin upower is baller
 # shows all batteries combined into one logical battery
