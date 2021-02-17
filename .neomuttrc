@@ -5,12 +5,12 @@ set imap_pass = "ooekdlnyhrizuglp"
 # Specifies the default location of your mailboxes
 set folder = "imaps://imap.gmail.com:993"
 # Configure Simple Mail Transfer Protocol for sending mail
-set smtp_url = "smtp://hellmitre@gmail.com@smtp.gmail.com:587"
+set smtp_url = "smtp://hellmitre@smtp.gmail.com:587"
 set smtp_pass = "ooekdlnyhrizuglp"
 # Location of inbox
 set spoolfile = "+INBOX"
 # Location of drafts
-set postponed = "+[GMail]/Drafts"# Activate caching, as it can greatly improve speed
+set postponed = "+Drafts"# Activate caching, as it can greatly improve speed
 set header_cache = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
 # Disable saving outgoing mail since Gmail saves them by default.
@@ -21,13 +21,15 @@ bind index g noop
 # so you can have spaces in folder names
 bind editor <space> noop
 macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
-macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
 macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index gs "<change-folder>=[Gmail]/Starred<enter>" "Go to starred messages"
 macro index gt "<change-folder>=[Gmail]/Trash<enter>" "Go to trash"
 macro index,pager d "<save-message>=[Gmail]/Trash<enter><enter>" "Trash"
 macro index,pager y "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive"
 bind index G imap-fetch-mail
+
+#set editor=emacsclient --socket-name /tmp/emacs151600001/server
 
 #sidebar
 set sidebar_visible = yes
@@ -98,3 +100,27 @@ color quoted6       green               default # Quoting Ebene 7
 color quoted7       red                 default # Quoting Ebene 8
 color quoted8       magenta             default # Quoting Ebene 9
 color quoted9       blue                default # Quoting Ebene 10
+
+#------------------------------------------------------------
+# Vi Key Bindings
+#------------------------------------------------------------
+
+# Moving around
+bind attach,browser,index       g   noop
+bind attach,browser,index       gg  first-entry
+bind attach,browser,index       G   last-entry
+bind pager                      g  noop
+bind pager                      gg  top
+bind pager                      G   bottom
+bind pager                      k   previous-line
+bind pager                      j   next-line
+
+# Scrolling
+bind attach,browser,pager,index \CF next-page
+bind attach,browser,pager,index \CB previous-page
+bind attach,browser,pager,index \Cu half-up
+bind attach,browser,pager,index \Cd half-down
+bind browser,pager              \Ce next-line
+bind browser,pager              \Cy previous-line
+bind index                      \Ce next-line
+bind index                      \Cy previous-line
