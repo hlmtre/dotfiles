@@ -1,3 +1,6 @@
+# compile with options:
+# ./configure --sasl --bdb --zlib --lz4 --disable-doc --gpgme --ssl --autocrypt --gnutls
+
 # Configure Internet Message Access Protocol for reading mail
 # Username and password for your Gmail or G Suite account
 set imap_user = "hellmitre@gmail.com"
