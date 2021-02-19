@@ -54,16 +54,17 @@ interval = 10
 collapsed = true
 format = "{max}° max, {average}° avg"
 
-#[[block]]
-#block = "memory"
-#display_type = "memory"
-#format_mem = "{Mup}%"
-#format_swap = "{SUp}%"
-
 [[block]]
 block = "cpu"
 interval = 1
 format = "{utilization} {frequency}"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
 
 # fuckin upower is baller
 # shows all batteries combined into one logical battery
@@ -84,4 +85,4 @@ service = { name = "openweathermap", api_key = "6dc001f4e77cc0985c5013283368be51
 [[block]]
 block = "time"
 interval = 1
-format = "%a %m/%d %R"
+format = "%a %Y-%m-%d %R"

@@ -193,6 +193,10 @@ bindsym $mod+r mode "resize"
 #  status_command py3status -c ~/.i3status.conf
 #}
 
+#bar {
+#    swaybar_command waybar
+#}
+
 bar {
     font pango:Deja Vu Sans Mono for Powerline, FontAwesome 10
     position bottom
