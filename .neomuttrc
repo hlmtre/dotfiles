@@ -31,16 +31,19 @@ macro index gt "<change-folder>=[Gmail]/Trash<enter>" "Go to trash"
 macro index,pager d "<save-message>=[Gmail]/Trash<enter><enter>" "Trash"
 macro index,pager y "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive"
 bind index G imap-fetch-mail
+set mail_check = 5
 
 #set editor=emacsclient --socket-name /tmp/emacs151600001/server
 
+
 #sidebar
-set sidebar_visible = yes
-set sidebar_format = "%B%* %n"
-set mail_check_stats
-set sidebar_new_mail_only = no
-set sidebar_width = 15
-set sidebar_short_path = no
+set sidebar_visible = no
+##set sidebar_format = "%B%* %n"
+#set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+#set mail_check_stats
+#set sidebar_new_mail_only = no
+#set sidebar_width = 15
+#set sidebar_short_path = no
 
 set crypt_use_gpgme=yes
 set crypt_autosign=yes
