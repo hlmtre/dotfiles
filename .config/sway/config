@@ -241,6 +241,11 @@ input 2:7:SynPS/2_Synaptics_TouchPad {
       events disabled
 }
 
+input "type:keyboard" {
+      xkb_options caps:none
+}
+
+
 # disable touchpad movement
 # clit mouse 4 lyfe
 #exec  synclient TouchpadOff=1
