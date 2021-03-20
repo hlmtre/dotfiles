@@ -33,4 +33,4 @@
 	url = git@github.com:hlmtre/observer.git
 [submodule "dhcpd-rs"]
 	path = dhcpd-rs
-	url = ./dhcpd-rs/
+	url = git@github.com:hlmtre/dhcpd-rs.git
