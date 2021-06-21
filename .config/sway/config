@@ -39,8 +39,8 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec urxvt
 #bindsym $mod+Return exec gnome-terminal
-#bindsym $mod+Return exec alacritty
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
+#bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -252,7 +252,7 @@ input "type:keyboard" {
 #exec  /home/hlmtre/src/mocp-scrobbler/mocp-scrobbler.py --daemon
 #exec  gnome-settings-daemon
 #exec  /home/hlmtre/bin/xflux -z 95973
-exec  redshift -m wayland -t 5200:2850
+exec  redshift -m wayland -t 5200:2850 -l 39.7285:-121.8375
 #exec  xinput set-prop 11 "Device Enabled" 1
 #exec  ~/dotfiles/two.sh
 #exec  ~/dotfiles/libinput.sh

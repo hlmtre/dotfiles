@@ -289,6 +289,6 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans Mono for Powerline 9.5
+font pango:DejaVu Sans Mono for Powerline 10
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 11px
