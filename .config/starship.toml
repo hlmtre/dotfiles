@@ -2,3 +2,18 @@ add_newline = false
 
 [directory]
 truncate_to_repo = false
+
+[time]
+disabled = false
+utc_time_offset = "-7"
+format = "[$time]($style) "
+
+[hostname]
+ssh_only = true
+
+[cmd_duration]
+disabled = true
+
+[username]
+show_always = true
+format = "[$user]($style) "
