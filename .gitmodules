@@ -34,3 +34,6 @@
 [submodule "dhcpd-rs"]
 	path = dhcpd-rs
 	url = git@github.com:hlmtre/dhcpd-rs.git
+[submodule "roslin"]
+	path = roslin
+	url = git@github.com:hlmtre/roslin.git
