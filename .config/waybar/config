@@ -111,11 +111,11 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "interval": 2,
-        "format-wifi": "↑{bandwidthUpBits}↓{bandwidthDownBits}  {essid} {ipaddr}/{cidr} ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-wifi": "{ifname} ↑{bandwidthUpBits}↓{bandwidthDownBits}  {essid} {ipaddr}/{cidr} ",
+        "format-ethernet": "{ifname} ↑{bandwidthUpBits}↓{bandwidthDownBits} {ipaddr}/{cidr}",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "↑{bandwidthUpBits}↓{bandwidthDownBits} {ipaddr}/{cidr} "
+        //"format-alt": "{ifname} ↑{bandwidthUpBits}↓{bandwidthDownBits} {ipaddr}/{cidr}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float

@@ -105,8 +105,8 @@ set $ws3 "3:cli"
 set $ws4 "4:vpn"
 set $wse "e"
 
-set $left "DP-0"
-set $right "DP-4"
+set $left "DP-4"
+set $right "DP-2"
 
 workspace $ws1 output $left
 workspace $ws2 output $right
@@ -221,12 +221,15 @@ bindsym $mod+Control+Shift+c exec /home/hlmtre/dotfiles/zt/zt -c
 #lockscreen
 bindsym $mod+Control+l exec swaylock -c 000000
 # wallpaper
-output * bg ~/Pictures/walls/785825.jpg stretch
+output DP-4 mode 3440x1440@99.998Hz pos 0 0 bg ~/Pictures/walls/785825.jpg stretch
+output DP-2 mode 2560x1440@143.912Hz pos 3440 0 bg ~/Pictures/walls/785825.jpg stretch
 
 # network manager nm-applet doesn't work in sway
 exec nm-applet --indicator
 # bluetoof
 exec  blueman-applet
+exec swayidle -w timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+
 # pasystray (volume control) (not needed with i3status-rust)
 # exec  pasystray
 
