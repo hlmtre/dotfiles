@@ -34,3 +34,9 @@
 [submodule "dhcpd-rs"]
 	path = dhcpd-rs
 	url = git@github.com:hlmtre/dhcpd-rs.git
+[submodule "dinosaurus"]
+	path = dinosaurus
+	url = git@github.com:hlmtre/dinosaurus.git
+[submodule "roslin"]
+	path = roslin
+	url = git@github.com:hlmtre/roslin.git

@@ -1,4 +1,5 @@
 add_newline = false
+command_timeout = 1000
 
 [directory]
 truncate_to_repo = false
@@ -10,10 +11,11 @@ format = "[$time]($style) "
 
 [hostname]
 ssh_only = true
+format = "[$hostname]($style) "
 
 [cmd_duration]
 disabled = true
 
 [username]
 show_always = true
-format = "[$user]($style) "
+format = "[$user]($style)@"
