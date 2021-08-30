@@ -1,2 +1,3 @@
 *.pyc
 polybar/sessions/*
+.config/nvim/plugs

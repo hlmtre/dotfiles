@@ -1,107 +1,80 @@
-" vim-plug
-call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'morhetz/gruvbox'
-Plug 'neovim/nvim-lspconfig'
-Plug 'tjdevries/lsp_extensions.nvim'
-Plug 'rust-lang/rust.vim'
-Plug 'vim-syntastic/syntastic'
-Plug 'junegunn/fzf'
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/deoplete-lsp'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/diagnostic-nvim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'mhinz/vim-startify'
-Plug 'airblade/vim-gitgutter'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sensible'
+" plugins first!
+call plug#begin(stdpath('config') . '/plugs')
+  Plug 'morhetz/gruvbox'
+  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/completion-nvim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'TimUntersberger/neogit'
+  Plug 'mhinz/vim-startify'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'jistr/vim-nerdtree-tabs'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
-" general
-set number
-set showtabline=2
-syntax on
-filetype plugin indent on
-set ai
-set si
-set ts=2
-set shiftwidth=2
-set mouse=a
-autocmd vimenter * colorscheme gruvbox
-let g:NERDTreeWinPos = "right"
-set timeoutlen=500
-let g:airline_powerline_fonts = 1
-"
-" mapping
-let g:NERDTreeMapActivateNode	= "<tab>"
-map <F2> :NERDTreeTabsToggle<CR>
-nmap <C-P> :FZF<CR>
-nmap <c-l> :tabn<CR>
-nmap <c-h> :tabp<CR>
-" make esc work in terminal
-tnoremap <Esc> <C-\><C-n>
-"
-" rust
-let g:LanguageClient_serverCommands = {  'rust': ['rust-analyzer'], }
-let g:rustfmt_autosave = 1
-let g:rustc_path = $HOME."/.cargo/bin/rustc"
-" lua require'nvim_lsp'.rust_analyzer.setup{}
-set completeopt=menuone,noinsert,noselect
-" Avoid showing extra messages when using completion
-set shortmess+=c
+lua << EOF
+-- rust
+local nvim_lsp = require'lspconfig'
 
-lua <<EOF
-
--- nvim_lsp object
-local nvim_lsp = require'nvim_lsp'
-
--- function to attach completion and diagnostics
--- when setting up lsp
+-- function to attach completion when setting up lsp
 local on_attach = function(client)
     require'completion'.on_attach(client)
-		    require'diagnostic'.on_attach(client)
-			end
+end
 
-			-- Enable rust_analyzer
-			nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
+-- Enable rust_analyzer
+nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
 
+-- Enable diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = true,
+    signs = true,
+    update_in_insert = true,
+  }
+)
+
+-- treesitter
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 EOF
 
-autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
-let g:deoplete#enable_at_startup = 1
-autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
-			\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
-" Code navigation shortcuts
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
-" Visualize diagnostics
-let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_trimmed_virtual_text = '40'
-" Don't show diagnostics while in insert mode
-let g:diagnostic_insert_delay = 1
+" general editor stuff
+set number
+syntax on
+autocmd vimenter * ++nested colorscheme gruvbox
+"colorscheme gruvbox
+map <C-l> :tabn<CR>
+map <C-h> :tabp<CR>
+set ts=2
+set shiftwidth=2
+set expandtab
+set list listchars:tab:>-
+set ai
+set si
+set mouse=a
+let g:NERDTreeMapActivateNode	= "<tab>"
+let NERDTreeWinPos=1
+let g:rustfmt_autosave = 1
+autocmd BufEnter * lcd %:p:h
+map <C-o> :NERDTreeToggle %<CR>
+nmap <C-P> :FZF<CR>
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+set timeoutlen=500
+let g:airline_powerline_fonts = 1
 
-" Set updatetime for CursorHold
-" 300ms of no cursor movement to trigger CursorHold
-set updatetime=300
-" Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
-
-" Goto previous/next diagnostic warning/error
-nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<cr>
-nnoremap <silent> g] <cmd>NextDiagnosticCycle<cr>
-" end rust. whew!
