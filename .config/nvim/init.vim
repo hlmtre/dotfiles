@@ -2,6 +2,7 @@
 call plug#begin(stdpath('config') . '/plugs')
   Plug 'morhetz/gruvbox'
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+  Plug 'Nopik/vim-nerdtree-direnter'
   Plug 'jistr/vim-nerdtree-tabs'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'neovim/nvim-lspconfig'
@@ -25,6 +26,7 @@ call plug#begin(stdpath('config') . '/plugs')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'karb94/neoscroll.nvim'
+  Plug 'liuchengxu/vim-which-key'
   "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
@@ -123,6 +125,7 @@ let NERDTreeWinPos=1 " on the right
 let NERDTreeShowBookmarks=1
 let NERDTreeShowHidden=1
 let NERDTreeMouseMode=2
+let NERDTreeMapOpenInTab="<enter>"
 
 set number
 syntax on
@@ -130,6 +133,7 @@ set showtabline=2
 map <C-l> :tabn<CR>
 map <C-h> :tabp<CR>
 let mapleader = " "
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 set ts=2
 set shiftwidth=2
 set expandtab
@@ -147,3 +151,5 @@ set timeoutlen=500
 set signcolumn=yes
 set nocompatible
 let g:airline_powerline_fonts = 1
+
+source $HOME/.config/nvim/leader.vim
