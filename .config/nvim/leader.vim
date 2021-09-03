@@ -18,11 +18,14 @@ let g:which_key_map =  {}
 
 let g:which_key_map.f = { 'name' : '+file' }
 
-nnoremap <silent> <leader>fs :update<CR>
-let g:which_key_map.f.s = 'save-file'
+nnoremap <silent> <leader>0 :NERDTreeFocus<CR>
+let g:which_key_map.0 = 'NERDTree'
 
 nnoremap <silent> <leader>fd :e $MYVIMRC<CR>
 let g:which_key_map.f.d = 'open-vimrc'
+
+nnoremap <silent> <leader>fs :source $MYVIMRC<CR>
+let g:which_key_map.f.s = 'source-vimrc'
 
 nnoremap <silent> <leader>oq  :copen<CR>
 nnoremap <silent> <leader>ol  :lopen<CR>
@@ -31,6 +34,11 @@ let g:which_key_map.o = {
       \ 'q' : 'open-quickfix'    ,
       \ 'l' : 'open-locationlist',
       \ }
+
+nnoremap <silent> <leader>g  :Neogit<CR>
+let g:which_key_map.g = {
+      \ 'name' : '+neogit'}
+
 
 " =======================================================
 " Create menus not based on existing mappings:
