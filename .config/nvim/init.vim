@@ -27,7 +27,6 @@ call plug#begin(stdpath('config') . '/plugs')
   Plug 'junegunn/fzf.vim'
   Plug 'karb94/neoscroll.nvim'
   Plug 'liuchengxu/vim-which-key'
-  "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 lua << EOF
@@ -49,13 +48,13 @@ end
 nvim_lsp.rust_analyzer.setup({ on_attach=on_attach, lsp_status.on_attach })
 
 -- Enable diagnostics
---vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---  vim.lsp.diagnostic.on_publish_diagnostics, {
---    virtual_text = false,
---    signs = true,
---    update_in_insert = true,
---  }
---)
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+  }
+)
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
@@ -125,6 +124,13 @@ let NERDTreeShowHidden=1
 let NERDTreeMouseMode=2
 let NERDTreeMapOpenInTab="<enter>"
 
+" rust
+let g:rustfmt_autosave = 1
+autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+let g:lsp_diagnostics_echo_cursor = 1
+
+" general editor
+
 set number
 syntax on
 set showtabline=2
@@ -139,16 +145,17 @@ set list listchars:tab:>-
 set ai
 set si
 set mouse=a
-let g:rustfmt_autosave = 1
 autocmd BufEnter * lcd %:p:h
-map <C-o> :NERDTreeToggle %<CR>
-nmap <C-P> :FZF<CR>
+nnoremap <C-o> :NERDTreeToggle %<CR>
+nnoremap <C-P> :FZF<CR>
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set timeoutlen=300
 set signcolumn=yes
 set nocompatible
 set termguicolors
+set ignorecase
+set smartcase
 let g:airline_powerline_fonts = 1
 
 source $HOME/.config/nvim/leader.vim

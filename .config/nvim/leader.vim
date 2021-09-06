@@ -17,6 +17,14 @@ let g:which_key_map =  {}
 " You can pass a descriptive text to an existing mapping.
 
 let g:which_key_map.f = { 'name' : '+file' }
+let g:which_key_map.p = { 'name' : 'vim-plug' }
+let g:which_key_map.m = { 'name' : 'Maps' }
+
+nnoremap <silent> <leader>m :Maps<CR>
+let g:which_key_map.m = 'Maps'
+
+nnoremap <silent> <leader>e :TroubleToggle<CR>
+let g:which_key_map.e = 'Trouble'
 
 nnoremap <silent> <leader>0 :NERDTreeFocus<CR>
 let g:which_key_map.0 = 'NERDTree'
@@ -26,6 +34,12 @@ let g:which_key_map.f.d = 'open-vimrc'
 
 nnoremap <silent> <leader>fs :source $MYVIMRC<CR>
 let g:which_key_map.f.s = 'source-vimrc'
+
+nnoremap <silent> <leader>pi :PlugInstall<CR>
+let g:which_key_map.p.i = 'PlugInstall'
+
+nnoremap <silent> <leader>pc :PlugClean<CR>
+let g:which_key_map.p.c = 'PlugClean'
 
 nnoremap <silent> <leader>oq  :copen<CR>
 nnoremap <silent> <leader>ol  :lopen<CR>
@@ -37,7 +51,8 @@ let g:which_key_map.o = {
 
 nnoremap <silent> <leader>g  :Neogit<CR>
 let g:which_key_map.g = {
-      \ 'name' : '+neogit'}
+      \ 'name' : '+neogit',
+      \ }
 
 
 " =======================================================
@@ -67,7 +82,7 @@ let g:which_key_map.b = {
 let g:which_key_map.l = {
       \ 'name' : '+lsp',
       \ 'f' : ['spacevim#lang#util#Format()'          , 'formatting']       ,
-      \ 'r' : ['spacevim#lang#util#FindReferences()'  , 'references']       ,
+      \ 'r' : ['<cmd>lua vim.lsp.buf.references()<CR>'  , 'references']       ,
       \ 'R' : ['spacevim#lang#util#Rename()'          , 'rename']           ,
       \ 's' : ['spacevim#lang#util#DocumentSymbol()'  , 'document-symbol']  ,
       \ 'S' : ['spacevim#lang#util#WorkspaceSymbol()' , 'workspace-symbol'] ,
@@ -77,5 +92,26 @@ let g:which_key_map.l = {
         \ 't' : ['spacevim#lang#util#TypeDefinition()' , 'type-definition'] ,
         \ 'i' : ['spacevim#lang#util#Implementation()' , 'implementation']  ,
         \ },
+      \ }
+
+let g:which_key_map['w'] = {
+      \ 'name' : '+windows' ,
+      \ 'w' : ['<C-W>w'     , 'other-window']          ,
+      \ 'd' : ['<C-W>c'     , 'delete-window']         ,
+      \ '-' : ['<C-W>s'     , 'split-window-below']    ,
+      \ '|' : ['<C-W>v'     , 'split-window-right']    ,
+      \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
+      \ 'h' : ['<C-W>h'     , 'window-left']           ,
+      \ 'j' : ['<C-W>j'     , 'window-below']          ,
+      \ 'l' : ['<C-W>l'     , 'window-right']          ,
+      \ 'k' : ['<C-W>k'     , 'window-up']             ,
+      \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
+      \ 'J' : [':resize +5'  , 'expand-window-below']   ,
+      \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
+      \ 'K' : [':resize -5'  , 'expand-window-up']      ,
+      \ '=' : ['<C-W>='     , 'balance-window']        ,
+      \ 's' : ['<C-W>s'     , 'split-window-below']    ,
+      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+      \ '?' : ['Windows'    , 'fzf-window']            ,
       \ }
 
