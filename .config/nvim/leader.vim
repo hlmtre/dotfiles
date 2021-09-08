@@ -18,10 +18,10 @@ let g:which_key_map =  {}
 
 let g:which_key_map.f = { 'name' : '+file' }
 let g:which_key_map.p = { 'name' : 'vim-plug' }
-let g:which_key_map.m = { 'name' : 'Maps' }
+let g:which_key_map.m = { 'name' : 'Keymaps' }
 
-nnoremap <silent> <leader>m :Maps<CR>
-let g:which_key_map.m = 'Maps'
+nnoremap <silent> <leader>m :Telescope keymaps<CR>
+let g:which_key_map.m = 'Keymaps'
 
 nnoremap <silent> <leader>e :TroubleToggle<CR>
 let g:which_key_map.e = 'Trouble'
@@ -30,10 +30,13 @@ nnoremap <silent> <leader>0 :NvimTreeFocus<CR>
 let g:which_key_map.0 = 'NvimTreeFocus'
 
 nnoremap <silent> <leader>fd :e $MYVIMRC<CR>
-let g:which_key_map.f.d = 'open-vimrc'
+let g:which_key_map.f.d = 'Edit $MYVIMRC'
+
+nnoremap <silent> <leader>fr :Telescope oldfiles<CR>
+let g:which_key_map.f.r = 'Recent files'
 
 nnoremap <silent> <leader>fs :source $MYVIMRC<CR>
-let g:which_key_map.f.s = 'source-vimrc'
+let g:which_key_map.f.s = 'Source $MYVIMRC'
 
 nnoremap <silent> <leader>pi :PlugInstall<CR>
 let g:which_key_map.p.i = 'PlugInstall'
@@ -76,7 +79,7 @@ let g:which_key_map.b = {
       \ 'l' : ['blast'     , 'last-buffer']     ,
       \ 'n' : ['bnext'     , 'next-buffer']     ,
       \ 'p' : ['bprevious' , 'previous-buffer'] ,
-      \ '?' : ['Buffers'   , 'fzf-buffer']      ,
+      \ '?' : [':Telescope buffers'   , 'telescope buffers']      ,
       \ }
 
 let g:which_key_map.l = {
@@ -112,6 +115,5 @@ let g:which_key_map['w'] = {
       \ '=' : ['<C-W>='     , 'balance-window']        ,
       \ 's' : ['<C-W>s'     , 'split-window-below']    ,
       \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
-      \ '?' : ['Windows'    , 'fzf-window']            ,
       \ }
 

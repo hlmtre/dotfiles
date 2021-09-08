@@ -1,10 +1,6 @@
 " plugins first!
 call plug#begin(stdpath('config') . '/plugs')
   Plug 'morhetz/gruvbox'
-  "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-  "Plug 'Nopik/vim-nerdtree-direnter'
-  "Plug 'jistr/vim-nerdtree-tabs'
-  "Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'famiu/feline.nvim'
   Plug 'akinsho/bufferline.nvim'
   Plug 'kyazdani42/nvim-tree.lua'
@@ -17,8 +13,6 @@ call plug#begin(stdpath('config') . '/plugs')
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'mfussenegger/nvim-dap'
   Plug 'nvim-lua/completion-nvim'
-  "Plug 'vim-airline/vim-airline'
-  "Plug 'vim-airline/vim-airline-themes'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
   Plug 'nvim-lua/plenary.nvim'
   Plug 'TimUntersberger/neogit'
@@ -26,8 +20,6 @@ call plug#begin(stdpath('config') . '/plugs')
   Plug 'airblade/vim-gitgutter'
   Plug 'folke/trouble.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
   Plug 'karb94/neoscroll.nvim'
   Plug 'liuchengxu/vim-which-key'
 call plug#end()
@@ -112,10 +104,10 @@ vim.g.nvim_tree_bindings = {
 }
 
 -- bufferline.nvim
-require("bufferline").setup{}
+require("bufferline").setup {}
 
 -- feline.nvim
-require('feline').setup()
+require("statusline")
 
 EOLUA
 
@@ -151,7 +143,6 @@ inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
 imap <Tab> <Plug>(completion_smart_tab)
 imap <S-Tab> <Plug>(completion_smart_s_tab)
 
-
 " nvimtree
 let g:nvim_tree_side = 'right' "left by default
 let g:nvim_tree_width = 40 "30 by default, can be width_in_columns or 'width_in_percent%'
@@ -182,7 +173,7 @@ set si
 set mouse=a
 autocmd BufEnter * lcd %:p:h
 nnoremap <C-o> :NERDTreeToggle %<CR>
-nnoremap <C-P> :FZF<CR>
+"nnoremap <C-P> :FZF<CR>
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set timeoutlen=300
