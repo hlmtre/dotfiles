@@ -1,10 +1,13 @@
 " plugins first!
 call plug#begin(stdpath('config') . '/plugs')
   Plug 'morhetz/gruvbox'
-  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-  Plug 'Nopik/vim-nerdtree-direnter'
-  Plug 'jistr/vim-nerdtree-tabs'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
+  "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+  "Plug 'Nopik/vim-nerdtree-direnter'
+  "Plug 'jistr/vim-nerdtree-tabs'
+  "Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'famiu/feline.nvim'
+  Plug 'akinsho/bufferline.nvim'
+  Plug 'kyazdani42/nvim-tree.lua'
   Plug 'neovim/nvim-lspconfig'
   Plug 'simrat39/rust-tools.nvim'
   Plug 'nvim-lua/lsp-status.nvim'
@@ -14,8 +17,8 @@ call plug#begin(stdpath('config') . '/plugs')
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'mfussenegger/nvim-dap'
   Plug 'nvim-lua/completion-nvim'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  "Plug 'vim-airline/vim-airline'
+  "Plug 'vim-airline/vim-airline-themes'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
   Plug 'nvim-lua/plenary.nvim'
   Plug 'TimUntersberger/neogit'
@@ -29,7 +32,7 @@ call plug#begin(stdpath('config') . '/plugs')
   Plug 'liuchengxu/vim-which-key'
 call plug#end()
 
-lua << EOF
+lua << EOLUA
 
 require('neoscroll').setup()
 
@@ -71,7 +74,50 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-EOF
+-- nvimtree
+local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+-- default mappings
+vim.g.nvim_tree_bindings = {
+  { key = {"<CR>", "<Tab>", "<2-LeftMouse>"}, cb = tree_cb("edit") },
+  { key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
+  { key = "<C-v>",                        cb = tree_cb("vsplit") },
+  { key = "<C-x>",                        cb = tree_cb("split") },
+  { key = "<C-t>",                        cb = tree_cb("tabnew") },
+  { key = "<",                            cb = tree_cb("prev_sibling") },
+  { key = ">",                            cb = tree_cb("next_sibling") },
+  { key = "P",                            cb = tree_cb("parent_node") },
+  { key = "<BS>",                         cb = tree_cb("close_node") },
+  { key = "<S-CR>",                       cb = tree_cb("close_node") },
+  { key = "K",                            cb = tree_cb("first_sibling") },
+  { key = "J",                            cb = tree_cb("last_sibling") },
+  { key = "I",                            cb = tree_cb("toggle_ignored") },
+  { key = "H",                            cb = tree_cb("toggle_dotfiles") },
+  { key = "R",                            cb = tree_cb("refresh") },
+  { key = "a",                            cb = tree_cb("create") },
+  { key = "d",                            cb = tree_cb("remove") },
+  { key = "r",                            cb = tree_cb("rename") },
+  { key = "<C-r>",                        cb = tree_cb("full_rename") },
+  { key = "x",                            cb = tree_cb("cut") },
+  { key = "c",                            cb = tree_cb("copy") },
+  { key = "p",                            cb = tree_cb("paste") },
+  { key = "y",                            cb = tree_cb("copy_name") },
+  { key = "Y",                            cb = tree_cb("copy_path") },
+  { key = "gy",                           cb = tree_cb("copy_absolute_path") },
+  { key = "[c",                           cb = tree_cb("prev_git_item") },
+  { key = "]c",                           cb = tree_cb("next_git_item") },
+  { key = "-",                            cb = tree_cb("dir_up") },
+  { key = "s",                            cb = tree_cb("system_open") },
+  { key = "q",                            cb = tree_cb("close") },
+  { key = "g?",                           cb = tree_cb("toggle_help") },
+}
+
+-- bufferline.nvim
+require("bufferline").setup{}
+
+-- feline.nvim
+require('feline').setup()
+
+EOLUA
 
 " general editor stuff
 autocmd vimenter * ++nested colorscheme gruvbox
@@ -99,29 +145,19 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " use <Tab> as trigger keys
 imap <Tab> <Plug>(completion_smart_tab)
 imap <S-Tab> <Plug>(completion_smart_s_tab)
 
-" nerdtree
-" Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
-" Close the tab if NERDTree is the only window remaining in it.
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-" Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-let g:NERDTreeMapActivateNode	= "<tab>"
-let NERDTreeWinPos=1 " on the right
-let NERDTreeShowBookmarks=1
-let NERDTreeShowHidden=1
-let NERDTreeMouseMode=2
-let NERDTreeMapOpenInTab="<enter>"
+" nvimtree
+let g:nvim_tree_side = 'right' "left by default
+let g:nvim_tree_width = 40 "30 by default, can be width_in_columns or 'width_in_percent%'
+let g:nvim_tree_follow = 1
+let g:nvim_tree_highlight_opened_files = 1
+let g:nvim_tree_follow_update_path = 1
 
 " rust
 let g:rustfmt_autosave = 1
@@ -133,8 +169,8 @@ let g:lsp_diagnostics_echo_cursor = 1
 set number
 syntax on
 set showtabline=2
-map <C-l> :tabn<CR>
-map <C-h> :tabp<CR>
+map <C-l> :BufferLineCycleNext<CR>
+map <C-h> :BufferLineCyclePrev<CR>
 let mapleader = " "
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 set ts=2
@@ -155,6 +191,5 @@ set nocompatible
 set termguicolors
 set ignorecase
 set smartcase
-let g:airline_powerline_fonts = 1
 
 source $HOME/.config/nvim/leader.vim

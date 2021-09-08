@@ -26,8 +26,8 @@ let g:which_key_map.m = 'Maps'
 nnoremap <silent> <leader>e :TroubleToggle<CR>
 let g:which_key_map.e = 'Trouble'
 
-nnoremap <silent> <leader>0 :NERDTreeFocus<CR>
-let g:which_key_map.0 = 'NERDTree'
+nnoremap <silent> <leader>0 :NvimTreeFocus<CR>
+let g:which_key_map.0 = 'NvimTreeFocus'
 
 nnoremap <silent> <leader>fd :e $MYVIMRC<CR>
 let g:which_key_map.f.d = 'open-vimrc'
