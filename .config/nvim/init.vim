@@ -1,3 +1,5 @@
+set nocompatible
+"
 " plugins first!
 call plug#begin(stdpath('config') . '/plugs')
   Plug 'morhetz/gruvbox'
@@ -104,10 +106,14 @@ vim.g.nvim_tree_bindings = {
 }
 
 -- bufferline.nvim
+-- defaults are fine
 require("bufferline").setup {}
 
 -- feline.nvim
 require("statusline")
+
+-- telescope
+require('telescope_config')
 
 EOLUA
 
@@ -178,7 +184,6 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set timeoutlen=300
 set signcolumn=yes
-set nocompatible
 set termguicolors
 set ignorecase
 set smartcase
