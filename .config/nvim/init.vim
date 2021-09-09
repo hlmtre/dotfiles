@@ -1,31 +1,5 @@
 set nocompatible
-"
-" plugins first!
-call plug#begin(stdpath('config') . '/plugs')
-  Plug 'morhetz/gruvbox'
-  Plug 'famiu/feline.nvim'
-  Plug 'akinsho/bufferline.nvim'
-  Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'simrat39/rust-tools.nvim'
-  Plug 'nvim-lua/lsp-status.nvim'
-  Plug 'nvim-lua/lsp_extensions.nvim'
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'mfussenegger/nvim-dap'
-  Plug 'nvim-lua/completion-nvim'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'TimUntersberger/neogit'
-  Plug 'mhinz/vim-startify'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'folke/trouble.nvim'
-  Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'karb94/neoscroll.nvim'
-  Plug 'liuchengxu/vim-which-key'
-  Plug 'famiu/bufdelete.nvim'
-call plug#end()
+source $HOME/.config/nvim/plugins.vim
 
 lua << EOLUA
 
@@ -140,6 +114,7 @@ require("bufferline").setup {
 }
 
 -- feline.nvim
+require('config.feline')
 --require("statusline")
 
 --require('lsp-statusline')
@@ -230,5 +205,5 @@ set termguicolors
 set ignorecase
 set smartcase
 
-source $HOME/.config/nvim/statusline.vim
+"source $HOME/.config/nvim/statusline.vim
 source $HOME/.config/nvim/leader.vim
