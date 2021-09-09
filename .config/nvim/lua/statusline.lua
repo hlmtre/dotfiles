@@ -1,397 +1,165 @@
-local colors = require("colors")
-local lsp = require "feline.providers.lsp"
+local lsp_status = require 'lsp-status'
+local devicons = require 'nvim-web-devicons'
 
-local icon_styles = {
-   default = {
-      left = "",
-      right = " ",
-      main_icon = "  ",
-      vi_mode_icon = " ",
-      position_icon = " ",
-   },
-   arrow = {
-      left = "",
-      right = "",
-      main_icon = "  ",
-      vi_mode_icon = " ",
-      position_icon = " ",
-   },
+local get_mode = vim.api.nvim_get_mode
+local get_current_win = vim.api.nvim_get_current_win
+local get_window_buf = vim.api.nvim_win_get_buf
+local buf_get_name = vim.api.nvim_buf_get_name
+local fnamemodify = vim.fn.fnamemodify
+local get_window_width = vim.api.nvim_win_get_width
+local pathshorten = vim.fn.pathshorten
 
-   block = {
-      left = " ",
-      right = " ",
-      main_icon = "   ",
-      vi_mode_icon = "  ",
-      position_icon = "  ",
-   },
-
-   round = {
-      left = "",
-      right = "",
-      main_icon = "  ",
-      vi_mode_icon = " ",
-      position_icon = " ",
-   },
-
-   slant = {
-      left = " ",
-      right = " ",
-      main_icon = "  ",
-      vi_mode_icon = " ",
-      position_icon = " ",
-   },
-}
-
-local statusline_style = icon_styles['default']
-
--- Initialize the components table
-local components = {
-   active = {},
-   inactive = {},
-}
-
--- Initialize left, mid and right
-table.insert(components.active, {})
-table.insert(components.active, {})
-table.insert(components.active, {})
-table.insert(components.inactive, {})
-table.insert(components.inactive, {})
-table.insert(components.inactive, {})
-
-components.active[1][1] = {
-   provider = statusline_style.main_icon,
-
-   hl = {
-      fg = colors.statusline_bg,
-      bg = colors.nord_blue,
-   },
-
-   right_sep = { str = statusline_style.right, hl = {
-      fg = colors.nord_blue,
-      bg = colors.one_bg2,
-   } },
-}
-
-components.active[1][2] = {
-   provider = statusline_style.right,
-
-   hl = {
-      fg = colors.one_bg2,
-      bg = colors.lightbg,
-   },
-}
-
-components.active[1][3] = {
-   provider = function()
-      local filename = vim.fn.expand "%:t"
-      local extension = vim.fn.expand "%:e"
-      local icon = require("nvim-web-devicons").get_icon(filename, extension)
-      if icon == nil then
-         icon = ""
-         return icon
-      end
-      return icon .. " " .. filename .. " "
-   end,
-   hl = {
-      fg = colors.white,
-      bg = colors.lightbg,
-   },
-
-   right_sep = { str = statusline_style.right, hl = { fg = colors.lightbg, bg = colors.lightbg2 } },
-}
-
-components.active[1][4] = {
-   provider = function()
-      local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-      return "  " .. dir_name .. " "
-   end,
-
-   hl = {
-      fg = colors.grey_fg2,
-      bg = colors.lightbg2,
-   },
-   right_sep = { str = statusline_style.right, hi = {
-      fg = colors.lightbg2,
-      bg = colors.statusline_bg,
-   } },
-}
-
-components.active[1][5] = {
-   provider = "git_diff_added",
-   hl = {
-      fg = colors.grey_fg2,
-      bg = colors.statusline_bg,
-   },
-   icon = " ",
-}
--- diffModfified
-components.active[1][6] = {
-   provider = "git_diff_changed",
-   hl = {
-      fg = colors.grey_fg2,
-      bg = colors.statusline_bg,
-   },
-   icon = "   ",
-}
--- diffRemove
-components.active[1][7] = {
-   provider = "git_diff_removed",
-   hl = {
-      fg = colors.grey_fg2,
-      bg = colors.statusline_bg,
-   },
-   icon = "  ",
-}
-
-components.active[1][8] = {
-   provider = "diagnostic_errors",
-   enabled = function()
-      return lsp.diagnostics_exist "Error"
-   end,
-   hl = { fg = colors.red },
-   icon = "  ",
-}
-
-components.active[1][9] = {
-   provider = "diagnostic_warnings",
-   enabled = function()
-      return lsp.diagnostics_exist "Warning"
-   end,
-   hl = { fg = colors.yellow },
-   icon = "  ",
-}
-
-components.active[1][10] = {
-   provider = "diagnostic_hints",
-   enabled = function()
-      return lsp.diagnostics_exist "Hint"
-   end,
-   hl = { fg = colors.grey_fg2 },
-   icon = "  ",
-}
-
-components.active[1][11] = {
-   provider = "diagnostic_info",
-   enabled = function()
-      return lsp.diagnostics_exist "Information"
-   end,
-   hl = { fg = colors.green },
-   icon = "  ",
-}
-
-components.active[2][1] = {
-   provider = function()
-      local Lsp = vim.lsp.util.get_progress_messages()[1]
-      if Lsp then
-         local msg = Lsp.message or ""
-         local percentage = Lsp.percentage or 0
-         local title = Lsp.title or ""
-         local spinners = {
-            "",
-            "",
-            "",
-         }
-
-         local success_icon = {
-            "",
-            "",
-            "",
-         }
-
-         local ms = vim.loop.hrtime() / 1000000
-         local frame = math.floor(ms / 120) % #spinners
-
-         if percentage >= 70 then
-            return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
-         else
-            return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
-         end
-      end
-      return ""
-   end,
-   hl = { fg = colors.green },
-}
-
-components.active[3][1] = {
-   provider = function()
-      if next(vim.lsp.buf_get_clients()) ~= nil then
-         return "  LSP"
-      else
-         return ""
-      end
-   end,
-   hl = { fg = colors.grey_fg2, bg = colors.statusline_bg },
-}
-
-components.active[3][2] = {
-   -- taken from: https://github.com/hoob3rt/lualine.nvim/blob/master/lua/lualine/components/branch.lua
-   provider = function()
-      local git_branch = ""
-
-      -- first try with gitsigns
-      local gs_dict = vim.b.gitsigns_status_dict
-      if gs_dict then
-         git_branch = (gs_dict.head and #gs_dict.head > 0 and gs_dict.head) or git_branch
-      else
-         -- path seperator
-         local branch_sep = package.config:sub(1, 1)
-         -- get file dir so we can search from that dir
-         local file_dir = vim.fn.expand "%:p:h" .. ";"
-         -- find .git/ folder genaral case
-         local git_dir = vim.fn.finddir(".git", file_dir)
-         -- find .git file in case of submodules or any other case git dir is in
-         -- any other place than .git/
-         local git_file = vim.fn.findfile(".git", file_dir)
-         -- for some weird reason findfile gives relative path so expand it to fullpath
-         if #git_file > 0 then
-            git_file = vim.fn.fnamemodify(git_file, ":p")
-         end
-         if #git_file > #git_dir then
-            -- separate git-dir or submodule is used
-            local file = io.open(git_file)
-            git_dir = file:read()
-            git_dir = git_dir:match "gitdir: (.+)$"
-            file:close()
-            -- submodule / relative file path
-            if git_dir:sub(1, 1) ~= branch_sep and not git_dir:match "^%a:.*$" then
-               git_dir = git_file:match "(.*).git" .. git_dir
-            end
-         end
-
-         if #git_dir > 0 then
-            local head_file = git_dir .. branch_sep .. "HEAD"
-            local f_head = io.open(head_file)
-            if f_head then
-               local HEAD = f_head:read()
-               f_head:close()
-               local branch = HEAD:match "ref: refs/heads/(.+)$"
-               if branch then
-                  git_branch = branch
-               else
-                  git_branch = HEAD:sub(1, 6)
-               end
-            end
-         end
-      end
-      return (git_branch ~= "" and "  " .. git_branch) or git_branch
-   end,
-   hl = {
-      fg = colors.grey_fg2,
-      bg = colors.statusline_bg,
-   },
-}
-
-components.active[3][3] = {
-   provider = " " .. statusline_style.left,
-   hl = {
-      fg = colors.one_bg2,
-      bg = colors.statusline_bg,
-   },
-}
-
-local mode_colors = {
-   ["n"] = { "NORMAL", colors.red },
-   ["no"] = { "N-PENDING", colors.red },
-   ["i"] = { "INSERT", colors.dark_purple },
-   ["ic"] = { "INSERT", colors.dark_purple },
-   ["t"] = { "TERMINAL", colors.green },
-   ["v"] = { "VISUAL", colors.cyan },
-   ["V"] = { "V-LINE", colors.cyan },
-   [""] = { "V-BLOCK", colors.cyan },
-   ["R"] = { "REPLACE", colors.orange },
-   ["Rv"] = { "V-REPLACE", colors.orange },
-   ["s"] = { "SELECT", colors.nord_blue },
-   ["S"] = { "S-LINE", colors.nord_blue },
-   [""] = { "S-BLOCK", colors.nord_blue },
-   ["c"] = { "COMMAND", colors.pink },
-   ["cv"] = { "COMMAND", colors.pink },
-   ["ce"] = { "COMMAND", colors.pink },
-   ["r"] = { "PROMPT", colors.teal },
-   ["rm"] = { "MORE", colors.teal },
-   ["r?"] = { "CONFIRM", colors.teal },
-   ["!"] = { "SHELL", colors.green },
-}
-
-local chad_mode_hl = function()
-   return {
-      fg = mode_colors[vim.fn.mode()][2],
-      bg = colors.one_bg,
-   }
+local function icon(path)
+  local name = fnamemodify(path, ':t')
+  local extension = fnamemodify(path, ':e')
+  return devicons.get_icon(name, extension, { default = true })
 end
 
-components.active[3][4] = {
-   provider = statusline_style.left,
-   hl = function()
-      return {
-         fg = mode_colors[vim.fn.mode()][2],
-         bg = colors.one_bg2,
-      }
-   end,
+local function vcs()
+  local branch_sign = ''
+  local git_info = vim.b.gitsigns_status_dict
+  if not git_info or git_info.head == '' then
+    return ''
+  end
+  local added = git_info.added and ('+' .. git_info.added .. ' ') or ''
+  local modified = git_info.changed and ('~' .. git_info.changed .. ' ') or ''
+  local removed = git_info.removed and ('-' .. git_info.removed .. ' ') or ''
+  local pad = ((added ~= '') or (removed ~= '') or (modified ~= '')) and ' ' or ''
+  local diff_str = string.format('%s%s%s%s', added, removed, modified, pad)
+  return string.format('%s%s %s ', diff_str, branch_sign, git_info.head)
+end
+
+local function lint_lsp(buf)
+  local result = ''
+  if #vim.lsp.buf_get_clients(buf) > 0 then
+    result = result .. lsp_status.status()
+  end
+  return result
+end
+
+local mode_table = {
+  n = 'Normal',
+  no = 'N·Operator Pending',
+  v = 'Visual',
+  V = 'V·Line',
+  ['^V'] = 'V·Block',
+  s = 'Select',
+  S = 'S·Line',
+  ['^S'] = 'S·Block',
+  i = 'Insert',
+  ic = 'Insert',
+  R = 'Replace',
+  Rv = 'V·Replace',
+  c = 'Command',
+  cv = 'Vim Ex',
+  ce = 'Ex',
+  r = 'Prompt',
+  rm = 'More',
+  ['r?'] = 'Confirm',
+  ['!'] = 'Shell',
+  t = 'Terminal',
 }
 
-components.active[3][5] = {
-   provider = statusline_style.vi_mode_icon,
-   hl = function()
-      return {
-         fg = colors.statusline_bg,
-         bg = mode_colors[vim.fn.mode()][2],
-      }
-   end,
-}
+local function mode_name(mode)
+  return string.upper(mode_table[mode] or 'V-Block')
+end
 
-components.active[3][6] = {
-   provider = function()
-      return " " .. mode_colors[vim.fn.mode()][1] .. " "
-   end,
-   hl = chad_mode_hl,
-}
+local function filename(buf_name, win_id)
+  local base_name = fnamemodify(buf_name, [[:~:.]])
+  local space = math.min(50, math.floor(0.4 * get_window_width(win_id)))
+  if string.len(base_name) <= space then
+    return base_name
+  else
+    return pathshorten(base_name)
+  end
+end
 
-components.active[3][7] = {
-   provider = statusline_style.left,
-   hl = {
-      fg = colors.grey,
-      bg = colors.one_bg,
-   },
-}
+vim.cmd [[hi StatuslineNormalAccent guibg=#d75f5f gui=bold guifg=#e9e9e9]]
+vim.cmd [[hi StatuslineInsertAccent guifg=#e9e9e9 gui=bold guibg=#dab997]]
+vim.cmd [[hi StatuslineReplaceAccent guifg=#e9e9e9 gui=bold guibg=#afaf00]]
+vim.cmd [[hi StatuslineConfirmAccent guifg=#e9e9e9 gui=bold guibg=#83adad]]
+vim.cmd [[hi StatuslineTerminalAccent guifg=#e9e9e9 gui=bold guibg=#6f6f6f]]
+vim.cmd [[hi StatuslineMiscAccent guifg=#e9e9e9 gui=bold guibg=#f485dd]]
+vim.cmd [[hi StatuslineFilenameModified guifg=#d75f5f gui=bold guibg=#3a3a3a]]
+vim.cmd [[hi StatuslineFilenameNoMod guifg=#e9e9e9 gui=bold guibg=#3a3a3a]]
 
-components.active[3][8] = {
-   provider = statusline_style.left,
-   hl = {
-      fg = colors.green,
-      bg = colors.grey,
-   },
-}
+local function update_colors(mode)
+  local mode_color = 'StatuslineMiscAccent'
+  if mode == 'n' then
+    mode_color = 'StatuslineNormalAccent'
+  elseif mode == 'i' or mode == 'ic' then
+    mode_color = 'StatuslineInsertAccent'
+  elseif mode == 'R' then
+    mode_color = 'StatuslineReplaceAccent'
+  elseif mode == 'c' then
+    mode_color = 'StatuslineConfirmAccent'
+  elseif mode == 't' then
+    mode_color = 'StatuslineTerminalAccent'
+  else
+    mode_color = 'StatuslineMiscAccent'
+  end
 
-components.active[3][9] = {
-   provider = statusline_style.position_icon,
-   hl = {
-      fg = colors.black,
-      bg = colors.green,
-   },
-}
+  local filename_color
+  if vim.bo.modified then
+    filename_color = 'StatuslineFilenameModified'
+  else
+    filename_color = 'StatuslineFilenameNoMod'
+  end
 
-components.active[3][10] = {
-   provider = function()
-      local current_line = vim.fn.line "."
-      local total_line = vim.fn.line "$"
+  return mode_color, filename_color
+end
 
-      if current_line == 1 then
-         return " Top "
-      elseif current_line == vim.fn.line "$" then
-         return " Bot "
-      end
-      local result, _ = math.modf((current_line / total_line) * 100)
-      return " " .. result .. "%% "
-   end,
+local function set_modified_symbol(modified)
+  if modified then
+    vim.cmd [[hi StatuslineModified guibg=#3a3a3a gui=bold guifg=#d75f5f]]
+    return '  ●'
+  else
+    vim.cmd [[ hi StatuslineModified guibg=#3a3a3a gui=bold guifg=#afaf00]]
+    return ''
+  end
+end
 
-   hl = {
-      fg = colors.green,
-      bg = colors.one_bg,
-   },
-}
+local function get_paste()
+  return vim.o.paste and 'PASTE ' or ''
+end
 
-require("feline").setup {
-   default_bg = colors.statusline_bg,
-   default_fg = colors.fg,
-   components = components,
-}
+local function get_readonly_space()
+  return ((vim.o.paste and vim.bo.readonly) and ' ' or '') and '%r' .. (vim.bo.readonly and ' ' or '')
+end
+
+local statusline_format =
+  '%%#%s# %s %%#StatuslineFiletype# %s%%#StatuslineModified#%s%%#%s# %s%s%%<%%#%s# %s%s%%<%%=%%#StatuslineVC#%s %%#StatuslineLint#%s%%#StatuslineFiletype#'
+
+local statuslines = {}
+local function status()
+  local win_id = vim.g.statusline_winid
+  if win_id == get_current_win() or statuslines[win_id] == nil then
+    local mode = get_mode().mode
+    local buf_nr = get_window_buf(win_id)
+    local bufname = buf_get_name(buf_nr)
+    local filename_segment = filename(bufname, win_id)
+    local mode_color, filename_color = update_colors(mode)
+    local line_col_segment = filename_segment ~= '' and ' %#StatuslineLineCol#| %l:%#StatuslineLineCol#%c ' or ''
+    statuslines[win_id] = string.format(
+      statusline_format,
+      mode_color,
+      mode_name(mode),
+      icon(bufname),
+      set_modified_symbol(vim.bo.modified),
+      filename_color,
+      filename_segment,
+      line_col_segment,
+      filename_color,
+      get_paste(),
+      get_readonly_space(),
+      vcs(),
+      lint_lsp(buf_nr)
+    )
+  else
+    -- print(vim.g.statusline_winid, win_getid(winnr()))
+  end
+
+  return statuslines[win_id]
+end
+
+return { status = status }

@@ -41,14 +41,31 @@ local on_attach = function(client)
     require'completion'.on_attach(client)
 end
 
--- Enable rust_analyzer
-nvim_lsp.rust_analyzer.setup({ on_attach=on_attach, lsp_status.on_attach })
+-- rust_analyzer
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+   properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+   },
+}
+nvim_lsp.rust_analyzer.setup({ on_attach=on_attach, lsp_status.on_attach, capabilities = capabilities })
 
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
+    virtual_text = { prefix = "⮑", spacing = 1, },
     signs = true,
+    underline = true,
     update_in_insert = true,
   }
 )
@@ -110,12 +127,22 @@ vim.g.nvim_tree_bindings = {
 require("bufferline").setup {}
 
 -- feline.nvim
-require("statusline")
+--require("statusline")
+
+--require('lsp-statusline')
 
 -- telescope
 require('telescope_config')
 
 EOLUA
+
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+
+  return ''
+endfunction
 
 " general editor stuff
 autocmd vimenter * ++nested colorscheme gruvbox
@@ -188,4 +215,5 @@ set termguicolors
 set ignorecase
 set smartcase
 
+source $HOME/.config/nvim/statusline.vim
 source $HOME/.config/nvim/leader.vim
