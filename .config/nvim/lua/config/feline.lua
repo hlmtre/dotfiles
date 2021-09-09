@@ -48,17 +48,17 @@ local vi_mode_colors = {
 }
 
 local vi_mode_text = {
-  NORMAL = 'NORMAL',
+  NORMAL = 'normal',
   OP = '<|',
-  INSERT = 'INSERT',
-  VISUAL = 'VISUAL',
-  BLOCK = 'V-BLOCK',
-  REPLACE = 'REPLACE',
-  ['V-REPLACE'] = 'V-REPLACE',
+  INSERT = 'insert',
+  VISUAL = 'visual',
+  BLOCK = 'v-block',
+  REPLACE = 'replace',
+  ['V-REPLACE'] = 'v-replace',
   ENTER = '<>',
   MORE = '<>',
   SELECT = '<>',
-  COMMAND = 'COMMAND',
+  COMMAND = 'command',
   SHELL = '<|',
   TERM = '<|',
   NONE = '<>'
@@ -132,7 +132,7 @@ components.active[1][3] = {
     bg = 'bg',
     style = 'bold'
   },
-  right_sep = ''
+  right_sep = ' '
 }
 -- gitBranch
 components.active[1][4] = {
@@ -170,11 +170,8 @@ components.active[1][7] = {
     style = 'bold'
   }
 }
-
--- MID
-
 -- LspName
-components.active[2][1] = {
+components.active[1][8] = {
   provider = 'lsp_client_names',
   hl = {
     fg = 'yellow',
@@ -196,7 +193,7 @@ end
 
 require('feline.providers').add_provider('lsp_messages', lint_lsp)
 
-components.active[2][2] = {
+components.active[1][9] = {
   provider = 'lsp_messages',
   enabled = true,
   hl = {
@@ -204,6 +201,8 @@ components.active[2][2] = {
     style = 'bold'
   }
 }
+
+-- MID
 
 -- diagnosticErrors
 components.active[2][3] = {
@@ -303,7 +302,7 @@ components.active[3][3] = {
 }
 -- fileFormat
 components.active[3][4] = {
-  provider = function() return '' .. vim.bo.fileformat:upper() .. '' end,
+  provider = function() return '' .. vim.bo.fileformat:lower() .. '' end,
   hl = {
     fg = 'white',
     bg = 'bg',
