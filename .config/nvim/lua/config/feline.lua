@@ -204,6 +204,7 @@ components.active[1][9] = {
 
 -- MID
 
+
 -- diagnosticErrors
 components.active[2][3] = {
   provider = 'diagnostic_errors',
@@ -241,10 +242,49 @@ components.active[2][6] = {
   }
 }
 
+-- via lsp-status
+--update_current_function() -- Set/reset the b:lsp_current_function variable
+---- Shows the current function, method, class, struct, interface, enum, module, or namespace
+--diagnostics() -- Return a table with all diagnostic counts for the current buffer
+--messages() -- Return a table listing progress and other status messages for display
+--register_progress() -- Register the provided handler for progress messages
+--register_client() -- Register a client for messages
+---- Integrate misc. LS protocol extensions into the messages framework
+---- Each extension table contains a set of handlers and a setup() function 
+---- returning said handlers
+--extensions = { clangd, pyls_ms }
+---- Set up a client for use with lsp-status. Calls register_client() and sets up 
+---- buffer autocommands
+--on_attach(client) 
+--config(config_vals) -- Configure lsp-status
+---- Table of client capabilities extended to signal support for progress messages
+--capabilities 
+--status() -- One example out-of-the-box statusline component (as shown in the images above)
+--
+
 -- RIGHT
 
--- fileIcon
+local function cur_function()
+  local lsp_status = require('lsp-status')
+  lsp_status.update_current_function()
+  local buf = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
+  return vim.api.nvim_buf_get_var(buf, 'lsp_current_function')
+end
+
+require('feline.providers').add_provider('cur_function', cur_function)
+
 components.active[3][1] = {
+  provider = 'cur_function',
+  enabled = true,
+  hl = {
+    fg = 'white',
+    style = 'bold'
+  },
+  right_sep = ' ',
+}
+
+-- fileIcon
+components.active[3][2] = {
   provider = function()
     local filename = vim.fn.expand('%:t')
     local extension = vim.fn.expand('%:e')
@@ -271,7 +311,7 @@ components.active[3][1] = {
   right_sep = ' '
 }
 -- fileType
-components.active[3][2] = {
+components.active[3][3] = {
   provider = 'file_type',
   hl = function()
     local val = {}
@@ -290,7 +330,7 @@ components.active[3][2] = {
   right_sep = ' '
 }
 -- fileSize
-components.active[3][3] = {
+components.active[3][4] = {
   provider = 'file_size',
   enabled = function() return vim.fn.getfsize(vim.fn.expand('%:t')) > 0 end,
   hl = {
@@ -301,7 +341,7 @@ components.active[3][3] = {
   right_sep = ' '
 }
 -- fileFormat
-components.active[3][4] = {
+components.active[3][5] = {
   provider = function() return '' .. vim.bo.fileformat:lower() .. '' end,
   hl = {
     fg = 'white',
@@ -311,7 +351,7 @@ components.active[3][4] = {
   right_sep = ' '
 }
 -- fileEncode
-components.active[3][5] = {
+components.active[3][6] = {
   provider = 'file_encoding',
   hl = {
     fg = 'white',
@@ -321,7 +361,7 @@ components.active[3][5] = {
   right_sep = ' '
 }
 -- lineInfo
-components.active[3][7] = {
+components.active[3][8] = {
   provider = 'position',
   hl = {
     fg = 'white',
@@ -331,7 +371,7 @@ components.active[3][7] = {
   right_sep = ' '
 }
 -- linePercent
-components.active[3][8] = {
+components.active[3][9] = {
   provider = 'line_percentage',
   hl = {
     fg = 'white',
@@ -341,7 +381,7 @@ components.active[3][8] = {
   right_sep = ' '
 }
 -- scrollBar
-components.active[3][9] = {
+components.active[3][10] = {
   provider = 'scroll_bar',
   hl = {
     fg = 'yellow',
