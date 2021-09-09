@@ -24,11 +24,13 @@ call plug#begin(stdpath('config') . '/plugs')
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'karb94/neoscroll.nvim'
   Plug 'liuchengxu/vim-which-key'
+  Plug 'famiu/bufdelete.nvim'
 call plug#end()
 
 lua << EOLUA
 
 require('neoscroll').setup()
+require('bufdelete')
 
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
@@ -123,8 +125,19 @@ vim.g.nvim_tree_bindings = {
 }
 
 -- bufferline.nvim
--- defaults are fine
-require("bufferline").setup {}
+require("bufferline").setup { 
+  diagnostics = "nvim_lsp",
+  offsets = {
+    {
+      filetype = "NvimTree", 
+      text = function() return vim.fn.getcwd() end, 
+      text_align = "left"
+    }
+  },
+  options = {
+    close_command = "bdelete! %d",
+  },
+}
 
 -- feline.nvim
 --require("statusline")
@@ -136,13 +149,13 @@ require('telescope_config')
 
 EOLUA
 
-function! LspStatus() abort
-  if luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
-
-  return ''
-endfunction
+"function! LspStatus() abort
+"  if luaeval('#vim.lsp.buf_get_clients() > 0')
+"    return luaeval("require('lsp-status').status()")
+"  endif
+"
+"  return ''
+"endfunction
 
 " general editor stuff
 autocmd vimenter * ++nested colorscheme gruvbox
@@ -190,12 +203,14 @@ let g:lsp_diagnostics_echo_cursor = 1
 
 " general editor
 
+" spcbr
+let mapleader = " "
 set number
 syntax on
 set showtabline=2
 map <C-l> :BufferLineCycleNext<CR>
 map <C-h> :BufferLineCyclePrev<CR>
-let mapleader = " "
+nnoremap <silent> <leader>x :Bdelete<CR> 
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 set ts=2
 set shiftwidth=2
