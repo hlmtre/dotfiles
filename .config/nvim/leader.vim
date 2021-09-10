@@ -84,6 +84,7 @@ let g:which_key_map.b = {
 
 let g:which_key_map.l = {
       \ 'name' : '+lsp',
+      \ 'a' : ['<cmd>lua vim.lsp.buf.code_action()<CR>' , 'code actions'] ,
       \ 'f' : ['spacevim#lang#util#Format()'          , 'formatting']       ,
       \ 'r' : ['<cmd>lua vim.lsp.buf.references()<CR>'  , 'references']       ,
       \ 'R' : ['spacevim#lang#util#Rename()'          , 'rename']           ,

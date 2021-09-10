@@ -20,6 +20,6 @@ call plug#begin(stdpath('config') . '/plugs')
   Plug 'folke/trouble.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'karb94/neoscroll.nvim'
-  Plug 'liuchengxu/vim-which-key'
+  Plug 'folke/which-key.nvim'
   Plug 'famiu/bufdelete.nvim'
 call plug#end()

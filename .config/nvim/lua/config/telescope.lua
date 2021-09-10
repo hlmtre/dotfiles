@@ -3,6 +3,9 @@ local actions = require('telescope.actions')
 ------------------------------
 require('telescope').setup{
   defaults = {
+    find_command = {
+      'rg', '--files', '--iglob', '!.git', '--hidden' 
+    },
     mappings = {
       i = {
         -- To disable a keymap, put [map] = false

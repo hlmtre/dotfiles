@@ -184,7 +184,8 @@ components.active[1][8] = {
 local function lint_lsp()
   local lsp_status = require('lsp-status')
   local result = ''
-  local buf = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
+  local a = vim.api
+  local buf = a.nvim_win_get_buf(a.nvim_get_current_win())
   if #vim.lsp.buf_get_clients(buf) > 0 then
     result = result .. lsp_status.status()
   end
@@ -268,7 +269,9 @@ local function cur_function()
   local lsp_status = require('lsp-status')
   lsp_status.update_current_function()
   local buf = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
-  local c = vim.api.nvim_buf_get_var(buf, 'lsp_current_function')
+  if #vim.lsp.buf_get_clients(buf) > 0 then
+    local c = vim.api.nvim_buf_get_var(buf, 'lsp_current_function')
+  end
   if c == nil then
     return ''
   end
@@ -421,6 +424,8 @@ components.inactive[1][1] = {
     ' '
   }
 }
+
+local colors = require('colors')
 
 require('feline').setup({
   colors = colors,
