@@ -268,7 +268,11 @@ local function cur_function()
   local lsp_status = require('lsp-status')
   lsp_status.update_current_function()
   local buf = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
-  return vim.api.nvim_buf_get_var(buf, 'lsp_current_function')
+  local c = vim.api.nvim_buf_get_var(buf, 'lsp_current_function')
+  if c == nil then
+    return ''
+  end
+  return c
 end
 
 require('feline.providers').add_provider('cur_function', cur_function)
