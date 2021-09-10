@@ -6,7 +6,7 @@ lua require('config.init')
 " general editor stuff
 autocmd vimenter * ++nested colorscheme gruvbox
 " Enable type inlay hints
- autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
 
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
@@ -19,7 +19,6 @@ nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
 " Code navigation shortcuts
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -47,8 +46,20 @@ let g:rustfmt_autosave = 1
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
 let g:lsp_diagnostics_echo_cursor = 1
 
-" general editor
+" general autoformat with neoformat
+augroup fmt
+  autocmd!
+  autocmd BufWritePre undojoin | Neoformat
+augroup END
+" Enable alignment
+let g:neoformat_basic_format_align = 1
+" Enable tab to spaces conversion
+let g:neoformat_basic_format_retab = 1
+" Enable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 1
 
+
+" general editor
 " spcbr
 let mapleader = " "
 set number
@@ -56,7 +67,7 @@ syntax on
 set showtabline=2
 map <C-l> :BufferLineCycleNext<CR>
 map <C-h> :BufferLineCyclePrev<CR>
-nnoremap <silent> <leader>x :Bdelete<CR> 
+nnoremap <silent> <leader>x :Bdelete<CR>
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 set ts=2
 set shiftwidth=2
@@ -66,7 +77,6 @@ set ai
 set si
 set mouse=a
 autocmd BufEnter * lcd %:p:h
-nnoremap <C-o> :NERDTreeToggle %<CR>
 "nnoremap <C-P> :FZF<CR>
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
@@ -75,6 +85,22 @@ set signcolumn=yes
 set termguicolors
 set ignorecase
 set smartcase
+" ctrl+a/x (inc/dec)
+nnoremap + <C-a>
+nnoremap - <C-x>
+
+set breakindent
+set breakindentopt=shift:2
+set showbreak=\\\\\
+
+" persistent undo!
+let s:undodir = "/tmp/.undodir_" . $USER
+if !isdirectory(s:undodir)
+    call mkdir(s:undodir, "", 0700)
+endif
+let &undodir=s:undodir
+set undofile
+
 
 " source $HOME/.config/nvim/statusline.vim
 " source $HOME/.config/nvim/leader.vim
