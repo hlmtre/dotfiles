@@ -1,6 +1,3 @@
-require('neoscroll').setup()
-require('bufdelete')
-
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
@@ -107,6 +104,9 @@ require("bufferline").setup {
     close_command = "bdelete! %d",
   },
 }
+
+require('neoscroll').setup()
+require('bufdelete')
 
 -- feline.nvim
 require('config.feline')

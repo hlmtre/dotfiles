@@ -23,4 +23,5 @@ Plug 'karb94/neoscroll.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'famiu/bufdelete.nvim'
 Plug 'sbdchd/neoformat'
+Plug 'Yggdroot/indentLine'
 call plug#end()

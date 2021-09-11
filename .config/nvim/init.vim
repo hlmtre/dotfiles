@@ -101,6 +101,7 @@ endif
 let &undodir=s:undodir
 set undofile
 
+autocmd VimEnter * IndentLinesEnable
 
 " source $HOME/.config/nvim/statusline.vim
 " source $HOME/.config/nvim/leader.vim
