@@ -265,14 +265,14 @@ components.active[2][6] = {
 
 -- RIGHT
 
+--[[
 local function cur_function()
   local lsp_status = require('lsp-status')
-  lsp_status.update_current_function()
   local buf = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
   if #vim.lsp.buf_get_clients(buf) > 0 then
-    local c = vim.api.nvim_buf_get_var(buf, 'lsp_current_function')
+    local status, c = pcall(vim.api.nvim_buf_get_var(buf, 'lsp_current_function'))
   end
-  if c == nil then
+  if c == nil or status == false then
     return ''
   end
   return c
@@ -289,6 +289,7 @@ components.active[3][1] = {
   },
   right_sep = ' ',
 }
+--]]
 
 -- fileIcon
 components.active[3][2] = {

@@ -1,5 +1,14 @@
 local lsp_status = require('lsp-status')
+
+lsp_status.config({
+  current_function = true,
+  diagnostics = true,
+  update_interval = 1000,
+})
+
 lsp_status.register_progress()
+
+require('config.feline')
 
 require('rust-tools').setup()
 
@@ -115,7 +124,6 @@ require('neoscroll').setup()
 require('bufdelete')
 
 -- feline.nvim
-require('config.feline')
 --require("statusline")
 --require('lsp-statusline')
 require('config.telescope')

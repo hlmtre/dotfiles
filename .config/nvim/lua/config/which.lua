@@ -11,9 +11,8 @@ wk.register({
   ["0"] = { "<cmd>NvimTreeFocus<CR>", "nvimtree" },
   m = { "<cmd>Telescope keymaps<CR>", "keymaps"},
   p = {
-    name = "vim-plug",
-    i = {"<cmd>PlugInstall<CR>", "plug install" },
-    c = {"<cmd>PlugClean<CR>", "plug clean" },
+    name = "packer",
+    s = {"<cmd>packer sync<CR>", "packer sync" },
   },
   g = { "<cmd>Neogit<CR>", "git"},
   --g = { "<cmd>Magit<CR>", "git"},
