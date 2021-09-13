@@ -1,14 +1,19 @@
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
--- rust
-local nvim_lsp = require'lspconfig'
+require('rust-tools').setup()
 
--- function to attach completion when setting up lsp
-local on_attach = function(client)
-    require'completion'.on_attach(client)
-end
+--[[
+XXX obsoleted by the master config of rust-tools
 
+--local nvim_lsp = require'lspconfig'
+--
+---- function to attach completion when setting up lsp
+--local on_attach = function(client)
+--    require'completion'.on_attach(client)
+--end
+
+--[[
 -- rust_analyzer
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
@@ -37,6 +42,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
+--]]
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
@@ -114,3 +120,4 @@ require('config.feline')
 --require('lsp-statusline')
 require('config.telescope')
 require('config.which')
+--]]

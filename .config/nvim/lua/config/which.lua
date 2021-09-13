@@ -15,7 +15,7 @@ wk.register({
     i = {"<cmd>PlugInstall<CR>", "plug install" },
     c = {"<cmd>PlugClean<CR>", "plug clean" },
   },
-  g = { "<cmd>Neogit<CR>", "git"},
+  g = { "<cmd>Magit<CR>", "git"},
 }, { prefix = "<leader>" })
 
 local plugins = {}

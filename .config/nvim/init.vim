@@ -6,7 +6,8 @@ lua require('config.init')
 " general editor stuff
 autocmd vimenter * ++nested colorscheme gruvbox
 " Enable type inlay hints
-autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
+"autocmd BufEnter,BufWinEnter,TabEnter *.rs lua require('lsp_extensions').inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
+"autocmd BufEnter,BufWinEnter,TabEnter *.rs lua require('rust-tools.inlay_hints').set_inlay_hints()
 
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
@@ -51,6 +52,7 @@ augroup fmt
   autocmd!
   autocmd BufWritePre undojoin | Neoformat
 augroup END
+
 " Enable alignment
 let g:neoformat_basic_format_align = 1
 " Enable tab to spaces conversion
@@ -65,9 +67,10 @@ let mapleader = " "
 set number
 syntax on
 set showtabline=2
-map <C-l> :BufferLineCycleNext<CR>
-map <C-h> :BufferLineCyclePrev<CR>
+nnoremap <C-l> :BufferLineCycleNext<CR>
+nnoremap <C-h> :BufferLineCyclePrev<CR>
 nnoremap <silent> <leader>x :Bdelete<CR>
+execute "nnoremap <silent> " . g:magit_show_magit_mapping . " :call magit#show_magit('h')<cr>"
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 set ts=2
 set shiftwidth=2
