@@ -10,7 +10,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'mfussenegger/nvim-dap'
 Plug 'TimUntersberger/neogit'
-Plug 'jreybert/vimagit'
+"Plug 'jreybert/vimagit'
 Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-gitgutter'
 Plug 'kyazdani42/nvim-web-devicons'

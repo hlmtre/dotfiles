@@ -1,5 +1,6 @@
 set nocompatible
-source $HOME/.config/nvim/plugins.vim
+lua require('plugins')
+"source $HOME/.config/nvim/plugins.vim
 
 lua require('config.init')
 
@@ -70,7 +71,7 @@ set showtabline=2
 nnoremap <C-l> :BufferLineCycleNext<CR>
 nnoremap <C-h> :BufferLineCyclePrev<CR>
 nnoremap <silent> <leader>x :Bdelete<CR>
-execute "nnoremap <silent> " . g:magit_show_magit_mapping . " :call magit#show_magit('h')<cr>"
+"execute "nnoremap <silent> " . g:magit_show_magit_mapping . " :call magit#show_magit('h')<cr>"
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 set ts=2
 set shiftwidth=2
@@ -106,5 +107,8 @@ set undofile
 
 autocmd VimEnter * IndentLinesEnable
 
-" source $HOME/.config/nvim/statusline.vim
-" source $HOME/.config/nvim/leader.vim
+" automatically re-run packer after the packer file is modified
+augroup packer_user_config
+  autocmd!
+  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+augroup end

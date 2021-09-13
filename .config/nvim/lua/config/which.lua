@@ -4,7 +4,7 @@ wk.register({
   f = {
     name = "file",
     f = { "<cmd>Telescope find_files<cr>", "find file" }, 
-    r = { "<cmd>Telescope oldfiles<cr>", "open recent file" }, 
+    r = { "<cmd>Telescope oldfiles<cr>", "open recent" }, 
     e = { "<cmd>e $MYVIMRC<CR>", "edit $MYVIMRC"},
     s = { "<cmd>source $MYVIMRC<CR>", "source $MYVIMRC"}, 
   }, 
@@ -15,7 +15,8 @@ wk.register({
     i = {"<cmd>PlugInstall<CR>", "plug install" },
     c = {"<cmd>PlugClean<CR>", "plug clean" },
   },
-  g = { "<cmd>Magit<CR>", "git"},
+  g = { "<cmd>Neogit<CR>", "git"},
+  --g = { "<cmd>Magit<CR>", "git"},
 }, { prefix = "<leader>" })
 
 local plugins = {}
