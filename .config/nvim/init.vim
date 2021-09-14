@@ -106,6 +106,7 @@ let &undodir=s:undodir
 set undofile
 
 autocmd VimEnter * IndentLinesEnable
+filetype plugin on
 
 " automatically re-run packer after the packer file is modified
 augroup packer_user_config
