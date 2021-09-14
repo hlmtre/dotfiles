@@ -1,6 +1,7 @@
 set nocompatible
 lua require('plugins')
 "source $HOME/.config/nvim/plugins.vim
+source $HOME/.config/nvim/bedit.vim
 
 lua require('config.init')
 
@@ -32,10 +33,6 @@ nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
 
-" use <Tab> as trigger keys
-imap <Tab> <Plug>(completion_smart_tab)
-imap <S-Tab> <Plug>(completion_smart_s_tab)
-
 " nvimtree
 let g:nvim_tree_side = 'right' "left by default
 let g:nvim_tree_width = 40 "30 by default, can be width_in_columns or 'width_in_percent%'
@@ -46,6 +43,8 @@ let g:nvim_tree_follow_update_path = 1
 " rust
 let g:rustfmt_autosave = 1
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+" Use completion-nvim in every buffer
+"autocmd BufEnter * lua require'completion'.on_attach()
 let g:lsp_diagnostics_echo_cursor = 1
 
 " general autoformat with neoformat
