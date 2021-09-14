@@ -8,8 +8,6 @@ lsp_status.config({
 
 lsp_status.register_progress()
 
-require('config.feline')
-
 require('rust-tools').setup()
 
 --[[
@@ -122,10 +120,7 @@ require("bufferline").setup {
 
 require('neoscroll').setup()
 require('bufdelete')
-
--- feline.nvim
---require("statusline")
---require('lsp-statusline')
+require('config.feline')
 require('config.telescope')
 require('config.which')
 --]]

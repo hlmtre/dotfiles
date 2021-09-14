@@ -1,10 +1,9 @@
-
-return require('packer').startup(function()
+require('packer').startup({function()
   use 'wbthomason/packer.nvim'
   use 'morhetz/gruvbox'
   use 'neovim/nvim-lspconfig'
-  --use 'simrat39/rust-tools.nvim'
-  use 'Joakker/rust-tools.nvim'
+  use 'simrat39/rust-tools.nvim'
+  --use 'Joakker/rust-tools.nvim'
   use 'nvim-lua/lsp-status.nvim'
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
@@ -23,6 +22,10 @@ return require('packer').startup(function()
   use 'famiu/feline.nvim'
   use 'akinsho/bufferline.nvim'
   use 'kyazdani42/nvim-tree.lua'
-end)
+end,
+config = {
+  display = {
+    open_fn = require('packer.util').float,
+}}})
 -- use  'nvim-lua/lsp_extensions.nvim'
 --use  'jreybert/vimagit'
