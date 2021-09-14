@@ -3,7 +3,7 @@ local lsp_status = require('lsp-status')
 lsp_status.config({
   current_function = true,
   diagnostics = true,
-  update_interval = 1000,
+  update_interval = 1000, -- prevent crazy cpu use polling rust-analyzer all the time
 })
 
 lsp_status.register_progress()
