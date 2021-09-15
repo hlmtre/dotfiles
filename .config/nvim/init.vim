@@ -34,9 +34,9 @@ inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " goto-preview
-nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
-nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
-nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
+"nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
+"nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
+"nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
 
 
 " nvimtree
