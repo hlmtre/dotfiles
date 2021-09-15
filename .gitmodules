@@ -36,3 +36,6 @@
 [submodule "roslin"]
 	path = roslin
 	url = git@github.com:hlmtre/roslin.git
+[submodule "sensitivity"]
+	path = sensitivity
+	url = git@github.com:hlmtre/sensitivity.git
