@@ -1,14 +1,83 @@
+require('goto-preview').setup {
+    width = 120; -- Width of the floating window
+    height = 15; -- Height of the floating window
+    default_mappings = false; -- Bind default mappings
+    debug = false; -- Print debug information
+    opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+    post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
+  }
+
 local lsp_status = require('lsp-status')
 
 lsp_status.config({
-  current_function = true,
-  diagnostics = true,
+  current_function = false,
+  show_filename = true,
+--  diagnostics = true,
   update_interval = 1000, -- prevent crazy cpu use polling rust-analyzer all the time
+  indicator_errors = 'E',
+  indicator_warnings = 'W',
+  indicator_info = 'i',
+  indicator_hint = '?',
+  indicator_ok = 'Ok',
 })
 
 lsp_status.register_progress()
 
-require('rust-tools').setup()
+local nvim_lsp = require('lspconfig')
+
+local opts = {
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+    server = {
+        -- on_attach is a callback called when the language server attachs to the buffer
+        -- on_attach = on_attach,
+        settings = {
+            -- to enable rust-analyzer settings visit:
+            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    command = "check"
+                },
+            }
+        }
+    },
+}
+
+require('rust-tools').setup(opts)
+
+local cmp = require'cmp'
+cmp.setup({
+  -- Enable LSP snippets
+  snippet = {
+    expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    -- Add tab support
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
+  },
+
+  -- Installed sources
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+  },
+})
 
 --[[
 XXX obsoleted by the master config of rust-tools

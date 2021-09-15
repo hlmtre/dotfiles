@@ -12,7 +12,8 @@ wk.register({
   m = { "<cmd>Telescope keymaps<CR>", "keymaps"},
   p = {
     name = "packer",
-    s = {"<cmd>packer sync<CR>", "packer sync" },
+    s = {"<cmd>PackerSync<CR>", "sync" },
+    c = {"<cmd>PackerCompile<CR>", "compile" },
   },
   g = { "<cmd>Neogit<CR>", "git"},
   --g = { "<cmd>Magit<CR>", "git"},

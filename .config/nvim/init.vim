@@ -33,6 +33,12 @@ nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
 
+" goto-preview
+nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
+nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
+nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
+
+
 " nvimtree
 let g:nvim_tree_side = 'right' "left by default
 let g:nvim_tree_width = 40 "30 by default, can be width_in_columns or 'width_in_percent%'

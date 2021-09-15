@@ -22,6 +22,22 @@ require('packer').startup({function()
   use 'famiu/feline.nvim'
   use 'akinsho/bufferline.nvim'
   use 'kyazdani42/nvim-tree.lua'
+
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/vim-vsnip'
+
+  use {
+  'rmagatti/goto-preview',
+  config = function()
+    require('goto-preview').setup {}
+  end
+  }
+  use 'kikito/inspect.lua'
+
 end,
 config = {
   display = {
