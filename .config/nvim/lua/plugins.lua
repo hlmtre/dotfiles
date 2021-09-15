@@ -29,6 +29,7 @@ require('packer').startup({function()
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/vim-vsnip'
+  use 'navarasu/onedark.nvim'
 
   use {
   'rmagatti/goto-preview',

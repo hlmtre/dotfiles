@@ -6,16 +6,11 @@ source $HOME/.config/nvim/bedit.vim
 lua require('config.init')
 
 " general editor stuff
-autocmd vimenter * ++nested colorscheme gruvbox
-" Enable type inlay hints
-"autocmd BufEnter,BufWinEnter,TabEnter *.rs lua require('lsp_extensions').inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
-"autocmd BufEnter,BufWinEnter,TabEnter *.rs lua require('rust-tools.inlay_hints').set_inlay_hints()
+"autocmd vimenter * ++nested colorscheme gruvbox
+colorscheme onedark
 
 " Set updatetime for CursorHold
-" 300ms of no cursor movement to trigger CursorHold
 set updatetime=300
-" Show diagnostic popup on cursor hold
-"autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
