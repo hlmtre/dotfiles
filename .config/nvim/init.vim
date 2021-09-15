@@ -7,7 +7,9 @@ lua require('config.init')
 
 " general editor stuff
 "autocmd vimenter * ++nested colorscheme gruvbox
-colorscheme onedark
+colorscheme gruvbox
+"let g:onedark_italic_comment = 0 " By default it is 1
+"colorscheme onedark
 
 " Set updatetime for CursorHold
 set updatetime=300
