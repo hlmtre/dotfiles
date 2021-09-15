@@ -10,6 +10,12 @@ wk.register({
   }, 
   ["0"] = { "<cmd>NvimTreeFocus<CR>", "nvimtree" },
   m = { "<cmd>Telescope keymaps<CR>", "keymaps"},
+  b = {
+    name = "buffers",
+    d = {"<cmd>Bdelete!<CR>", "close" },
+    n = {"<cmd>ene<CR>", "new" },
+    b = {"<cmd>Telescope buffers<CR>", "list"},
+  },
   p = {
     name = "packer",
     s = {"<cmd>PackerSync<CR>", "sync" },

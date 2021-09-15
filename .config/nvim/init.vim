@@ -75,7 +75,7 @@ syntax on
 set showtabline=2
 nnoremap <C-l> :BufferLineCycleNext<CR>
 nnoremap <C-h> :BufferLineCyclePrev<CR>
-nnoremap <silent> <leader>x :Bdelete<CR>
+nnoremap <silent> <leader>bx :Bdelete<CR>
 "execute "nnoremap <silent> " . g:magit_show_magit_mapping . " :call magit#show_magit('h')<cr>"
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 set ts=2
