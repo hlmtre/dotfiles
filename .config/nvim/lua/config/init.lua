@@ -16,6 +16,53 @@ lsp_status.register_progress()
 
 local nvim_lsp = require('lspconfig')
 
+local function setup_rust_tools()
+    local tools = {
+        autoSetHints = true,
+        runnables = {use_telescope = true},
+        inlay_hints = {show_parameter_hints = true},
+        hover_actions = {auto_focus = true}
+    }
+    require('rust-tools').setup({
+        tools = tools,
+        server = {
+            on_attach = lsp_on_attach,
+            capabilities = capabilities,
+            flags = {debounce_text_changes = 150}
+        }
+    })
+    require('rust-tools-debug').setup()
+end
+
+pcall(setup_rust_tools)
+
+--  conditionally sets mappsings if the lsp supports it
+local alt_key_mappings = {
+    {"code_lens", "n", "<leader>lcld","<Cmd>lua vim.lsp.codelens.refresh()<CR>"}, 
+    {"code_lens", "n", "<leader>lclr", "<Cmd>lua vim.lsp.codelens.run()<CR>"}
+}
+
+local function set_lsp_config(client, bufnr)
+    require"lsp_signature".on_attach({
+        bind = true,
+        handler_opts = {border = "single"}
+    })
+
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(...) end
+
+    buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    for _, mappings in pairs(alt_key_mappings) do
+        local capability, mode, lhs, rhs = unpack(mappings)
+        if client.resolved_capabilities[capability] then
+            buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+        end
+    end
+
+end
+
+--[[
 local opts = {
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
@@ -36,6 +83,9 @@ local opts = {
 }
 
 require('rust-tools').setup(opts)
+
+--]]
+
 
 local cmp = require'cmp'
 cmp.setup({
@@ -110,6 +160,23 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 --]]
+
+local function setup_servers()
+  require'lspinstall'.setup()
+  local servers = require'lspinstall'.installed_servers()
+  for _, server in pairs(servers) do
+    require'lspconfig'[server].setup{}
+  end
+end
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require'lspinstall'.post_install_hook = function ()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
+
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {

@@ -25,6 +25,24 @@ wk.register({
   --g = { "<cmd>Magit<CR>", "git"},
 }, { prefix = "<leader>" })
 
+local opts = {
+  mode = "n",
+  prefix = "<leader>",
+  buffer = nil,
+  silent = false,
+  noremap = true,
+  nowait = true
+}
+
+local mappings = {
+  ["l"] = {
+    name = "lsp",
+    r = {":RustRunnables<CR", "rust runnables" }
+  }
+}
+
+wk.register(mappings, opts)
+
 local plugins = {}
 plugins = {
   marks = true,
@@ -34,6 +52,7 @@ plugins = {
     suggestions = 20,
   },
 }
+
 
 -- the rest of our defaults are fine atm
 wk.setup{plugins=plugins}

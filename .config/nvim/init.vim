@@ -1,10 +1,8 @@
 set nocompatible
 lua require('plugins')
-"source $HOME/.config/nvim/plugins.vim
-source $HOME/.config/nvim/bedit.vim
-
 lua require('config.init')
 
+source $HOME/.config/nvim/bedit.vim
 " general editor stuff
 "autocmd vimenter * ++nested colorscheme gruvbox
 colorscheme gruvbox
@@ -63,7 +61,6 @@ let g:neoformat_basic_format_retab = 1
 " Enable trimmming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
 
-
 " general editor
 " spcbr
 let mapleader = " "
@@ -83,7 +80,6 @@ set ai
 set si
 set mouse=a
 autocmd BufEnter * lcd %:p:h
-"nnoremap <C-P> :FZF<CR>
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set timeoutlen=300

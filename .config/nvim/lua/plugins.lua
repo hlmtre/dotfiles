@@ -1,14 +1,14 @@
-require('packer').startup({function()
+require('packer').startup({function(use)
   use 'wbthomason/packer.nvim'
   use 'morhetz/gruvbox'
   use 'neovim/nvim-lspconfig'
-  use 'simrat39/rust-tools.nvim'
-  --use 'Joakker/rust-tools.nvim'
   use 'nvim-lua/lsp-status.nvim'
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'kabouzeid/nvim-lspinstall'
+  use 'simrat39/rust-tools.nvim'
   use 'mfussenegger/nvim-dap'
   use 'TimUntersberger/neogit'
   use 'mhinz/vim-startify'
@@ -45,8 +45,15 @@ require('packer').startup({function()
   end
   }
   use 'kikito/inspect.lua'
-
+  use { 'windwp/nvim-autopairs',
+  config = function()
+    require('nvim-autopairs').setup({
+      enable_check_bracket_line = false
+    })
+  end
+  }
 end,
+
 config = {
   display = {
     open_fn = require('packer.util').float,

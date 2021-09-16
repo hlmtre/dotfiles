@@ -39,3 +39,6 @@
 [submodule "sensitivity"]
 	path = sensitivity
 	url = git@github.com:hlmtre/sensitivity.git
+[submodule "pybot"]
+	path = pybot
+	url = git@github.com:hlmtre/pybot.git
