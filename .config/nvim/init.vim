@@ -5,6 +5,7 @@ lua require('config.init')
 source $HOME/.config/nvim/bedit.vim
 " general editor stuff
 "autocmd vimenter * ++nested colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 "let g:onedark_italic_comment = 0 " By default it is 1
 "colorscheme onedark

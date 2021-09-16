@@ -14,29 +14,7 @@ lsp_status.config({
 
 lsp_status.register_progress()
 
-local nvim_lsp = require('lspconfig')
-
-local function setup_rust_tools()
-    local tools = {
-        autoSetHints = true,
-        runnables = {use_telescope = true},
-        inlay_hints = {show_parameter_hints = true},
-        hover_actions = {auto_focus = true}
-    }
-    require('rust-tools').setup({
-        tools = tools,
-        server = {
-            on_attach = lsp_on_attach,
-            capabilities = capabilities,
-            flags = {debounce_text_changes = 150}
-        }
-    })
-    require('rust-tools-debug').setup()
-end
-
-pcall(setup_rust_tools)
-
---  conditionally sets mappsings if the lsp supports it
+--  conditionally sets mappings if the lsp supports it
 local alt_key_mappings = {
     {"code_lens", "n", "<leader>lcld","<Cmd>lua vim.lsp.codelens.refresh()<CR>"}, 
     {"code_lens", "n", "<leader>lclr", "<Cmd>lua vim.lsp.codelens.run()<CR>"}
@@ -62,73 +40,6 @@ local function set_lsp_config(client, bufnr)
 
 end
 
---[[
-local opts = {
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-    server = {
-        -- on_attach is a callback called when the language server attachs to the buffer
-        -- on_attach = on_attach,
-        settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-                checkOnSave = {
-                    command = "check"
-                },
-            }
-        }
-    },
-}
-
-require('rust-tools').setup(opts)
-
---]]
-
-
-local cmp = require'cmp'
-cmp.setup({
-  -- Enable LSP snippets
-  snippet = {
-    expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ['<C-k>'] = cmp.mapping.select_prev_item(),
-    ['<C-j>'] = cmp.mapping.select_next_item(),
-    -- Add tab support
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-u>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    })
-  },
-
-  -- Installed sources
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-    { name = 'path' },
-    { name = 'buffer' },
-  },
-})
-
---[[
-XXX obsoleted by the master config of rust-tools
-
---local nvim_lsp = require'lspconfig'
---
----- function to attach completion when setting up lsp
---local on_attach = function(client)
---    require'completion'.on_attach(client)
---end
 
 --[[
 -- rust_analyzer
@@ -161,22 +72,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 --]]
 
-local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{}
-  end
-end
-
-setup_servers()
-
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
-
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
@@ -231,12 +127,12 @@ vim.g.nvim_tree_bindings = {
 }
 
 -- bufferline.nvim
-require("bufferline").setup { 
+require("bufferline").setup {
   diagnostics = "nvim_lsp",
   offsets = {
     {
-      filetype = "NvimTree", 
-      text = function() return vim.fn.getcwd() end, 
+      filetype = "NvimTree",
+      text = function() return vim.fn.getcwd() end,
       text_align = "left"
     }
   },
@@ -250,4 +146,3 @@ require('bufdelete')
 require('config.feline')
 require('config.telescope')
 require('config.which')
---]]
