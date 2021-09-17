@@ -68,7 +68,24 @@ require('packer').startup({function(use)
   use 'famiu/bufdelete.nvim'
   use 'sbdchd/neoformat'
   use 'Yggdroot/indentLine'
-  use 'famiu/feline.nvim'
+  --use 'famiu/feline.nvim'
+  use {
+    'hoob3rt/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = function()
+      require('lualine').setup({
+        sections = {
+          options = {theme = 'gruvbox_material'},
+          lualine_a = {'mode'},
+          lualine_b = {'filename', 'branch'},
+          lualine_c = { "os.data(%a)", 'data', require('lsp-status').status },
+          lualine_x = {'encoding', 'fileformat', 'filetype'},
+          lualine_y = {'progress'},
+          lualine_z = {'location'}
+        }
+      })
+    end
+  }
   use 'akinsho/bufferline.nvim'
   use 'kyazdani42/nvim-tree.lua'
 
@@ -153,3 +170,5 @@ config = {
 }}})
 -- use  'nvim-lua/lsp_extensions.nvim'
 --use  'jreybert/vimagit'
+  --[[
+  --]]

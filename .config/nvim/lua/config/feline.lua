@@ -12,22 +12,6 @@ local components = {
   inactive = {{}, {}, {}},
 }
 
-local colors = {
-  bg = '#282828',
-  black = '#282828',
-  yellow = '#d8a657',
-  cyan = '#89b482',
-  oceanblue = '#45707a',
-  green = '#a9b665',
-  orange = '#e78a4e',
-  violet = '#d3869b',
-  magenta = '#c14a4a',
-  white = '#a89984',
-  fg = '#a89984',
-  skyblue = '#7daea3',
-  red = '#ea6962',
-}
-
 local vi_mode_colors = {
   NORMAL = 'green',
   OP = 'green',
@@ -61,21 +45,6 @@ local vi_mode_text = {
   TERM = '<|',
   NONE = '<>'
 }
-
-local buffer_not_empty = function()
-  if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
-    return true
-  end
-  return false
-end
-
-local checkwidth = function()
-  local squeeze_width  = vim.fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
-end
 
 force_inactive.filetypes = {
   'NvimTree',
@@ -249,15 +218,15 @@ components.active[2][6] = {
 --register_progress() -- Register the provided handler for progress messages
 --register_client() -- Register a client for messages
 ---- Integrate misc. LS protocol extensions into the messages framework
----- Each extension table contains a set of handlers and a setup() function 
+---- Each extension table contains a set of handlers and a setup() function
 ---- returning said handlers
 --extensions = { clangd, pyls_ms }
----- Set up a client for use with lsp-status. Calls register_client() and sets up 
+---- Set up a client for use with lsp-status. Calls register_client() and sets up
 ---- buffer autocommands
---on_attach(client) 
+--on_attach(client)
 --config(config_vals) -- Configure lsp-status
 ---- Table of client capabilities extended to signal support for progress messages
---capabilities 
+--capabilities
 --status() -- One example out-of-the-box statusline component (as shown in the images above)
 --
 

@@ -28,6 +28,7 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
+tnoremap <silent> <Esc> <C-\><C-n>
 
 " goto-preview
 "nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>

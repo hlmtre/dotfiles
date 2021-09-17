@@ -3,7 +3,7 @@ local lsp_status = require('lsp-status')
 lsp_status.config({
   current_function = false,
   show_filename = true,
---  diagnostics = true,
+  diagnostics = true,
   update_interval = 1000, -- prevent crazy cpu use polling rust-analyzer all the time
   indicator_errors = 'E',
   indicator_warnings = 'W',
@@ -16,7 +16,7 @@ lsp_status.register_progress()
 
 --  conditionally sets mappings if the lsp supports it
 local alt_key_mappings = {
-    {"code_lens", "n", "<leader>lcld","<Cmd>lua vim.lsp.codelens.refresh()<CR>"}, 
+    {"code_lens", "n", "<leader>lcld","<Cmd>lua vim.lsp.codelens.refresh()<CR>"},
     {"code_lens", "n", "<leader>lclr", "<Cmd>lua vim.lsp.codelens.run()<CR>"}
 }
 
