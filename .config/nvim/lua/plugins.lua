@@ -24,7 +24,23 @@ require('packer').startup({function(use)
               }
             }})
           elseif not string.find("rust", server) then -- this is done by rust-tools
-            require('lspconfig')[server].setup{}
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
+            capabilities.textDocument.completion.completionItem.preselectSupport = true
+            capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+            capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+            capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+            capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+            capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+            capabilities.textDocument.completion.completionItem.resolveSupport = {
+               properties = {
+                  "documentation",
+                  "detail",
+                  "additionalTextEdits",
+               },
+            }
+            require('lspconfig')[server].setup{capabilities=capabilities}
           end
         end
         lspi.post_install_hook = function()
@@ -63,19 +79,37 @@ require('packer').startup({function(use)
   use 'mhinz/vim-startify'
   use 'airblade/vim-gitgutter'
   use 'kyazdani42/nvim-web-devicons'
-  use 'karb94/neoscroll.nvim'
+  use {'karb94/neoscroll.nvim',
+    config = function()
+      require('neoscroll').setup()
+    end
+  }
   use 'folke/which-key.nvim'
   use 'famiu/bufdelete.nvim'
+  use {'famiu/feline.nvim'}
   use 'sbdchd/neoformat'
   use 'Yggdroot/indentLine'
-  --use 'famiu/feline.nvim'
+  use {'mbbill/undotree'}
+  --[[
+  use({
+    --"NTBBloodbath/galaxyline.nvim",
+    "~/src/galaxyline.nvim",
+    -- your statusline
+    config = function()
+      require("galaxyline.themes.eviline")
+    end,
+    -- some optional icons
+    requires = { "kyazdani42/nvim-web-devicons", opt = true }
+  })
+  --]]
+
   use {
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
       require('lualine').setup({
         sections = {
-          options = {theme = 'gruvbox_material'},
+          options = {theme = 'everforest'},
           lualine_a = {'mode'},
           lualine_b = {'filename', 'branch'},
           lualine_c = { "os.data(%a)", 'data', require('lsp-status').status },
@@ -168,7 +202,3 @@ config = {
   display = {
     open_fn = require('packer.util').float,
 }}})
--- use  'nvim-lua/lsp_extensions.nvim'
---use  'jreybert/vimagit'
-  --[[
-  --]]

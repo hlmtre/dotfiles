@@ -108,8 +108,14 @@ set undofile
 autocmd VimEnter * IndentLinesEnable
 filetype plugin on
 
+
+function PackerComplete()
+  PackerSync
+  PackerCompile
+endfunction
+"
 " automatically re-run packer after the packer file is modified
 augroup packer_user_config
   autocmd!
-  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  autocmd BufWritePost plugins.lua,lsp.lua source <afile> | call PackerComplete()
 augroup end

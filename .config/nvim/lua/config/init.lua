@@ -14,6 +14,8 @@ lsp_status.config({
 
 lsp_status.register_progress()
 
+--[[
+--]]
 --  conditionally sets mappings if the lsp supports it
 local alt_key_mappings = {
     {"code_lens", "n", "<leader>lcld","<Cmd>lua vim.lsp.codelens.refresh()<CR>"},
@@ -61,6 +63,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 nvim_lsp.rust_analyzer.setup({ on_attach=on_attach, lsp_status.on_attach, capabilities = capabilities })
 
+--]]
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -70,7 +73,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
---]]
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 
@@ -141,8 +143,7 @@ require("bufferline").setup {
   },
 }
 
-require('neoscroll').setup()
 require('bufdelete')
-require('config.feline')
 require('config.telescope')
 require('config.which')
+--require('config.nvchad_statusline')
