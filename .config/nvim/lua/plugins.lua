@@ -1,3 +1,22 @@
+local function lsps_setup()
+    lsp_status = require('lsp-status')
+    lsp_status.config({
+      current_function = false,
+      show_filename = true,
+      diagnostics = true,
+      update_interval = 1000, -- prevent crazy cpu use polling rust-analyzer all the time
+      indicator_errors = 'E',
+      indicator_warnings = 'W',
+      indicator_info = 'i',
+      indicator_hint = '?',
+      indicator_ok = 'Ok',
+    })
+    lsp_status.register_progress()
+
+  local s = lsp_status.status()
+  return s
+end
+
 require('packer').startup({function(use)
   use 'wbthomason/packer.nvim'
   use 'morhetz/gruvbox'
@@ -5,7 +24,7 @@ require('packer').startup({function(use)
   use 'nvim-lua/lsp-status.nvim'
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
+  use {'nvim-telescope/telescope.nvim'}
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use {
     'kabouzeid/nvim-lspinstall',
@@ -71,7 +90,7 @@ require('packer').startup({function(use)
 
           }
       })
-      require('rust-tools-debug').setup()
+      --require('rust-tools-debug').setup()
     end
   }
   use 'mfussenegger/nvim-dap'
@@ -108,14 +127,29 @@ require('packer').startup({function(use)
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
       require('lualine').setup({
+        options = {
+          theme = 'gruvbox_material',
+          lower = true
+        },
         sections = {
-          options = {theme = 'everforest'},
           lualine_a = {'mode'},
           lualine_b = {'filename', 'branch'},
-          lualine_c = { "os.data(%a)", 'data', require('lsp-status').status },
+          lualine_c = { {require('lsp-status').status} },
           lualine_x = {'encoding', 'fileformat', 'filetype'},
           lualine_y = {'progress'},
           lualine_z = {'location'}
+        },
+          inactive_sections = {
+            lualine_a = {},
+            lualine_b = {},
+            lualine_c = {'filename'},
+            lualine_x = {'location'},
+            lualine_y = {},
+            lualine_z = {}
+          },
+        extensions = {
+          'nvim-tree',
+          'quickfix'
         }
       })
     end

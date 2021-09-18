@@ -63,7 +63,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 nvim_lsp.rust_analyzer.setup({ on_attach=on_attach, lsp_status.on_attach, capabilities = capabilities })
 
---]]
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -73,6 +72,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
+--]]
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 
@@ -87,11 +87,12 @@ require'nvim-treesitter.configs'.setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
 }
 
 -- nvimtree
+--[[
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 -- default mappings
 vim.g.nvim_tree_bindings = {
@@ -127,6 +128,7 @@ vim.g.nvim_tree_bindings = {
   { key = "q",                            cb = tree_cb("close") },
   { key = "g?",                           cb = tree_cb("toggle_help") },
 }
+--]]
 
 -- bufferline.nvim
 require("bufferline").setup {
