@@ -11,7 +11,7 @@ colorscheme gruvbox
 "colorscheme onedark
 
 " Set updatetime for CursorHold
-set updatetime=300
+set updatetime=1000
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
 " Goto previous/next diagnostic warning/error
@@ -29,6 +29,7 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
+" make esc get you out of terminal insert mode
 tnoremap <silent> <Esc> <C-\><C-n>
 
 " goto-preview
@@ -43,6 +44,8 @@ let g:nvim_tree_width = 40 "30 by default, can be width_in_columns or 'width_in_
 let g:nvim_tree_follow = 1
 let g:nvim_tree_highlight_opened_files = 1
 let g:nvim_tree_follow_update_path = 1
+let g:nvim_tree_auto_open = 1
+let g:nvim_tree_auto_close = 1
 
 " rust
 let g:rustfmt_autosave = 1

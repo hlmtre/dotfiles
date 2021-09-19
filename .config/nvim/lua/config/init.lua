@@ -145,6 +145,13 @@ require("bufferline").setup {
   },
 }
 
+_G.Rename = {
+   rename = require('util').rename,
+   dorename = require('util').dorename
+}
+
+vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>lua Rename.rename()<CR>', {silent = true})
+
 require('bufdelete')
 require('config.telescope')
 require('config.which')
