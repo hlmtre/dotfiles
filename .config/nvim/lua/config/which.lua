@@ -23,7 +23,7 @@ wk.register({
   },
   g = {
     name = "git",
-    s = { "<cmd>Neogit<CR>", "git" },
+    s = { "<cmd>Neogit<CR>", "status" },
     b = { "<cmd>GitBlameToggle<CR>", "blame" },
   },
   x = {
@@ -48,8 +48,9 @@ local mappings = {
   ["l"] = {
     name = "lsp",
     R = { ":RustRunnables<CR>", "rust runnables" },
-    r = { '<cmd>lua Rename.rename()<CR>', "rename" },
+    r = { function() Rename.rename() end, "rename" },
     a = { function() vim.lsp.buf.code_action() end, "code action" },
+    d = { function() vim.lsp.diagnostic.show_line_diagnostics() end, "diagnostics" },
   },
 }
 
