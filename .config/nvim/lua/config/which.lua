@@ -21,8 +21,16 @@ wk.register({
     s = { "<cmd>PackerSync<CR>", "sync" },
     c = { "<cmd>PackerCompile<CR>", "compile" },
   },
-  g = { "<cmd>Neogit<CR>", "git" },
-  --g = { "<cmd>Magit<CR>", "git"},
+  g = {
+    name = "git",
+    s = { "<cmd>Neogit<CR>", "git" },
+    b = { "<cmd>GitBlameToggle<CR>", "blame" },
+  },
+  x = {
+    name = "autopairs",
+    d = { function() require('nvim-autopairs').disable() end, "disable"},
+    e = { function() require('nvim-autopairs').enable() end, "enable"}
+  }
 }, {
   prefix = "<leader>",
 })

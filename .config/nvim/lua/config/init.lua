@@ -15,7 +15,6 @@ lsp_status.config({
 lsp_status.register_progress()
 
 --[[
---]]
 --  conditionally sets mappings if the lsp supports it
 local alt_key_mappings = {
     {"code_lens", "n", "<leader>lcld","<Cmd>lua vim.lsp.codelens.refresh()<CR>"},
@@ -42,8 +41,6 @@ local function set_lsp_config(client, bufnr)
 
 end
 
-
---[[
 -- rust_analyzer
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
@@ -92,7 +89,6 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- nvimtree
---[[
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 -- default mappings
 vim.g.nvim_tree_bindings = {
@@ -128,7 +124,6 @@ vim.g.nvim_tree_bindings = {
   { key = "q",                            cb = tree_cb("close") },
   { key = "g?",                           cb = tree_cb("toggle_help") },
 }
---]]
 
 -- bufferline.nvim
 require("bufferline").setup {
@@ -151,6 +146,8 @@ _G.Rename = {
 }
 
 vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>lua Rename.rename()<CR>', {silent = true})
+
+vim.g.gitblame_enabled = 0
 
 require('bufdelete')
 require('config.telescope')

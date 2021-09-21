@@ -46,6 +46,7 @@ let g:nvim_tree_highlight_opened_files = 1
 let g:nvim_tree_follow_update_path = 1
 let g:nvim_tree_auto_open = 1
 let g:nvim_tree_auto_close = 1
+let g:nvim_tree_disable_default_keybindings = 1
 
 " rust
 let g:rustfmt_autosave = 1
@@ -87,6 +88,7 @@ set si
 set mouse=a
 autocmd BufEnter * lcd %:p:h
 set completeopt=menuone,noinsert,noselect
+set omnifunc=v:lua.vim.lsp.omnifunc
 set shortmess+=c
 set timeoutlen=300
 set signcolumn=yes
@@ -113,7 +115,7 @@ autocmd VimEnter * IndentLinesEnable
 filetype plugin on
 
 
-function PackerComplete()
+function! PackerComplete()
   PackerSync
   PackerCompile
 endfunction

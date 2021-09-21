@@ -52,6 +52,53 @@ require("packer").startup({
     use({ "nvim-telescope/telescope.nvim" })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use({
+      "williamboman/nvim-lsp-installer",
+      config = function()
+        local lsp_installer = require("nvim-lsp-installer")
+        lsp_installer.on_server_ready(function(server)
+          local opts = {}
+          if string.find("lua", server.name) then -- we have some specifics
+            require("lspconfig")[server].setup({
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    globals = { "vim" },
+                  },
+                },
+              },
+            })
+          elseif not string.find("rust", server.name) then -- this is done by rust-tools
+            opts.capabilities = vim.lsp.protocol.make_client_capabilities()
+            opts.capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
+            opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+            opts.capabilities.textDocument.completion.completionItem.preselectSupport = true
+            opts.capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+            opts.capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+            opts.capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+            opts.capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+            opts.capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+            opts.capabilities.textDocument.completion.completionItem.resolveSupport = {
+              properties = {
+                "documentation",
+                "detail",
+                "additionalTextEdits",
+              },
+            }
+          end
+
+          -- (optional) Customize the options passed to the server
+          -- if server.name == "tsserver" then
+          --     opts.root_dir = function() ... end
+          -- end
+
+          -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+          server:setup(opts)
+          vim.cmd([[ do User LspAttachBuffers ]])
+        end)
+      end,
+    })
+    --[[
+    use({
       "kabouzeid/nvim-lspinstall",
       config = function()
         local lspi = require("lspinstall")
@@ -93,6 +140,8 @@ require("packer").startup({
         end
       end,
     })
+    --]]
+    use 'f-person/git-blame.nvim'
     use({
       "simrat39/rust-tools.nvim",
       config = function()
@@ -109,7 +158,15 @@ require("packer").startup({
             settings = {
               ["rust-analyzer"] = {
                 checkOnSave = {
-                  command = "check",
+                  allFeatures = true,
+                  overrideCommand = {
+                    "cargo",
+                    "clippy",
+                    "--workspace",
+                    "--message-format=json",
+                    "--all-targets",
+                    "--all-features",
+                  },
                 },
               },
             },
@@ -183,12 +240,6 @@ require("packer").startup({
     use("akinsho/bufferline.nvim")
     use({
       "kyazdani42/nvim-tree.lua",
-      config = function()
-        local tree_cb = require("nvim-tree.config").nvim_tree_callback
-        vim.g.nvim_tree_bindings = {
-          { key = { "<CR>", "<Tab>" }, cb = tree_cb("edit") },
-        }
-      end,
     })
 
     use({
@@ -244,6 +295,7 @@ require("packer").startup({
     --]]
     })
 
+    --[[
     use({
       "rmagatti/goto-preview",
       config = function()
@@ -257,6 +309,7 @@ require("packer").startup({
         })
       end,
     })
+    --]]
     use("kikito/inspect.lua")
     use({
       "windwp/nvim-autopairs",
