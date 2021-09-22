@@ -52,6 +52,7 @@ local mappings = {
     r = { function() Rename.rename() end, "rename" },
     a = { function() vim.lsp.buf.code_action() end, "code action" },
     d = { function() vim.lsp.diagnostic.show_line_diagnostics() end, "diagnostics" },
+    t = { ":LspTroubleDocumentToggle<CR>", "trouble" },
   },
 }
 

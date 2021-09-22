@@ -8,7 +8,7 @@ local function lsps_setup()
     indicator_errors = "E",
     indicator_warnings = "W",
     indicator_info = "i",
-    indicator_hint = "?",
+    indicator_hint = "h",
     indicator_ok = "Ok",
   })
   lsp_status.register_progress()
@@ -25,30 +25,6 @@ require("packer").startup({
     use("nvim-lua/lsp-status.nvim")
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
-    --[[
-    use({
-      "rinx/lspsaga.nvim",
-      config = function()
-        local conf = {
-          use_saga_diagnostic_sign = false,
-          code_action_prompt = {
-            enable = true
-          },
-          code_action_keys = {
-            quit = '<esc>', exec = '<CR>'
-          },
-          rename_action_keys = {
-            quit = '<esc>', exec = '<CR>'
-          },
-          finder_action_keys = {
-            open = 'o', vsplit = 's',split = '<CR>',quit = 'q',
-            scroll_down = '<C-j>',scroll_up = '<C-k>'
-          },
-        }
-        require("lspsaga").init_lsp_saga(conf)
-      end,
-    })
-    --]]
     use({ "nvim-telescope/telescope.nvim" })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use 'RishabhRD/popfix'
@@ -110,50 +86,6 @@ require("packer").startup({
         end)
       end,
     })
-    --[[
-    use({
-      "kabouzeid/nvim-lspinstall",
-      config = function()
-        local lspi = require("lspinstall")
-        lspi.setup()
-        local servers = lspi.installed_servers()
-        for _, server in pairs(servers) do
-          if string.find("lua", server) then -- we have some specifics
-            require("lspconfig")[server].setup({
-              settings = {
-                Lua = {
-                  diagnostics = {
-                    globals = { "vim" },
-                  },
-                },
-              },
-            })
-          elseif not string.find("rust", server) then -- this is done by rust-tools
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
-            capabilities.textDocument.completion.completionItem.snippetSupport = true
-            capabilities.textDocument.completion.completionItem.preselectSupport = true
-            capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-            capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-            capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-            capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-            capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
-            capabilities.textDocument.completion.completionItem.resolveSupport = {
-              properties = {
-                "documentation",
-                "detail",
-                "additionalTextEdits",
-              },
-            }
-            require("lspconfig")[server].setup({ capabilities = capabilities })
-          end
-        end
-        lspi.post_install_hook = function()
-          vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-        end
-      end,
-    })
-    --]]
     use 'f-person/git-blame.nvim'
     use({
       "simrat39/rust-tools.nvim",
@@ -200,23 +132,12 @@ require("packer").startup({
       end,
     })
     use("folke/which-key.nvim")
+    use 'folke/trouble.nvim'
     use("famiu/bufdelete.nvim")
     use({ "famiu/feline.nvim" })
     use("sbdchd/neoformat")
     use("Yggdroot/indentLine")
     use({ "mbbill/undotree" })
-    --[[
-  use({
-    --"NTBBloodbath/galaxyline.nvim",
-    "~/src/galaxyline.nvim",
-    -- your statusline
-    config = function()
-      require("galaxyline.themes.eviline")
-    end,
-    -- some optional icons
-    requires = { "kyazdani42/nvim-web-devicons", opt = true }
-  })
-  --]]
 
     use({
       "hoob3rt/lualine.nvim",
@@ -299,30 +220,7 @@ require("packer").startup({
     use("hrsh7th/vim-vsnip")
     use({
       "navarasu/onedark.nvim",
-      --[[
-    config = function()
-      vim.g.onedark_italic_comment = 0
-      vim.g.onedark_style = 'darker'
-      require('onedark').setup()
-    end
-    --]]
     })
-
-    --[[
-    use({
-      "rmagatti/goto-preview",
-      config = function()
-        require("goto-preview").setup({
-          width = 120, -- Width of the floating window
-          height = 15, -- Height of the floating window
-          default_mappings = true, -- Bind default mappings
-          debug = false, -- Print debug information
-          opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
-          post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
-        })
-      end,
-    })
-    --]]
     use("kikito/inspect.lua")
     use({
       "windwp/nvim-autopairs",
@@ -340,3 +238,106 @@ require("packer").startup({
     },
   },
 })
+    --[[
+    use({
+      "rinx/lspsaga.nvim",
+      config = function()
+        local conf = {
+          use_saga_diagnostic_sign = false,
+          code_action_prompt = {
+            enable = true
+          },
+          code_action_keys = {
+            quit = '<esc>', exec = '<CR>'
+          },
+          rename_action_keys = {
+            quit = '<esc>', exec = '<CR>'
+          },
+          finder_action_keys = {
+            open = 'o', vsplit = 's',split = '<CR>',quit = 'q',
+            scroll_down = '<C-j>',scroll_up = '<C-k>'
+          },
+        }
+        require("lspsaga").init_lsp_saga(conf)
+      end,
+    })
+    --]]
+
+    --[[
+    use({
+      "rmagatti/goto-preview",
+      config = function()
+        require("goto-preview").setup({
+          width = 120, -- Width of the floating window
+          height = 15, -- Height of the floating window
+          default_mappings = true, -- Bind default mappings
+          debug = false, -- Print debug information
+          opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
+          post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        })
+      end,
+    })
+    --]]
+      --[[
+    config = function()
+      vim.g.onedark_italic_comment = 0
+      vim.g.onedark_style = 'darker'
+      require('onedark').setup()
+    end
+    --]]
+    --[[
+  use({
+    --"NTBBloodbath/galaxyline.nvim",
+    "~/src/galaxyline.nvim",
+    -- your statusline
+    config = function()
+      require("galaxyline.themes.eviline")
+    end,
+    -- some optional icons
+    requires = { "kyazdani42/nvim-web-devicons", opt = true }
+  })
+  --]]
+    --[[
+    use({
+      "kabouzeid/nvim-lspinstall",
+      config = function()
+        local lspi = require("lspinstall")
+        lspi.setup()
+        local servers = lspi.installed_servers()
+        for _, server in pairs(servers) do
+          if string.find("lua", server) then -- we have some specifics
+            require("lspconfig")[server].setup({
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    globals = { "vim" },
+                  },
+                },
+              },
+            })
+          elseif not string.find("rust", server) then -- this is done by rust-tools
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
+            capabilities.textDocument.completion.completionItem.preselectSupport = true
+            capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+            capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+            capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+            capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+            capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+            capabilities.textDocument.completion.completionItem.resolveSupport = {
+              properties = {
+                "documentation",
+                "detail",
+                "additionalTextEdits",
+              },
+            }
+            require("lspconfig")[server].setup({ capabilities = capabilities })
+          end
+        end
+        lspi.post_install_hook = function()
+          vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+        end
+      end,
+    })
+    --]]

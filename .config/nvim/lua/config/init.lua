@@ -145,7 +145,7 @@ _G.Rename = {
    dorename = require('util').dorename
 }
 
-vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>lua Rename.rename()<CR>', {silent = true})
+--vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>lua Rename.rename()<CR>', {silent = true})
 
 vim.g.gitblame_enabled = 0
 
