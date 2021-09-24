@@ -1,0 +1,7 @@
+theme = "gruvbox"
+
+[lsp]
+display-messages = true
+
+[keys.normal]
+'$' = "goto_line_end_newline"
