@@ -1,5 +1,5 @@
 local function lsps_setup()
-  lsp_status = require("lsp-status")
+  local lsp_status = require("lsp-status")
   lsp_status.config({
     current_function = false,
     show_filename = true,
@@ -16,6 +16,7 @@ local function lsps_setup()
   local s = lsp_status.status()
   return s
 end
+
 
 require("packer").startup({
   function(use)
@@ -171,9 +172,112 @@ require("packer").startup({
         })
       end,
     })
-    use("akinsho/bufferline.nvim")
+    use ({"akinsho/bufferline.nvim",
+          config = function()
+            require("bufferline").setup {
+              diagnostics = "nvim_lsp",
+              offsets = {
+                {
+                  filetype = "NvimTree",
+                  text = function() return vim.fn.getcwd() end,
+                  text_align = "left"
+                }
+              },
+              options = {
+                close_command = "bdelete! %d",
+                tab_size = 18,
+                enforce_regular_tabs = true,
+              },
+            }
+          end
+        })
+    --[[
+    use {
+      'noib3/cokeline.nvim',
+      requires = 'kyazdani42/nvim-web-devicons', -- If you want devicons
+      config = function()
+        vim.opt.termguicolors = true
+        local get_hex = require('cokeline/utils').get_hex
+
+        require('cokeline').setup({
+          -- If true the bufferline is hidden when only one buffer is listed
+          hide_when_one_buffer = false,
+
+          -- Controls what happens when the first (last) buffer is focused and the user
+          -- tries to focus/switch to the previous (next) buffer. If true the last
+          -- (first) buffer gets focused/switched to, if false nothing happens.
+          cycle_prev_next_mappings = true,
+
+          -- Default colors for the foregound/background of focused/unfocused
+          -- lines. Their default values are derived from the foreground/background of
+          -- other highlight groups.
+          default_hl = {
+            focused = {
+              fg = get_hex('ColorColumn', 'bg'),
+              bg = get_hex('Normal', 'fg'),
+            },
+            unfocused = {
+              fg = get_hex('Normal', 'fg'),
+              bg = get_hex('ColorColumn', 'bg'),
+            },
+          },
+
+          -- A list of components used to build every line of the cokeline.
+          components = {
+            {
+              text = function(buffer) return ' ' .. buffer.devicon.icon end,
+              hl = {
+                fg = function(buffer) return buffer.devicon.color end,
+              },
+            },
+            {
+              text = function(buffer) return buffer.unique_prefix end,
+              hl = {
+                fg = get_hex('Comment', 'fg'),
+                style = 'italic',
+              },
+            },
+            {
+              text = function(buffer) return buffer.filename .. ' ' end,
+            },
+            {
+              text = '',
+              delete_buffer_on_left_click = true,
+            },
+            {
+              text = ' ',
+            }
+          },
+        })
+
+      end
+    }
+    --]]
     use({
       "kyazdani42/nvim-tree.lua",
+      config = function()
+        local tree_cb = require('nvim-tree.config').nvim_tree_callback
+        require('nvim-tree').setup {
+          --open_on_setup = true,
+          --open_on_tab = true,
+          update_cwd = true,
+          lsp_diagnostics = true,
+          update_focused_file = {
+            enable = true,
+            update_cwd = true
+          },
+          view = {
+            width = 40,
+            side = 'right',
+            mappings = {
+              custom_only = false,
+              list = {
+                { key = {"<CR>","<Tab>"}, cb = tree_cb('edit')},
+              }
+            }
+          }
+        }
+      end
     })
 
     use({

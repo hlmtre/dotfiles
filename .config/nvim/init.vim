@@ -38,15 +38,15 @@ tnoremap <silent> <Esc> <C-\><C-n>
 "nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
 
 
-" nvimtree
-let g:nvim_tree_side = 'right' "left by default
-let g:nvim_tree_width = 40 "30 by default, can be width_in_columns or 'width_in_percent%'
-let g:nvim_tree_follow = 1
-let g:nvim_tree_highlight_opened_files = 1
-let g:nvim_tree_follow_update_path = 1
-let g:nvim_tree_auto_open = 1
-let g:nvim_tree_auto_close = 1
-let g:nvim_tree_disable_default_keybindings = 1
+" nvimtree now set in plugins.lua setup
+"let g:nvim_tree_side = 'right' "left by default
+"let g:nvim_tree_width = 40 "30 by default, can be width_in_columns or 'width_in_percent%'
+"let g:nvim_tree_follow = 1
+"let g:nvim_tree_highlight_opened_files = 1
+"let g:nvim_tree_follow_update_path = 1
+"let g:nvim_tree_auto_open = 1
+"let g:nvim_tree_auto_close = 1
+"let g:nvim_tree_disable_default_keybindings = 1
 
 " rust
 let g:rustfmt_autosave = 1
@@ -74,8 +74,6 @@ let mapleader = " "
 set number
 syntax on
 set showtabline=2
-nnoremap <C-l> :BufferLineCycleNext<CR>
-nnoremap <C-h> :BufferLineCyclePrev<CR>
 nnoremap <silent> <leader>bx :Bdelete<CR>
 "execute "nnoremap <silent> " . g:magit_show_magit_mapping . " :call magit#show_magit('h')<cr>"
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
