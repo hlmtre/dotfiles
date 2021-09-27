@@ -17,7 +17,6 @@ local function lsps_setup()
   return s
 end
 
-
 require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
@@ -28,19 +27,20 @@ require("packer").startup({
     use("nvim-lua/plenary.nvim")
     use({ "nvim-telescope/telescope.nvim" })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use 'RishabhRD/popfix'
-    use {'RishabhRD/nvim-lsputils',
-    config = function()
-      vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
-      vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
-      vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
-      vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
-      vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
-      vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
-      vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
-      vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
-    end
-  }
+    use("RishabhRD/popfix")
+    use({
+      "RishabhRD/nvim-lsputils",
+      config = function()
+        vim.lsp.handlers["textDocument/codeAction"] = require("lsputil.codeAction").code_action_handler
+        vim.lsp.handlers["textDocument/references"] = require("lsputil.locations").references_handler
+        vim.lsp.handlers["textDocument/definition"] = require("lsputil.locations").definition_handler
+        vim.lsp.handlers["textDocument/declaration"] = require("lsputil.locations").declaration_handler
+        vim.lsp.handlers["textDocument/typeDefinition"] = require("lsputil.locations").typeDefinition_handler
+        vim.lsp.handlers["textDocument/implementation"] = require("lsputil.locations").implementation_handler
+        vim.lsp.handlers["textDocument/documentSymbol"] = require("lsputil.symbols").document_handler
+        vim.lsp.handlers["workspace/symbol"] = require("lsputil.symbols").workspace_handler
+      end,
+    })
     use({
       "williamboman/nvim-lsp-installer",
       config = function()
@@ -87,7 +87,7 @@ require("packer").startup({
         end)
       end,
     })
-    use 'f-person/git-blame.nvim'
+    use("f-person/git-blame.nvim")
     use({
       "simrat39/rust-tools.nvim",
       config = function()
@@ -133,7 +133,7 @@ require("packer").startup({
       end,
     })
     use("folke/which-key.nvim")
-    use 'folke/trouble.nvim'
+    use("folke/trouble.nvim")
     use("famiu/bufdelete.nvim")
     use({ "famiu/feline.nvim" })
     use("sbdchd/neoformat")
@@ -172,25 +172,50 @@ require("packer").startup({
         })
       end,
     })
-    use ({"akinsho/bufferline.nvim",
-          config = function()
-            require("bufferline").setup {
-              diagnostics = "nvim_lsp",
-              offsets = {
-                {
-                  filetype = "NvimTree",
-                  text = function() return vim.fn.getcwd() end,
-                  text_align = "left"
-                }
+    use({
+      "akinsho/bufferline.nvim",
+      config = function()
+        require("bufferline").setup({
+          highlights = {
+            buffer_selected = {
+              guifg = {
+                attribute = "bg",
+                highlight = "Normal",
               },
-              options = {
-                close_command = "bdelete! %d",
-                tab_size = 18,
-                enforce_regular_tabs = true,
+              guibg = {
+                attribute = "fg",
+                highlight = "Normal",
               },
-            }
-          end
+            },
+            close_button_selected = {
+              guifg = {
+                attribute = "bg",
+                highlight = "Normal",
+              },
+              guibg = {
+                attribute = "fg",
+                highlight = "Normal",
+              },
+            },
+          },
+          diagnostics = "nvim_lsp",
+          offsets = {
+            {
+              filetype = "NvimTree",
+              text = function()
+                return vim.fn.getcwd()
+              end,
+              text_align = "left",
+            },
+          },
+          options = {
+            close_command = "bdelete! %d",
+            tab_size = 18,
+            enforce_regular_tabs = true,
+          },
         })
+      end,
+    })
     --[[
     use {
       'noib3/cokeline.nvim',
@@ -256,28 +281,28 @@ require("packer").startup({
     use({
       "kyazdani42/nvim-tree.lua",
       config = function()
-        local tree_cb = require('nvim-tree.config').nvim_tree_callback
-        require('nvim-tree').setup {
+        local tree_cb = require("nvim-tree.config").nvim_tree_callback
+        require("nvim-tree").setup({
           --open_on_setup = true,
           --open_on_tab = true,
           update_cwd = true,
           lsp_diagnostics = true,
           update_focused_file = {
             enable = true,
-            update_cwd = true
+            update_cwd = true,
           },
           view = {
             width = 40,
-            side = 'right',
+            side = "right",
             mappings = {
               custom_only = false,
               list = {
-                { key = {"<CR>","<Tab>"}, cb = tree_cb('edit')},
-              }
-            }
-          }
-        }
-      end
+                { key = { "<CR>", "<Tab>" }, cb = tree_cb("edit") },
+              },
+            },
+          },
+        })
+      end,
     })
 
     use({
@@ -342,7 +367,7 @@ require("packer").startup({
     },
   },
 })
-    --[[
+--[[
     use({
       "rinx/lspsaga.nvim",
       config = function()
@@ -367,7 +392,7 @@ require("packer").startup({
     })
     --]]
 
-    --[[
+--[[
     use({
       "rmagatti/goto-preview",
       config = function()
@@ -382,14 +407,14 @@ require("packer").startup({
       end,
     })
     --]]
-      --[[
+--[[
     config = function()
       vim.g.onedark_italic_comment = 0
       vim.g.onedark_style = 'darker'
       require('onedark').setup()
     end
     --]]
-    --[[
+--[[
   use({
     --"NTBBloodbath/galaxyline.nvim",
     "~/src/galaxyline.nvim",
@@ -401,7 +426,7 @@ require("packer").startup({
     requires = { "kyazdani42/nvim-web-devicons", opt = true }
   })
   --]]
-    --[[
+--[[
     use({
       "kabouzeid/nvim-lspinstall",
       config = function()

@@ -101,6 +101,9 @@ set breakindent
 set breakindentopt=shift:2
 set showbreak=\\\\\
 
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 " persistent undo!
 let s:undodir = "/tmp/.undodir_" . $USER
 if !isdirectory(s:undodir)
