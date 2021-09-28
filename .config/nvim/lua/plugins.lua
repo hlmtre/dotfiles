@@ -26,7 +26,7 @@ require("packer").startup({
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use({ "nvim-telescope/telescope.nvim" })
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    use({ "nvim-treesitter/nvim-treesitter"})
     use("RishabhRD/popfix")
     use({
       "RishabhRD/nvim-lsputils",
@@ -87,6 +87,12 @@ require("packer").startup({
         end)
       end,
     })
+    use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
+    use ({'kosayoda/nvim-lightbulb',
+      config = function()
+        vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+      end
+    })
     use("f-person/git-blame.nvim")
     use({
       "simrat39/rust-tools.nvim",
@@ -121,7 +127,7 @@ require("packer").startup({
         --require('rust-tools-debug').setup()
       end,
     })
-    use("mfussenegger/nvim-dap")
+    --use("mfussenegger/nvim-dap")
     use("TimUntersberger/neogit")
     use("mhinz/vim-startify")
     use("airblade/vim-gitgutter")
@@ -135,7 +141,7 @@ require("packer").startup({
     use("folke/which-key.nvim")
     use("folke/trouble.nvim")
     use("famiu/bufdelete.nvim")
-    use({ "famiu/feline.nvim" })
+    --use({ "famiu/feline.nvim" })
     use("sbdchd/neoformat")
     use("Yggdroot/indentLine")
     use({ "mbbill/undotree" })
