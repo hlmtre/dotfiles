@@ -26,7 +26,7 @@ require("packer").startup({
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use({ "nvim-telescope/telescope.nvim" })
-    use({ "nvim-treesitter/nvim-treesitter"})
+    use({ "nvim-treesitter/nvim-treesitter" })
     use("RishabhRD/popfix")
     use({
       "RishabhRD/nvim-lsputils",
@@ -87,11 +87,20 @@ require("packer").startup({
         end)
       end,
     })
-    use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
-    use ({'kosayoda/nvim-lightbulb',
+    --[[
+    use({
+      "weilbith/nvim-code-action-menu",
+      cmd = "CodeActionMenu",
       config = function()
-        vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
-      end
+        vim.api.nvim_set_keymap("n", "ga", "<cmd>CodeActionMenu<CR>", { silent = true })
+      end,
+    })
+    --]]
+    use({
+      "kosayoda/nvim-lightbulb",
+      config = function()
+        vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
+      end,
     })
     use("f-person/git-blame.nvim")
     use({

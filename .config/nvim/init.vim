@@ -12,7 +12,7 @@ colorscheme gruvbox
 
 " Set updatetime for CursorHold
 set updatetime=1000
-"autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+"autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})
 
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
