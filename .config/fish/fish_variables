@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export BAT_THEME:gruvbox\x2ddark
 SETUVAR --export EDITOR:/home/hlmtre/\x2elocal/bin/nvr\x1e\x2d\x2dremote\x2dwait\x2dsilent
 SETUVAR --export ESRVNAME:primary
 SETUVAR --export LC_CTYPE:en_US\x2eUTF\x2d8

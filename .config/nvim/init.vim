@@ -123,7 +123,7 @@ function! PackerComplete()
 endfunction
 "
 " automatically re-run packer after the packer file is modified
-augroup packer_user_config
-  autocmd!
-  autocmd BufWritePost plugins.lua,lsp.lua source <afile> | call PackerComplete()
-augroup end
+"augroup packer_user_config
+"  autocmd!
+"  autocmd BufWritePost plugins.lua,lsp.lua source <afile> | call PackerComplete()
+"augroup end
