@@ -1,21 +1,75 @@
-local function lsps_setup()
-  local lsp_status = require("lsp-status")
-  lsp_status.config({
-    current_function = false,
-    show_filename = true,
-    diagnostics = true,
-    update_interval = 1000, -- prevent crazy cpu use polling rust-analyzer all the time
-    indicator_errors = "E",
-    indicator_warnings = "W",
-    indicator_info = "i",
-    indicator_hint = "h",
-    indicator_ok = "Ok",
-  })
-  lsp_status.register_progress()
+-- Color for highlights
+local colors = {
+  yellow = '#ECBE7B',
+  cyan = '#008080',
+  darkblue = '#081633',
+  green = '#98be65',
+  orange = '#FF8800',
+  violet = '#a9a1e1',
+  magenta = '#c678dd',
+  blue = '#51afef',
+  red = '#ec5f67'
+}
 
-  local s = lsp_status.status()
-  return s
+local lualine_config = {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox',
+    lower = true,
+    component_separators = {'', ''},
+    section_separators = {'', ''},
+    disabled_filetypes = {}
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'filename', 'branch', {'diagnostics', sources = {'nvim_lsp'}}},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {'encoding', 'fileformat', 'filetype'},
+    lualine_z = {'progress','location'},
+  },
+  -- these aren't off; these are what are on when the window is unfocused
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {"nvim-tree", "quickfix"}
+}
+
+-- Inserts a component in lualine_c at left section
+local function ins_left(component)
+  table.insert(lualine_config.sections.lualine_c, component)
 end
+
+ins_left {
+  'lsp_progress',
+  colors = {
+    percentage  = colors.cyan,
+    title  = colors.cyan,
+    message  = colors.cyan,
+    spinner = colors.cyan,
+    lsp_client_name = colors.magenta,
+    use = true,
+  },
+  separators = {
+    component = ' ',
+    progress = ' | ',
+    percentage = { pre = '', post = '%% ' },
+    title = { pre = '', post = ': ' },
+    lsp_client_name = { pre = '[', post = ']' },
+    spinner = { pre = '', post = '' },
+    message = { commenced = 'In Progress', completed = 'Completed' },
+  },
+  display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' } },
+  timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
+  spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
+}
+
 
 require("packer").startup({
   function(use)
@@ -23,6 +77,7 @@ require("packer").startup({
     use("morhetz/gruvbox")
     use("neovim/nvim-lspconfig")
     use("nvim-lua/lsp-status.nvim")
+    use ('arkav/lualine-lsp-progress')
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use({ "nvim-telescope/telescope.nvim" })
@@ -150,24 +205,26 @@ require("packer").startup({
     use("folke/which-key.nvim")
     use("folke/trouble.nvim")
     use("famiu/bufdelete.nvim")
-    --use({ "famiu/feline.nvim" })
     use("sbdchd/neoformat")
     use("Yggdroot/indentLine")
     use({ "mbbill/undotree" })
-
     use({
-      "hoob3rt/lualine.nvim",
-      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      "nvim-lualine/lualine.nvim",
       config = function()
-        require("lualine").setup({
+        require('lualine').setup({
+          extensions = lualine_config.extensions,
+          options = lualine_config.options,
+          sections = lualine_config.sections,
+          inactive_sections = lualine_config.inactive_sections,
+          --[[
           options = {
-            theme = "gruvbox_material",
+            theme = "gruvbox",
             lower = true,
           },
           sections = {
             lualine_a = { "mode" },
-            lualine_b = { "filename", "branch" },
-            lualine_c = { { require("lsp-status").status } },
+            lualine_b = {'filename', 'branch', {'diagnostics', sources = {'nvim_lsp'}}},
+            lualine_c = { "lsp_progress" },
             lualine_x = { "encoding", "fileformat", "filetype" },
             lualine_y = { "progress" },
             lualine_z = { "location" },
@@ -184,6 +241,7 @@ require("packer").startup({
             "nvim-tree",
             "quickfix",
           },
+          --]]
         })
       end,
     })
