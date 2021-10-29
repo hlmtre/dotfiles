@@ -212,11 +212,12 @@ require("packer").startup({
       "nvim-lualine/lualine.nvim",
       config = function()
         require('lualine').setup({
+          --[[
           extensions = lualine_config.extensions,
           options = lualine_config.options,
           sections = lualine_config.sections,
           inactive_sections = lualine_config.inactive_sections,
-          --[[
+          --]]
           options = {
             theme = "gruvbox",
             lower = true,
@@ -241,7 +242,6 @@ require("packer").startup({
             "nvim-tree",
             "quickfix",
           },
-          --]]
         })
       end,
     })
