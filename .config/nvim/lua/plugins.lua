@@ -230,7 +230,7 @@ require("packer").startup({
     use({
       "nvim-lualine/lualine.nvim",
       config = function()
-        require("lualine").setup({
+        require('lualine').setup({
           --[[
           extensions = lualine_config.extensions,
           options = lualine_config.options,
