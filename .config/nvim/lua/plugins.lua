@@ -1,44 +1,44 @@
 -- Color for highlights
 local colors = {
-  yellow = '#ECBE7B',
-  cyan = '#008080',
-  darkblue = '#081633',
-  green = '#98be65',
-  orange = '#FF8800',
-  violet = '#a9a1e1',
-  magenta = '#c678dd',
-  blue = '#51afef',
-  red = '#ec5f67'
+  yellow = "#ECBE7B",
+  cyan = "#008080",
+  darkblue = "#081633",
+  green = "#98be65",
+  orange = "#FF8800",
+  violet = "#a9a1e1",
+  magenta = "#c678dd",
+  blue = "#51afef",
+  red = "#ec5f67",
 }
 
 local lualine_config = {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox',
+    theme = "gruvbox",
     lower = true,
-    component_separators = {'', ''},
-    section_separators = {'', ''},
-    disabled_filetypes = {}
+    component_separators = { "", "" },
+    section_separators = { "", "" },
+    disabled_filetypes = {},
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'filename', 'branch', {'diagnostics', sources = {'nvim_lsp'}}},
+    lualine_a = { "mode" },
+    lualine_b = { "filename", "branch", { "diagnostics", sources = { "nvim_lsp" } } },
     lualine_c = {},
     lualine_x = {},
-    lualine_y = {'encoding', 'fileformat', 'filetype'},
-    lualine_z = {'progress','location'},
+    lualine_y = { "encoding", "fileformat", "filetype" },
+    lualine_z = { "progress", "location" },
   },
   -- these aren't off; these are what are on when the window is unfocused
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = { "filename" },
+    lualine_x = { "location" },
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {},
   },
   tabline = {},
-  extensions = {"nvim-tree", "quickfix"}
+  extensions = { "nvim-tree", "quickfix" },
 }
 
 -- Inserts a component in lualine_c at left section
@@ -46,30 +46,29 @@ local function ins_left(component)
   table.insert(lualine_config.sections.lualine_c, component)
 end
 
-ins_left {
-  'lsp_progress',
+ins_left({
+  "lsp_progress",
   colors = {
-    percentage  = colors.cyan,
-    title  = colors.cyan,
-    message  = colors.cyan,
+    percentage = colors.cyan,
+    title = colors.cyan,
+    message = colors.cyan,
     spinner = colors.cyan,
     lsp_client_name = colors.magenta,
     use = true,
   },
   separators = {
-    component = ' ',
-    progress = ' | ',
-    percentage = { pre = '', post = '%% ' },
-    title = { pre = '', post = ': ' },
-    lsp_client_name = { pre = '[', post = ']' },
-    spinner = { pre = '', post = '' },
-    message = { commenced = 'In Progress', completed = 'Completed' },
+    component = " ",
+    progress = " | ",
+    percentage = { pre = "", post = "%% " },
+    title = { pre = "", post = ": " },
+    lsp_client_name = { pre = "[", post = "]" },
+    spinner = { pre = "", post = "" },
+    message = { commenced = "In Progress", completed = "Completed" },
   },
-  display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' } },
+  display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
   timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
-  spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
-}
-
+  spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
+})
 
 require("packer").startup({
   function(use)
@@ -77,11 +76,36 @@ require("packer").startup({
     use("morhetz/gruvbox")
     use("neovim/nvim-lspconfig")
     use("nvim-lua/lsp-status.nvim")
-    use ('arkav/lualine-lsp-progress')
+    use("arkav/lualine-lsp-progress")
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use({ "nvim-telescope/telescope.nvim" })
     use({ "nvim-treesitter/nvim-treesitter" })
+    use({
+      "nvim-treesitter/playground",
+      config = function()
+        require("nvim-treesitter.configs").setup({
+          playground = {
+            enable = true,
+            disable = {},
+            updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+            persist_queries = false, -- Whether the query persists across vim sessions
+            keybindings = {
+              toggle_query_editor = "o",
+              toggle_hl_groups = "i",
+              toggle_injected_languages = "t",
+              toggle_anonymous_nodes = "a",
+              toggle_language_display = "I",
+              focus_language = "f",
+              unfocus_language = "F",
+              update = "R",
+              goto_node = "<cr>",
+              show_help = "?",
+            },
+          },
+        })
+      end,
+    })
     use("RishabhRD/popfix")
     use({
       "RishabhRD/nvim-lsputils",
@@ -102,17 +126,18 @@ require("packer").startup({
         local lsp_installer = require("nvim-lsp-installer")
         lsp_installer.on_server_ready(function(server)
           local opts = {}
-          if string.find("lua", server.name) then -- we have some specifics
-            require("lspconfig")[server].setup({
+          if server.name == "sumneko_lua" then -- we have some specifics
+            opts = {
               settings = {
-                Lua = {
-                  diagnostics = {
-                    globals = { "vim" },
-                  },
+              Lua = {
+                diagnostics = {
+                  globals = { "vim" },
                 },
               },
-            })
-          elseif not string.find("rust", server.name) then -- this is done by rust-tools
+            }
+          }
+          end
+          if not string.find("rust", server.name) then -- this is done by rust-tools
             opts.capabilities = vim.lsp.protocol.make_client_capabilities()
             opts.capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
             opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -130,19 +155,14 @@ require("packer").startup({
               },
             }
           end
-
-          -- (optional) Customize the options passed to the server
-          -- if server.name == "tsserver" then
-          --     opts.root_dir = function() ... end
-          -- end
-
           -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
-          server:setup(opts)
+          if server.name ~= "rust_analyzer" then -- rust-tools does this
+            server:setup(opts)
+          end
           vim.cmd([[ do User LspAttachBuffers ]])
         end)
       end,
     })
-    --[[
     use({
       "weilbith/nvim-code-action-menu",
       cmd = "CodeActionMenu",
@@ -150,7 +170,6 @@ require("packer").startup({
         vim.api.nvim_set_keymap("n", "ga", "<cmd>CodeActionMenu<CR>", { silent = true })
       end,
     })
-    --]]
     use({
       "kosayoda/nvim-lightbulb",
       config = function()
@@ -211,19 +230,20 @@ require("packer").startup({
     use({
       "nvim-lualine/lualine.nvim",
       config = function()
-        require('lualine').setup({
+        require("lualine").setup({
+          --[[
           extensions = lualine_config.extensions,
           options = lualine_config.options,
           sections = lualine_config.sections,
           inactive_sections = lualine_config.inactive_sections,
-          --[[
+          --]]
           options = {
             theme = "gruvbox",
             lower = true,
           },
           sections = {
             lualine_a = { "mode" },
-            lualine_b = {'filename', 'branch', {'diagnostics', sources = {'nvim_lsp'}}},
+            lualine_b = { "filename", "branch", { "diagnostics", sources = { "nvim_lsp" } } },
             lualine_c = { "lsp_progress" },
             lualine_x = { "encoding", "fileformat", "filetype" },
             lualine_y = { "progress" },
@@ -241,7 +261,6 @@ require("packer").startup({
             "nvim-tree",
             "quickfix",
           },
-          --]]
         })
       end,
     })

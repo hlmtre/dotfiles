@@ -75,7 +75,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed =  "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = { }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
@@ -87,7 +87,6 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = true,
   },
 }
-
 --[[
 -- bufferline.nvim
 require("bufferline").setup {
@@ -110,8 +109,8 @@ vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>BufferLineCycleNext<CR>', {silent = 
 vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>BufferLineCyclePrev<CR>', {silent = true})
 
 _G.Rename = {
-   rename = require('util').rename,
-   dorename = require('util').dorename
+   rename = require('util').prename,
+   _rename = require('util')._rename
 }
 
 --vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>lua Rename.rename()<CR>', {silent = true})
