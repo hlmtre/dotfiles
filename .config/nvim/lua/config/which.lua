@@ -3,7 +3,7 @@ local wk = require("which-key")
 wk.register({
   f = {
     name = "file",
-    f = { "<cmd>Telescope find_files<cr>", "find file" },
+    f = { "<cmd>Telescope file_browser<cr>", "find file" },
     r = { "<cmd>Telescope oldfiles<cr>", "open recent" },
     e = { "<cmd>e $MYVIMRC<CR>", "edit $MYVIMRC" },
     s = { "<cmd>source $MYVIMRC<CR>", "source $MYVIMRC" },

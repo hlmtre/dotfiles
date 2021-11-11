@@ -126,16 +126,17 @@ require("packer").startup({
         local lsp_installer = require("nvim-lsp-installer")
         lsp_installer.on_server_ready(function(server)
           local opts = {}
+          print("loaded lsp server " .. server.name)
           if server.name == "sumneko_lua" then -- we have some specifics
             opts = {
               settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { "vim" },
+                Lua = {
+                  diagnostics = {
+                    globals = { "vim" },
+                  },
                 },
               },
             }
-          }
           end
           if not string.find("rust", server.name) then -- this is done by rust-tools
             opts.capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -230,13 +231,7 @@ require("packer").startup({
     use({
       "nvim-lualine/lualine.nvim",
       config = function()
-        require('lualine').setup({
-          --[[
-          extensions = lualine_config.extensions,
-          options = lualine_config.options,
-          sections = lualine_config.sections,
-          inactive_sections = lualine_config.inactive_sections,
-          --]]
+        require("lualine").setup({
           options = {
             theme = "gruvbox",
             lower = true,
@@ -309,66 +304,75 @@ require("packer").startup({
       end,
     })
     --[[
-    use {
-      'noib3/cokeline.nvim',
-      requires = 'kyazdani42/nvim-web-devicons', -- If you want devicons
+    use({
+      "noib3/cokeline.nvim",
+      requires = "kyazdani42/nvim-web-devicons", -- If you want devicons
       config = function()
-        vim.opt.termguicolors = true
-        local get_hex = require('cokeline/utils').get_hex
+        local get_hex = require("cokeline/utils").get_hex
+        require("cokeline").setup({
 
-        require('cokeline').setup({
-          -- If true the bufferline is hidden when only one buffer is listed
-          hide_when_one_buffer = false,
-
-          -- Controls what happens when the first (last) buffer is focused and the user
-          -- tries to focus/switch to the previous (next) buffer. If true the last
-          -- (first) buffer gets focused/switched to, if false nothing happens.
-          cycle_prev_next_mappings = true,
-
-          -- Default colors for the foregound/background of focused/unfocused
-          -- lines. Their default values are derived from the foreground/background of
-          -- other highlight groups.
           default_hl = {
             focused = {
-              fg = get_hex('ColorColumn', 'bg'),
-              bg = get_hex('Normal', 'fg'),
+              fg = get_hex("Normal", "fg"),
+              bg = get_hex("ColorColumn", "bg"),
             },
             unfocused = {
-              fg = get_hex('Normal', 'fg'),
-              bg = get_hex('ColorColumn', 'bg'),
+              fg = get_hex("Comment", "fg"),
+              bg = get_hex("ColorColumn", "bg"),
             },
           },
 
-          -- A list of components used to build every line of the cokeline.
           components = {
             {
-              text = function(buffer) return ' ' .. buffer.devicon.icon end,
+              text = "｜",
               hl = {
-                fg = function(buffer) return buffer.devicon.color end,
+                fg = function(buffer)
+                  return buffer.is_modified and vim.g.terminal_color_3 -- yellow
+                    or vim.g.terminal_color_2 -- green
+                end,
               },
             },
             {
-              text = function(buffer) return buffer.unique_prefix end,
+              text = function(buffer)
+                return buffer.devicon.icon .. " "
+              end,
               hl = {
-                fg = get_hex('Comment', 'fg'),
-                style = 'italic',
+                fg = function(buffer)
+                  return buffer.devicon.color
+                end,
               },
             },
             {
-              text = function(buffer) return buffer.filename .. ' ' end,
+              text = function(buffer)
+                return buffer.index .. ": "
+              end,
             },
             {
-              text = '',
-              delete_buffer_on_left_click = true,
+              text = function(buffer)
+                return buffer.unique_prefix
+              end,
+              hl = {
+                fg = get_hex("Comment", "fg"),
+                style = "italic",
+              },
             },
             {
-              text = ' ',
-            }
+              text = function(buffer)
+                return buffer.filename .. " "
+              end,
+              hl = {
+                style = function(buffer)
+                  return buffer.is_focused and "bold" or nil
+                end,
+              },
+            },
+            {
+              text = " ",
+            },
           },
         })
-
-      end
-    }
+      end,
+    })
     --]]
     use({
       "kyazdani42/nvim-tree.lua",

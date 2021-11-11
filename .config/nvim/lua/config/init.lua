@@ -104,6 +104,9 @@ require("bufferline").setup {
 }
 "nnoremap <C-l> :BufferLineCycleNext<CR>
 "nnoremap <C-h> :BufferLineCyclePrev<CR>
+
+vim.api.nvim_set_keymap('n', '<C-l>', '<Plug>(cokeline-focus-next)', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-h>', '<Plug>(cokeline-focus-prev)', {silent = true})
 --]]
 vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>BufferLineCycleNext<CR>', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>BufferLineCyclePrev<CR>', {silent = true})
@@ -114,8 +117,8 @@ _G.Rename = {
 }
 
 --vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>lua Rename.rename()<CR>', {silent = true})
---vim.api.nvim_set_keymap('n', '<C-l>', '<Plug>(cokeline-focus-next)', {silent = true})
---vim.api.nvim_set_keymap('n', '<C-h>', '<Plug>(cokeline-focus-prev)', {silent = true})
+
+
 
 vim.g.gitblame_enabled = 0
 
