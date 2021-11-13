@@ -73,6 +73,7 @@ ins_left({
 require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
+    use("mboughaba/i3config.vim")
     use("morhetz/gruvbox")
     use("neovim/nvim-lspconfig")
     use("nvim-lua/lsp-status.nvim")
