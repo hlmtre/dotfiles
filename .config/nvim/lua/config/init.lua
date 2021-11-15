@@ -111,10 +111,15 @@ vim.api.nvim_set_keymap('n', '<C-h>', '<Plug>(cokeline-focus-prev)', {silent = t
 vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>BufferLineCycleNext<CR>', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>BufferLineCyclePrev<CR>', {silent = true})
 
+_G._rename = require('util')._rename
+_G.rename = require('util').prename
+
+--[[
 _G.Rename = {
    rename = require('util').prename,
    _rename = require('util')._rename
 }
+--]]
 
 --vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>lua Rename.rename()<CR>', {silent = true})
 

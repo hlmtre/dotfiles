@@ -400,6 +400,28 @@ require("packer").startup({
         })
       end,
     })
+    use({
+      "rinx/lspsaga.nvim",
+      config = function()
+        local conf = {
+          use_saga_diagnostic_sign = false,
+          code_action_prompt = {
+            enable = true
+          },
+          code_action_keys = {
+            quit = '<esc>', exec = '<CR>'
+          },
+          rename_action_keys = {
+            quit = '<esc>', exec = '<CR>'
+          },
+          finder_action_keys = {
+            open = 'o', vsplit = 's',split = '<CR>',quit = 'q',
+            scroll_down = '<C-j>',scroll_up = '<C-k>'
+          },
+        }
+        require("lspsaga").init_lsp_saga(conf)
+      end,
+    })
 
     use({
       "hrsh7th/nvim-cmp",
@@ -463,30 +485,6 @@ require("packer").startup({
     },
   },
 })
---[[
-    use({
-      "rinx/lspsaga.nvim",
-      config = function()
-        local conf = {
-          use_saga_diagnostic_sign = false,
-          code_action_prompt = {
-            enable = true
-          },
-          code_action_keys = {
-            quit = '<esc>', exec = '<CR>'
-          },
-          rename_action_keys = {
-            quit = '<esc>', exec = '<CR>'
-          },
-          finder_action_keys = {
-            open = 'o', vsplit = 's',split = '<CR>',quit = 'q',
-            scroll_down = '<C-j>',scroll_up = '<C-k>'
-          },
-        }
-        require("lspsaga").init_lsp_saga(conf)
-      end,
-    })
-    --]]
 
 --[[
     use({
