@@ -22,7 +22,7 @@ local lualine_config = {
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "filename", "branch", { "diagnostics", sources = { "nvim_lsp" } } },
+    lualine_b = { "filename", "branch", { "diagnostics", sources = { "nvim_diagnostic" } } },
     lualine_c = {},
     lualine_x = {},
     lualine_y = { "encoding", "fileformat", "filetype" },
@@ -223,7 +223,8 @@ require("packer").startup({
         require("neoscroll").setup()
       end,
     })
-    use("folke/which-key.nvim")
+    --use("folke/which-key.nvim")
+    use({"zeertzjq/which-key.nvim", branch = 'patch-1'})
     use("folke/trouble.nvim")
     use("famiu/bufdelete.nvim")
     use("sbdchd/neoformat")
@@ -239,7 +240,7 @@ require("packer").startup({
           },
           sections = {
             lualine_a = { "mode" },
-            lualine_b = { "filename", "branch", { "diagnostics", sources = { "nvim_lsp" } } },
+            lualine_b = { "filename", "branch", { "diagnostics", sources = { "nvim_diagnostic" } } },
             lualine_c = { "lsp_progress" },
             lualine_x = { "encoding", "fileformat", "filetype" },
             lualine_y = { "progress" },
