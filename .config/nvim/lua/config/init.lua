@@ -74,7 +74,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 
 -- treesitter
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   ensure_installed =  "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = { }, -- List of parsers to ignore installing
   highlight = {
@@ -111,10 +111,10 @@ vim.api.nvim_set_keymap('n', '<C-h>', '<Plug>(cokeline-focus-prev)', {silent = t
 vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>BufferLineCycleNext<CR>', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>BufferLineCyclePrev<CR>', {silent = true})
 
+--[[
 _G._rename = require('util')._rename
 _G.rename = require('util').prename
 
---[[
 _G.Rename = {
    rename = require('util').prename,
    _rename = require('util')._rename
