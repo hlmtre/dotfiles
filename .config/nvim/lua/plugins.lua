@@ -223,8 +223,8 @@ require("packer").startup({
         require("neoscroll").setup()
       end,
     })
-    --use("folke/which-key.nvim")
-    use({"zeertzjq/which-key.nvim", branch = 'patch-1'})
+    use("folke/which-key.nvim")
+    --use({"zeertzjq/which-key.nvim", branch = 'patch-1'})
     use("folke/trouble.nvim")
     use("famiu/bufdelete.nvim")
     use("sbdchd/neoformat")
