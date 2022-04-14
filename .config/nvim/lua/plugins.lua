@@ -81,6 +81,7 @@ require("packer").startup({
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use({ "nvim-telescope/telescope.nvim" })
+    use { "nvim-telescope/telescope-file-browser.nvim" }
     use({ "nvim-treesitter/nvim-treesitter" })
     use({
       "nvim-treesitter/playground",
@@ -112,6 +113,7 @@ require("packer").startup({
       "RishabhRD/nvim-lsputils",
       config = function()
         vim.lsp.handlers["textDocument/codeAction"] = require("lsputil.codeAction").code_action_handler
+        vim.lsp.handlers["textDocument/references"] = require("lsputil.locations").references_handler
         vim.lsp.handlers["textDocument/references"] = require("lsputil.locations").references_handler
         vim.lsp.handlers["textDocument/definition"] = require("lsputil.locations").definition_handler
         vim.lsp.handlers["textDocument/declaration"] = require("lsputil.locations").declaration_handler
@@ -559,7 +561,6 @@ require("packer").startup({
             require("lspconfig")[server].setup({ capabilities = capabilities })
           end
         end
-        lspi.post_install_hook = function()
           vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
         end
       end,
