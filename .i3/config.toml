@@ -17,9 +17,9 @@ icons = "awesome"
 
 [[block]]
 block = "net"
-format = "{ssid} {ip} {speed_up} {speed_down}"
+format = "{ssid} {ip} {speed_up;K*b} {speed_down;K*b}"
 interval = 1
-use_bits = true
+#use_bits = true
 
 #[[block]]
 #block = "music"
@@ -62,17 +62,16 @@ format = "{utilization} {frequency}"
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
-
+format_mem = "{mem_used}/{mem_total}({mem_used_percents})%"
+format_swap = "{swap_used}/{swap_total}({swap_used_percents})"
 
 # fuckin upower is baller
 # shows all batteries combined into one logical battery
-[[block]]
-block = "battery"
-device = "DisplayDevice"
-driver = "upower"
-format = "{percentage}% {time}"
+#[[block]]
+#block = "battery"
+#device = "DisplayDevice"
+#driver = "upower"
+#format = "{percentage}% {time}"
 
 [[block]]
 block = "sound"
