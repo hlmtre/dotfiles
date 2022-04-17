@@ -10,7 +10,7 @@ utc_time_offset = "-7"
 format = "[$time]($style) "
 
 [hostname]
-ssh_only = true
+ssh_only = false
 format = "[$hostname]($style) "
 
 [cmd_duration]
