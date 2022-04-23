@@ -10,8 +10,8 @@ utc_time_offset = "-7"
 format = "[$time]($style) "
 
 [hostname]
-ssh_only = true
-format = "[$hostname]($style) "
+ssh_only = false
+format = "[$hostname](fg:#ff4400) "
 
 [cmd_duration]
 disabled = true
