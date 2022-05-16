@@ -42,3 +42,6 @@
 [submodule "pybot"]
 	path = pybot
 	url = git@github.com:hlmtre/pybot.git
+[submodule "wordlrs"]
+	path = wordlrs
+	url = ./wordlrs/

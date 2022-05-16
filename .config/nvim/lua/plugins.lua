@@ -127,6 +127,7 @@ require("packer").startup({
       "williamboman/nvim-lsp-installer",
       config = function()
         local lsp_installer = require("nvim-lsp-installer")
+        lsp_installer.setup{}
         lsp_installer.on_server_ready(function(server)
           local opts = {}
           print("loaded lsp server " .. server.name)
@@ -142,6 +143,7 @@ require("packer").startup({
             }
           end
           if not string.find("rust", server.name) then -- this is done by rust-tools
+            print("loading rust-analyzer...")
             opts.capabilities = vim.lsp.protocol.make_client_capabilities()
             opts.capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
             opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -183,6 +185,7 @@ require("packer").startup({
     use("f-person/git-blame.nvim")
     use({
       "simrat39/rust-tools.nvim",
+      --commit = "e29fb47326093fb197f17eae5ac689979a9ce191",
       config = function()
         local tools = {
           autoSetHints = true,

@@ -109,7 +109,7 @@
         "bat": "BAT2"
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "interface": "wlp3*", // (Optional) To force the use of this interface
         "interval": 2,
         "format-wifi": "{ifname} ↑{bandwidthUpBits}↓{bandwidthDownBits}  {essid} {ipaddr}/{cidr} ",
         "format-ethernet": "{ifname} ↑{bandwidthUpBits}↓{bandwidthDownBits} {ipaddr}/{cidr}",

@@ -103,7 +103,7 @@ set $ws1 "1:ssh"
 set $ws2 "2:web"
 set $ws3 "3:cli"
 set $ws4 "4:vpn"
-set $wse "e"
+set $wse "0:e"
 
 set $left "DP-4"
 set $right "DP-2"
@@ -221,8 +221,8 @@ bindsym $mod+Control+Shift+c exec /home/hlmtre/dotfiles/zt/zt -c
 #lockscreen
 bindsym $mod+Control+l exec swaylock -c 000000
 # wallpaper
-output DP-4 mode 3440x1440@99.998Hz pos 0 0 bg ~/Pictures/walls/785825.jpg stretch
-output DP-2 mode 2560x1440@143.912Hz pos 3440 0 bg ~/Pictures/walls/785825.jpg stretch
+#output DP-4 mode 3440x1440@99.998Hz pos 0 0 bg ~/Pictures/walls/785825.jpg stretch
+#output DP-2 mode 2560x1440@143.912Hz pos 3440 0 bg ~/Pictures/walls/785825.jpg stretch
 
 # network manager nm-applet doesn't work in sway
 exec nm-applet --indicator
@@ -303,6 +303,6 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans Mono for Powerline 10
+font pango:DejaVuSansMono Nerd Font 10
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 11px
