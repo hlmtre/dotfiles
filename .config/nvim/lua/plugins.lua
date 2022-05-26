@@ -220,6 +220,11 @@ require("packer").startup({
     --use("mfussenegger/nvim-dap")
     use("TimUntersberger/neogit")
     use("mhinz/vim-startify")
+    use( {"j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup()
+    end,
+    })
     use("airblade/vim-gitgutter")
     use("kyazdani42/nvim-web-devicons")
     use({
@@ -246,7 +251,8 @@ require("packer").startup({
           sections = {
             lualine_a = { "mode" },
             lualine_b = { "filename", "branch", { "diagnostics", sources = { "nvim_diagnostic" } } },
-            lualine_c = { "lsp_progress" },
+            --lualine_c = { "lsp_progress" },
+            lualine_c = {  },
             lualine_x = { "encoding", "fileformat", "filetype" },
             lualine_y = { "progress" },
             lualine_z = { "location" },
