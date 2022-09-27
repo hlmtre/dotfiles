@@ -75,7 +75,6 @@ require("packer").startup({
     use("wbthomason/packer.nvim")
     use("mboughaba/i3config.vim")
     use("morhetz/gruvbox")
-    use("neovim/nvim-lspconfig")
     use("nvim-lua/lsp-status.nvim")
     use("arkav/lualine-lsp-progress")
     use("nvim-lua/popup.nvim")
@@ -123,11 +122,73 @@ require("packer").startup({
         vim.lsp.handlers["workspace/symbol"] = require("lsputil.symbols").workspace_handler
       end,
     })
-    use ({ "williamboman/mason.nvim",
-      config = function() 
-        require("mason").setup()
+    use({
+      "simrat39/rust-tools.nvim",
+      --commit = "e29fb47326093fb197f17eae5ac689979a9ce191",
+      config = function()
+        --require('rust-tools-debug').setup()
       end,
     })
+    use ({ "williamboman/mason.nvim",
+      config = function()
+        require("mason").setup()
+
+      end,
+    })
+    use ({
+      "williamboman/mason-lspconfig.nvim",
+    })
+    use("neovim/nvim-lspconfig")
+    require("mason-lspconfig").setup_handlers {
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function (server_name) -- default handler (optional)
+            require("lspconfig")[server_name].setup {}
+        end,
+        -- Next, you can provide targeted overrides for specific servers.
+        -- todo fixme
+        ["sumneko_lua"] = function()
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { 'vim' }
+              }
+            }
+          }
+          require("lspconfig")["sumneko_lua"].setup{settings}
+        end,
+        -- For example, a handler override for the `rust_analyzer`:
+        ["rust_analyzer"] = function()
+            local tools = {
+              autoSetHints = true,
+              runnables = { use_telescope = true },
+              inlay_hints = { show_parameter_hints = true },
+              hover_actions = { auto_focus = true },
+            }
+            require("rust-tools").setup({
+              tools = tools,
+              server = {
+                flags = { debounce_text_changes = 150 },
+                settings = {
+                  ["rust-analyzer"] = {
+                    checkOnSave = {
+                      allFeatures = true,
+                      overrideCommand = {
+                        "cargo",
+                        "clippy",
+                        "--workspace",
+                        "--message-format=json",
+                        "--all-targets",
+                        "--all-features",
+                      },
+                    },
+                  },
+                },
+              },
+            })
+      end
+    }
     use({
       "weilbith/nvim-code-action-menu",
       cmd = "CodeActionMenu",
@@ -142,40 +203,6 @@ require("packer").startup({
       end,
     })
     use("f-person/git-blame.nvim")
-    use({
-      "simrat39/rust-tools.nvim",
-      --commit = "e29fb47326093fb197f17eae5ac689979a9ce191",
-      config = function()
-        local tools = {
-          autoSetHints = true,
-          runnables = { use_telescope = true },
-          inlay_hints = { show_parameter_hints = true },
-          hover_actions = { auto_focus = true },
-        }
-        require("rust-tools").setup({
-          tools = tools,
-          server = {
-            flags = { debounce_text_changes = 150 },
-            settings = {
-              ["rust-analyzer"] = {
-                checkOnSave = {
-                  allFeatures = true,
-                  overrideCommand = {
-                    "cargo",
-                    "clippy",
-                    "--workspace",
-                    "--message-format=json",
-                    "--all-targets",
-                    "--all-features",
-                  },
-                },
-              },
-            },
-          },
-        })
-        --require('rust-tools-debug').setup()
-      end,
-    })
     --use("mfussenegger/nvim-dap")
     use("TimUntersberger/neogit")
     use("mhinz/vim-startify")

@@ -10,6 +10,7 @@ wk.register({
   },
   ["0"] = { "<cmd>NvimTreeFocus<CR>", "nvimtree" },
   m = { "<cmd>Telescope keymaps<CR>", "keymaps" },
+  M = { "<cmd>Mason<CR>", "mason" },
   b = {
     name = "buffers",
     d = { "<cmd>Bdelete!<CR>", "close" },
@@ -47,13 +48,14 @@ local opts = {
 local mappings = {
   ["l"] = {
     name = "lsp",
+    -- these vim.lsp.buf calls aren't working from which
     R = { ":RustRunnables<CR>", "rust runnables" },
     e = { function() vim.lsp.buf.references() end, "references" },
     r = { function() require('lspsaga.rename').rename() end, "rename" },
     a = { ":CodeActionMenu<CR>", "code action" },
     d = { function() vim.lsp.diagnostic.show_line_diagnostics() end, "diagnostics" },
     D = { function() vim.lsp.buf.definition() end, "definition" },
-    t = { ":LspTroubleDocumentToggle<CR>", "trouble" },
+    t = { ":TroubleToggle<CR>", "trouble" },
   },
 }
 
