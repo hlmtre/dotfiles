@@ -194,7 +194,11 @@ require("packer").startup({
     })
     use("folke/which-key.nvim")
     --use({"zeertzjq/which-key.nvim", branch = 'patch-1'})
-    use("folke/trouble.nvim")
+    use({"folke/trouble.nvim",
+      config = function() 
+        require("trouble").setup{}
+      end
+    })
     use("famiu/bufdelete.nvim")
     use("sbdchd/neoformat")
     use("Yggdroot/indentLine")
@@ -356,9 +360,10 @@ require("packer").startup({
           },
           update_focused_file = {
             enable = true,
-            respect_buf_cwd = false,
-            sync_tree_root_with_cwd = false
+            update_root = false,
           },
+          respect_buf_cwd = false,
+          sync_root_with_cwd = false,
           view = {
             width = 40,
             side = "right",
