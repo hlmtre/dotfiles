@@ -80,7 +80,7 @@ require("packer").startup({
     use("nvim-lua/popup.nvim")
     use("nvim-lua/plenary.nvim")
     use({ "nvim-telescope/telescope.nvim" })
-    use { "nvim-telescope/telescope-file-browser.nvim" }
+    use({ "nvim-telescope/telescope-file-browser.nvim" })
     use({ "nvim-treesitter/nvim-treesitter" })
     use({
       "nvim-treesitter/playground",
@@ -108,6 +108,7 @@ require("packer").startup({
       end,
     })
     use("RishabhRD/popfix")
+    use({ "wesleimp/stylua.nvim" })
     use({
       "RishabhRD/nvim-lsputils",
       config = function()
@@ -129,66 +130,69 @@ require("packer").startup({
         --require('rust-tools-debug').setup()
       end,
     })
-    use ({ "williamboman/mason.nvim",
+    use({
+      "williamboman/mason.nvim",
       config = function()
         require("mason").setup()
-
       end,
     })
-    use ({
+    use({
       "williamboman/mason-lspconfig.nvim",
     })
     use("neovim/nvim-lspconfig")
-    require("mason-lspconfig").setup_handlers {
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
-        function (server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup {}
-        end,
-        -- Next, you can provide targeted overrides for specific servers.
-        -- todo fixme
-        ["sumneko_lua"] = function()
-          settings = {
+    require("mason-lspconfig").setup_handlers({
+      -- The first entry (without a key) will be the default handler
+      -- and will be called for each installed server that doesn't have
+      -- a dedicated handler.
+      function(server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup({})
+        print("loaded lsp server " .. server_name)
+      end,
+      -- Next, you can provide targeted overrides for specific servers.
+      ["sumneko_lua"] = function()
+        print("loaded lsp server sumneko_lua")
+          local settings = {
             Lua = {
               diagnostics = {
-                globals = { 'vim' }
-              }
-            }
+                -- GAHH this has to be single-quoted
+                globals = { 'vim' },
+              },
+            },
           }
-          require("lspconfig")["sumneko_lua"].setup{settings}
-        end,
-        -- For example, a handler override for the `rust_analyzer`:
-        ["rust_analyzer"] = function()
-            local tools = {
-              autoSetHints = true,
-              runnables = { use_telescope = true },
-              inlay_hints = { show_parameter_hints = true },
-              hover_actions = { auto_focus = true },
-            }
-            require("rust-tools").setup({
-              tools = tools,
-              server = {
-                flags = { debounce_text_changes = 150 },
-                settings = {
-                  ["rust-analyzer"] = {
-                    checkOnSave = {
-                      allFeatures = true,
-                      overrideCommand = {
-                        "cargo",
-                        "clippy",
-                        "--workspace",
-                        "--message-format=json",
-                        "--all-targets",
-                        "--all-features",
-                      },
-                    },
+        require("lspconfig")["sumneko_lua"].setup({ settings = settings })
+      end,
+      -- For example, a handler override for the `rust_analyzer`:
+      ["rust_analyzer"] = function()
+        print("loaded lsp server rust-analyzer")
+        local tools = {
+          autoSetHints = true,
+          runnables = { use_telescope = true },
+          inlay_hints = { show_parameter_hints = true },
+          hover_actions = { auto_focus = true },
+        }
+        require("rust-tools").setup({
+          tools = tools,
+          server = {
+            flags = { debounce_text_changes = 150 },
+            settings = {
+              ["rust-analyzer"] = {
+                checkOnSave = {
+                  allFeatures = true,
+                  overrideCommand = {
+                    "cargo",
+                    "clippy",
+                    "--workspace",
+                    "--message-format=json",
+                    "--all-targets",
+                    "--all-features",
                   },
                 },
               },
-            })
-      end
-    }
+            },
+          },
+        })
+      end,
+    })
     use({
       "weilbith/nvim-code-action-menu",
       cmd = "CodeActionMenu",
@@ -206,10 +210,11 @@ require("packer").startup({
     --use("mfussenegger/nvim-dap")
     use("TimUntersberger/neogit")
     use("mhinz/vim-startify")
-    use( {"j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup()
-    end,
+    use({
+      "j-hui/fidget.nvim",
+      config = function()
+        require("fidget").setup()
+      end,
     })
     use("airblade/vim-gitgutter")
     use("kyazdani42/nvim-web-devicons")
@@ -221,10 +226,11 @@ require("packer").startup({
     })
     use("folke/which-key.nvim")
     --use({"zeertzjq/which-key.nvim", branch = 'patch-1'})
-    use({"folke/trouble.nvim",
-      config = function() 
-        require("trouble").setup{}
-      end
+    use({
+      "folke/trouble.nvim",
+      config = function()
+        require("trouble").setup({})
+      end,
     })
     use("famiu/bufdelete.nvim")
     use("sbdchd/neoformat")
@@ -242,7 +248,7 @@ require("packer").startup({
             lualine_a = { "mode" },
             lualine_b = { "filename", "branch", { "diagnostics", sources = { "nvim_diagnostic" } } },
             --lualine_c = { "lsp_progress" },
-            lualine_c = {  },
+            lualine_c = {},
             lualine_x = { "encoding", "fileformat", "filetype" },
             lualine_y = { "progress" },
             lualine_z = { "location" },
@@ -410,17 +416,23 @@ require("packer").startup({
         local conf = {
           use_saga_diagnostic_sign = false,
           code_action_prompt = {
-            enable = true
+            enable = true,
           },
           code_action_keys = {
-            quit = '<esc>', exec = '<CR>'
+            quit = "<esc>",
+            exec = "<CR>",
           },
           rename_action_keys = {
-            quit = '<esc>', exec = '<CR>'
+            quit = "<esc>",
+            exec = "<CR>",
           },
           finder_action_keys = {
-            open = 'o', vsplit = 's',split = '<CR>',quit = 'q',
-            scroll_down = '<C-j>',scroll_up = '<C-k>'
+            open = "o",
+            vsplit = "s",
+            split = "<CR>",
+            quit = "q",
+            scroll_down = "<C-j>",
+            scroll_up = "<C-k>",
           },
         }
         require("lspsaga").init_lsp_saga(conf)
