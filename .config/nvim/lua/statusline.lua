@@ -74,14 +74,14 @@ local function filename(buf_name, win_id)
   end
 end
 
-vim.cmd [[hi StatuslineNormalAccent guibg=#d75f5f gui=bold guifg=#e9e9e9]]
-vim.cmd [[hi StatuslineInsertAccent guifg=#e9e9e9 gui=bold guibg=#dab997]]
-vim.cmd [[hi StatuslineReplaceAccent guifg=#e9e9e9 gui=bold guibg=#afaf00]]
-vim.cmd [[hi StatuslineConfirmAccent guifg=#e9e9e9 gui=bold guibg=#83adad]]
-vim.cmd [[hi StatuslineTerminalAccent guifg=#e9e9e9 gui=bold guibg=#6f6f6f]]
-vim.cmd [[hi StatuslineMiscAccent guifg=#e9e9e9 gui=bold guibg=#f485dd]]
-vim.cmd [[hi StatuslineFilenameModified guifg=#d75f5f gui=bold guibg=#3a3a3a]]
-vim.cmd [[hi StatuslineFilenameNoMod guifg=#e9e9e9 gui=bold guibg=#3a3a3a]]
+vim.cmd [[hi StatuslineNormalAccent bg=#d75f5f underline = true, undercurl = true, italic = true  fg=#e9e9e9]]
+vim.cmd [[hi StatuslineInsertAccent fg=#e9e9e9 underline = true, undercurl = true, italic = true  bg=#dab997]]
+vim.cmd [[hi StatuslineReplaceAccent fg=#e9e9e9 underline = true, undercurl = true, italic = true  bg=#afaf00]]
+vim.cmd [[hi StatuslineConfirmAccent fg=#e9e9e9 underline = true, undercurl = true, italic = true  bg=#83adad]]
+vim.cmd [[hi StatuslineTerminalAccent fg=#e9e9e9 underline = true, undercurl = true, italic = true  bg=#6f6f6f]]
+vim.cmd [[hi StatuslineMiscAccent fg=#e9e9e9 underline = true, undercurl = true, italic = true  bg=#f485dd]]
+vim.cmd [[hi StatuslineFilenameModified fg=#d75f5f underline = true, undercurl = true, italic = true  bg=#3a3a3a]]
+vim.cmd [[hi StatuslineFilenameNoMod fg=#e9e9e9 underline = true, undercurl = true, italic = true  bg=#3a3a3a]]
 
 local function update_colors(mode)
   local mode_color = 'StatuslineMiscAccent'
@@ -111,10 +111,10 @@ end
 
 local function set_modified_symbol(modified)
   if modified then
-    vim.cmd [[hi StatuslineModified guibg=#3a3a3a gui=bold guifg=#d75f5f]]
+    vim.cmd [[hi StatuslineModified bg=#3a3a3a underline = true, undercurl = true, italic = true  fg=#d75f5f]]
     return '  ●'
   else
-    vim.cmd [[ hi StatuslineModified guibg=#3a3a3a gui=bold guifg=#afaf00]]
+    vim.cmd [[ hi StatuslineModified bg=#3a3a3a underline = true, undercurl = true, italic = true  fg=#afaf00]]
     return ''
   end
 end

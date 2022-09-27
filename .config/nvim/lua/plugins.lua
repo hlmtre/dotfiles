@@ -123,50 +123,9 @@ require("packer").startup({
         vim.lsp.handlers["workspace/symbol"] = require("lsputil.symbols").workspace_handler
       end,
     })
-    use({
-      "williamboman/nvim-lsp-installer",
-      config = function()
-        local lsp_installer = require("nvim-lsp-installer")
-        lsp_installer.setup{}
-        lsp_installer.on_server_ready(function(server)
-          local opts = {}
-          print("loaded lsp server " .. server.name)
-          if server.name == "sumneko_lua" then -- we have some specifics
-            opts = {
-              settings = {
-                Lua = {
-                  diagnostics = {
-                    globals = { "vim" },
-                  },
-                },
-              },
-            }
-          end
-          if not string.find("rust", server.name) then -- this is done by rust-tools
-            print("loading rust-analyzer...")
-            opts.capabilities = vim.lsp.protocol.make_client_capabilities()
-            opts.capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
-            opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
-            opts.capabilities.textDocument.completion.completionItem.preselectSupport = true
-            opts.capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-            opts.capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-            opts.capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-            opts.capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-            opts.capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
-            opts.capabilities.textDocument.completion.completionItem.resolveSupport = {
-              properties = {
-                "documentation",
-                "detail",
-                "additionalTextEdits",
-              },
-            }
-          end
-          -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
-          if server.name ~= "rust_analyzer" then -- rust-tools does this
-            server:setup(opts)
-          end
-          vim.cmd([[ do User LspAttachBuffers ]])
-        end)
+    use ({ "williamboman/mason.nvim",
+      config = function() 
+        require("mason").setup()
       end,
     })
     use({
@@ -278,40 +237,40 @@ require("packer").startup({
         require("bufferline").setup({
           highlights = {
             buffer_selected = {
-              guifg = {
+              fg = {
                 attribute = "bg",
                 highlight = "Normal",
               },
-              guibg = {
+              bg = {
                 attribute = "fg",
                 highlight = "Normal",
               },
             },
             close_button_selected = {
-              guifg = {
+              fg = {
                 attribute = "bg",
                 highlight = "Normal",
               },
-              guibg = {
+              bg = {
                 attribute = "fg",
                 highlight = "Normal",
               },
-            },
-          },
-          diagnostics = "nvim_lsp",
-          offsets = {
-            {
-              filetype = "NvimTree",
-              text = function()
-                return vim.fn.getcwd()
-              end,
-              text_align = "left",
             },
           },
           options = {
             close_command = "bdelete! %d",
             tab_size = 18,
             enforce_regular_tabs = true,
+            diagnostics = "nvim_lsp",
+            offsets = {
+              {
+                filetype = "NvimTree",
+                text = function()
+                  return vim.fn.getcwd()
+                end,
+                text_align = "left",
+              },
+            },
           },
         })
       end,
