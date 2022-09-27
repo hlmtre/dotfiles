@@ -356,7 +356,8 @@ require("packer").startup({
           },
           update_focused_file = {
             enable = true,
-            update_cwd = true,
+            respect_buf_cwd = false,
+            sync_tree_root_with_cwd = false
           },
           view = {
             width = 40,
