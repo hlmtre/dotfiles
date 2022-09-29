@@ -47,8 +47,12 @@ bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-#bindsym $mod+d exec "rofi -combi-modi window,run,ssh -show combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
-bindsym $mod+d exec "rofi -combi-modi window,run,ssh -show combi"
+# bindsym $mod+d exec "rofi -combi-modi window,run,ssh -show combi -theme gruvbox-dark-soft -font 'DejaVu Sans Mono for Powerline 10'"
+# bindsym $mod+d exec "rofi -combi-modi window,run,ssh -show combi"
+# set $menu bemenu-run --fn $uifont -b -p "▶" --tf "$prompt" --hf "$highlight" --sf "$highlight" --scf "$highlight" | xargs swaymsg exec
+#set $menu bemenu-run -l 20 -w 0.2 -p 'run:' -m $(swaymsg -p -t get_outputs | /home/hlmtre/.cargo/bin/rg 'focused' | awk '{print $2}' | rev | cut -d'-' -f1 | rev) | xargs swaymsg exec
+set $menu /home/hlmtre/dotfiles/bemenu_start.sh
+bindsym $mod+d exec $menu
 
 # change focus
 bindsym $mod+h focus left

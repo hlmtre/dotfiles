@@ -11,6 +11,7 @@ local colors = {
   red = "#ec5f67",
 }
 
+--[[
 local lualine_config = {
   options = {
     icons_enabled = true,
@@ -69,6 +70,7 @@ ins_left({
   timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
   spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
 })
+--]]
 
 require("packer").startup({
   function(use)
@@ -126,9 +128,10 @@ require("packer").startup({
     use({
       "simrat39/rust-tools.nvim",
       --commit = "e29fb47326093fb197f17eae5ac689979a9ce191",
+      --[[
       config = function()
-        --require('rust-tools-debug').setup()
       end,
+      --]]
     })
     use({
       "williamboman/mason.nvim",
@@ -151,14 +154,14 @@ require("packer").startup({
       -- Next, you can provide targeted overrides for specific servers.
       ["sumneko_lua"] = function()
         print("loaded lsp server sumneko_lua")
-          local settings = {
-            Lua = {
-              diagnostics = {
-                -- GAHH this has to be single-quoted
-                globals = { 'vim' },
-              },
+        local settings = {
+          Lua = {
+            diagnostics = {
+              -- GAHH this has to be single-quoted
+              globals = { "vim" },
             },
-          }
+          },
+        }
         require("lspconfig")["sumneko_lua"].setup({ settings = settings })
       end,
       -- For example, a handler override for the `rust_analyzer`:
@@ -246,7 +249,11 @@ require("packer").startup({
           },
           sections = {
             lualine_a = { "mode" },
-            lualine_b = { "filename", "branch", { "diagnostics", sources = { "nvim_diagnostic" } } },
+            lualine_b = {
+              { "filename", file_status = true, path = 2 },
+              "branch",
+              { "diagnostics", sources = { "nvim_diagnostic" } },
+            },
             --lualine_c = { "lsp_progress" },
             lualine_c = {},
             lualine_x = { "encoding", "fileformat", "filetype" },
