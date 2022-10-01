@@ -225,15 +225,20 @@ bindsym $mod+Control+Shift+c exec /home/hlmtre/dotfiles/zt/zt -c
 
 #lockscreen
 bindsym $mod+Control+l exec swaylock -c 000000
-# wallpaper
-#output DP-4 mode 3440x1440@99.998Hz pos 0 0 bg ~/Pictures/walls/785825.jpg stretch
-#output DP-2 mode 2560x1440@143.912Hz pos 3440 0 bg ~/Pictures/walls/785825.jpg stretch
 
+# wallpaper
+# handled by kanshi
+# output DP-4 mode 3440x1440@99.998Hz pos 0 0 bg ~/Pictures/walls/785825.jpg stretch
+# output DP-2 mode 2560x1440@143.912Hz pos 3440 0 bg ~/Pictures/walls/785825.jpg stretch
+
+
+# kanshi monitor auto-setup
+exec kanshi
 # network manager nm-applet doesn't work in sway
 exec nm-applet --indicator
 # bluetoof
 exec  blueman-applet
-exec swayidle -w timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+exec swayidle -w timeout 15 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 
 # pasystray (volume control) (not needed with i3status-rust)
 # exec  pasystray
