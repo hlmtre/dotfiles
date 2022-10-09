@@ -1,3 +1,9 @@
+# BUILDING SWAY
+# build libdrm ~/src/drm
+# build wlroots ~/src/sway/subprojects/wlroots
+# build sway ~/src/sway
+
+
 set $bg      #393d41
 set $fg      #c5c8c6
 set $black   #383a40
@@ -233,12 +239,12 @@ bindsym $mod+Control+l exec swaylock -c 000000
 
 
 # kanshi monitor auto-setup
-exec kanshi
+exec /usr/local/bin/kanshi
 # network manager nm-applet doesn't work in sway
 exec nm-applet --indicator
 # bluetoof
 exec  blueman-applet
-exec swayidle -w timeout 15 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+exec swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 
 # pasystray (volume control) (not needed with i3status-rust)
 # exec  pasystray
@@ -265,7 +271,8 @@ input "type:keyboard" {
 #exec  /home/hlmtre/src/mocp-scrobbler/mocp-scrobbler.py --daemon
 #exec  gnome-settings-daemon
 #exec  /home/hlmtre/bin/xflux -z 95973
-exec  redshift -m wayland -t 5200:2850 -l 39.7285:-121.8375
+#exec  redshift -m wayland -t 4850:2850 -l 39.7285:-121.8375
+exec wlsunset -t 2850 -T 4850 -l 39 -L -121
 #exec  xinput set-prop 11 "Device Enabled" 1
 #exec  ~/dotfiles/two.sh
 #exec  ~/dotfiles/libinput.sh

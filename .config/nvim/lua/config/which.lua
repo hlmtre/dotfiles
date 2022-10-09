@@ -48,7 +48,6 @@ local opts = {
 local mappings = {
   ["l"] = {
     name = "lsp",
-    -- these vim.lsp.buf calls aren't working from which
     R = { ":RustRunnables<CR>", "rust runnables" },
     e = { function() vim.lsp.buf.references() end, "references" },
     r = { function() require('lspsaga.rename').rename() end, "rename" },

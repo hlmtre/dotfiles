@@ -1,4 +1,5 @@
 -- Color for highlights
+-- [[
 local colors = {
   yellow = "#ECBE7B",
   cyan = "#008080",
@@ -10,6 +11,7 @@ local colors = {
   blue = "#51afef",
   red = "#ec5f67",
 }
+--]]
 
 --[[
 local lualine_config = {

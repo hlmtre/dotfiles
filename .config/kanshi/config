@@ -1,11 +1,11 @@
 # 'desktop mode'
 profile {
     output eDP-1 disable
-    output DP-1 enable mode 3440x1440@99.992Hz position 0,0
-    output HDMI-A-2 enable mode 2560x1440@59.951Hz position 3440,0
+    output 'Acer Technologies ED347CKR 0x00000000' enable mode 3440x1440@99.992Hz position 0,0
+    output 'Unknown AG241QG4 0x000001FF' enable mode 2560x1440@59.951Hz position 3440,0
 }
 
 # 'laptop mode'
 profile {
     output eDP-1 enable
-  }
+}

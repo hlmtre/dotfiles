@@ -50,7 +50,7 @@ tnoremap <silent> <Esc> <C-\><C-n>
 
 " rust
 let g:rustfmt_autosave = 1
-autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+autocmd BufWritePre *.rs lua vim.lsp.buf.format()
 " Use completion-nvim in every buffer
 "autocmd BufEnter * lua require'completion'.on_attach()
 let g:lsp_diagnostics_echo_cursor = 1
