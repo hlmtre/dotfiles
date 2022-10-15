@@ -4,9 +4,9 @@
     //"height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "sway/mode",],
     //"modules-center": ["sway/window"],
-    "modules-center": [],
+    "modules-center": ["custom/media"],
     "modules-right": ["network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "pulseaudio", "clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
@@ -141,11 +141,13 @@
         "return-type": "json",
         "max-length": 40,
         "format-icons": {
-            "spotify": "",
+            "spotifyd": "",
             "default": "🎜"
         },
         "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "exec-if": "pgrep spotifyd",
+        "on-click": "$HOME/dotfiles/sway_pause.sh play-pause",
+        //"exec": "$HOME/.config/waybar/media.sh"
+         "exec": "$HOME/.config/waybar/mediaplayer.py --player spotifyd 2> /dev/null" // Filter player based on name
     }
 }

@@ -58,6 +58,7 @@ bindsym $mod+Shift+Q kill
 # set $menu bemenu-run --fn $uifont -b -p "▶" --tf "$prompt" --hf "$highlight" --sf "$highlight" --scf "$highlight" | xargs swaymsg exec
 #set $menu bemenu-run -l 20 -w 0.2 -p 'run:' -m $(swaymsg -p -t get_outputs | /home/hlmtre/.cargo/bin/rg 'focused' | awk '{print $2}' | rev | cut -d'-' -f1 | rev) | xargs swaymsg exec
 set $menu /home/hlmtre/dotfiles/bemenu_start.sh
+#set $menu /home/hlmtre/dotfiles/wofi.sh
 bindsym $mod+d exec $menu
 
 # change focus
@@ -246,6 +247,8 @@ exec nm-applet --indicator
 exec  blueman-applet
 exec swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 # pasystray (volume control) (not needed with i3status-rust)
 # exec  pasystray
 
@@ -264,6 +267,10 @@ input "type:keyboard" {
       xkb_options caps:none
 }
 
+input 1133:49970:Logitech_Gaming_Mouse_G502 {
+    pointer_accel 1
+  }
+
 
 # disable touchpad movement
 # clit mouse 4 lyfe
@@ -278,19 +285,15 @@ exec wlsunset -t 2850 -T 4850 -l 39 -L -121
 #exec  ~/dotfiles/libinput.sh
 exec  /usr/lib/gnome-settings-daemon/gsd-xsettings
 
-#exec  echo XHC0 > /proc/acpi/wakeup
-
-#exec  emacs --daemon
-
-#bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
-
 #volume
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym $mod+Shift+Control+space exec playerctl play-pause
-bindsym $mod+Shift+Control+right exec playerctl next
-bindsym $mod+Shift+Control+left exec playerctl previous
+#media
+# i think running it in the script guarantees it runs in our dbus session
+bindsym --locked XF86AudioPlay exec $HOME/dotfiles/media.sh play-pause
+bindsym XF86AudioNext exec $HOME/dotfiles/media.sh next
+bindsym XF86AudioPrev exec $HOME/dotfiles/media.sh previous
 
 # disable window borders for chrome
 #for_window [class=".*"] border pixel 1
@@ -316,7 +319,9 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 #bindsym XF86MonBrightnessDown exec python /home/hlmtre/src/brightness/client.py down
 #bindsym XF86MonBrightnessUp exec python /home/hlmtre/src/brightness/client.py up
 
-# screens (docked and undocked)
+# screens (docked and undocked) HANDLED BY KANSHI NOW
+# ~/.config/kanshi/config
+
 #bindsym XF86Display exec ~/bin/screens.sh
 #font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
