@@ -1,4 +1,9 @@
 set nocompatible
+autocmd FileType markdown setlocal spell spelllang=en_gb
+autocmd FileType gitcommit setlocal spell spelllang=en_gb
+autocmd FileType markdown setlocal complete+=kspell
+autocmd FileType gitcommit setlocal complete+=kspell
+autocmd FileType help setlocal nospell
 lua require('plugins')
 lua require('config.init')
 
@@ -20,7 +25,7 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
 " Code navigation shortcuts
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
@@ -116,6 +121,7 @@ set undofile
 autocmd VimEnter * IndentLinesEnable
 filetype plugin on
 
+let g:tagbar_position = 'topleft vertical'
 
 function! PackerComplete()
   PackerSync

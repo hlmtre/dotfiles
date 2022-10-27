@@ -2,3 +2,4 @@
 polybar/sessions/*
 .config/nvim/plugs
 .config/nvim/plugin
+.config/nvim/spell

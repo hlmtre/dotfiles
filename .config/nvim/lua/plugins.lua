@@ -77,6 +77,24 @@ ins_left({
 require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
+    -- Lua
+    --[[
+    use({
+      "narutoxy/silicon.lua",
+      requires = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("silicon").setup({})
+      end,
+    })
+    use({
+      "rcarriga/nvim-notify",
+      config = function()
+        require('notify').setup({})
+      end
+    })
+    --]]
+    use({ "tpope/vim-surround" })
+    use({"preservim/tagbar"})
     use("mboughaba/i3config.vim")
     use("morhetz/gruvbox")
     use("nvim-lua/lsp-status.nvim")
@@ -111,7 +129,7 @@ require("packer").startup({
         })
       end,
     })
-    use("RishabhRD/popfix")
+    use({ "RishabhRD/popfix" })
     use({ "wesleimp/stylua.nvim" })
     use({
       "RishabhRD/nvim-lsputils",
@@ -214,6 +232,7 @@ require("packer").startup({
     use("f-person/git-blame.nvim")
     --use("mfussenegger/nvim-dap")
     use("TimUntersberger/neogit")
+    use({ "tpope/vim-fugitive" })
     use("mhinz/vim-startify")
     use({
       "j-hui/fidget.nvim",
@@ -230,6 +249,13 @@ require("packer").startup({
       end,
     })
     use("folke/which-key.nvim")
+    use({
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("todo-comments").setup({})
+      end,
+    })
     --use({"zeertzjq/which-key.nvim", branch = 'patch-1'})
     use({
       "folke/trouble.nvim",
@@ -490,6 +516,14 @@ require("packer").startup({
     use("hrsh7th/cmp-path")
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/vim-vsnip")
+    use({
+      "toppair/peek.nvim",
+      run = "deno task --quiet build:fast",
+      config = function()
+        vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+        vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+      end,
+    })
     use({
       "navarasu/onedark.nvim",
     })

@@ -16,6 +16,7 @@ wk.register({
     d = { "<cmd>Bdelete!<CR>", "close" },
     n = { "<cmd>ene<CR>", "new" },
     b = { "<cmd>Telescope buffers<CR>", "list" },
+    l = { "<cmd>b#<CR>", "last" },
   },
   p = {
     name = "packer",
