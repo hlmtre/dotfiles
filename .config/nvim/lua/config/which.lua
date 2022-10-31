@@ -9,6 +9,7 @@ wk.register({
     s = { "<cmd>source $MYVIMRC<CR>", "source $MYVIMRC" },
   },
   ["0"] = { "<cmd>NvimTreeFocus<CR>", "nvimtree" },
+  ["t"] = { "<cmd>Tagbar<CR>", "tagbar" },
   m = { "<cmd>Telescope keymaps<CR>", "keymaps" },
   M = { "<cmd>Mason<CR>", "mason" },
   b = {
@@ -51,7 +52,7 @@ local mappings = {
     name = "lsp",
     R = { ":RustRunnables<CR>", "rust runnables" },
     e = { function() vim.lsp.buf.references() end, "references" },
-    r = { function() require('lspsaga.rename').rename() end, "rename" },
+    r = { ":IncRename " , "rename" },
     a = { ":CodeActionMenu<CR>", "code action" },
     d = { function() vim.lsp.diagnostic.show_line_diagnostics() end, "diagnostics" },
     D = { function() vim.lsp.buf.definition() end, "definition" },

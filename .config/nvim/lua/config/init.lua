@@ -1,3 +1,4 @@
+--[[
 local lsp_status = require('lsp-status')
 
 lsp_status.config({
@@ -13,6 +14,7 @@ lsp_status.config({
 })
 
 lsp_status.register_progress()
+--]]
 
 --[[
 --  conditionally sets mappings if the lsp supports it

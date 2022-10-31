@@ -1,5 +1,5 @@
 -- Color for highlights
--- [[
+--[[
 local colors = {
   yellow = "#ECBE7B",
   cyan = "#008080",
@@ -93,13 +93,20 @@ require("packer").startup({
       end
     })
     --]]
-    use({ "tpope/vim-surround" })
-    use({"preservim/tagbar"})
+    use({
+      "kylechui/nvim-surround",
+      config = function()
+        require("nvim-surround").setup({})
+      end,
+    })
+    use({ "preservim/tagbar" })
     use("mboughaba/i3config.vim")
     use("morhetz/gruvbox")
+    --[[
     use("nvim-lua/lsp-status.nvim")
     use("arkav/lualine-lsp-progress")
     use("nvim-lua/popup.nvim")
+    --]]
     use("nvim-lua/plenary.nvim")
     use({ "nvim-telescope/telescope.nvim" })
     use({ "nvim-telescope/telescope-file-browser.nvim" })
@@ -227,6 +234,12 @@ require("packer").startup({
       "kosayoda/nvim-lightbulb",
       config = function()
         vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
+      end,
+    })
+    use({
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      config = function()
+        require("lsp_lines").setup()
       end,
     })
     use("f-person/git-blame.nvim")
@@ -446,6 +459,24 @@ require("packer").startup({
       end,
     })
     use({
+      "smjonas/inc-rename.nvim",
+      config = function()
+        require("inc_rename").setup()
+      end,
+    })
+    --[[
+    use({
+      "ms-jpq/chadtree",
+      config = function()
+        local chadtree_settings = {
+          view = {
+            open_direction = "right",
+          },
+        }
+        vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
+      end,
+    })
+    use({
       "rinx/lspsaga.nvim",
       config = function()
         local conf = {
@@ -473,6 +504,7 @@ require("packer").startup({
         require("lspsaga").init_lsp_saga(conf)
       end,
     })
+    --]]
 
     use({
       "hrsh7th/nvim-cmp",
