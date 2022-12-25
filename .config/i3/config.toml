@@ -1,0 +1,71 @@
+[theme]
+theme = "plain"
+
+[icons]
+icons = "awesome"
+
+#[[block]]
+#block = "net"
+#format = "{ssid} {ip} {speed_up;K*b} {speed_down;K*b}"
+#interval = 1
+##use_bits = true
+[[block]]
+block = "net"
+format = " $icon {$signal_strength $ssid $frequency|Wired connection} ^icon_net_down $speed_down.eng(3,b,K) ^icon_net_up $speed_up.eng(3,b,K) $ip "
+#use_bits = true
+
+#[[block]]
+#block = "music"
+#player = "spotifyd"
+#buttons = ["play"]
+
+#[[block]]
+#block = "net"
+#device = "enp6s0"
+#ip = true
+#speed_up = true
+#interval = 1
+#use_bits = true
+
+#[[block]]
+#block = "nvidia_gpu"
+#label = "RTX 2070"
+#show_memory = true
+#show_clocks = true
+#show_temperature = true
+#interval = 1
+
+[[block]]
+block = "temperature"
+interval = 10
+#collapsed = true
+format = " $max max, $average avg "
+
+[[block]]
+block = "cpu"
+interval = 1
+format = " $utilization $frequency "
+
+[[block]]
+block = "memory"
+format = " $mem_used/$mem_total ($mem_used_percents) "
+
+[[block]]
+block = "sound"
+
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+[[block]]
+block = "weather"
+format = " $weather ($location) $temp C "
+service = { name = "openweathermap", api_key = "6dc001f4e77cc0985c5013283368be51", city_id = "5336269", units = "metric" }
+#
+#[[block]]
+#block = "hueshift"
+#
+[[block]]
+block = "time"
+interval = 1
+format = " %a %Y-%m-%d %R "
