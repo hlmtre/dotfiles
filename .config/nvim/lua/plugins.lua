@@ -138,6 +138,7 @@ require("packer").startup({
     })
     use({ "RishabhRD/popfix" })
     use({ "wesleimp/stylua.nvim" })
+    --[[
     use({
       "RishabhRD/nvim-lsputils",
       config = function()
@@ -152,6 +153,7 @@ require("packer").startup({
         vim.lsp.handlers["workspace/symbol"] = require("lsputil.symbols").workspace_handler
       end,
     })
+    --]]
     use({
       "simrat39/rust-tools.nvim",
       --commit = "e29fb47326093fb197f17eae5ac689979a9ce191",
@@ -230,17 +232,24 @@ require("packer").startup({
         vim.api.nvim_set_keymap("n", "ga", "<cmd>CodeActionMenu<CR>", { silent = true })
       end,
     })
+    --[[
     use({
       "kosayoda/nvim-lightbulb",
       config = function()
-        vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
+        UNCOMMENT LAST TWO BRACKETS TO REPLACE IF UNCOMMENTING BLOCK
+        TODO FIXME
+        vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()\]\])
       end,
     })
+    --]]
     use({
       "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
       config = function()
         require("lsp_lines").setup()
       end,
+    })
+    vim.diagnostic.config({
+      virtual_text = false,
     })
     use("f-person/git-blame.nvim")
     --use("mfussenegger/nvim-dap")
@@ -548,6 +557,7 @@ require("packer").startup({
     use("hrsh7th/cmp-path")
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/vim-vsnip")
+    -- this is for a markdown viewer
     use({
       "toppair/peek.nvim",
       run = "deno task --quiet build:fast",
