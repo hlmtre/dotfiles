@@ -1,6 +1,6 @@
 local opts = {
-  mode = "n",
-  prefix = "<leader>",
+  mode = 'n',
+  prefix = '<leader>',
   buffer = nil,
   silent = false,
   noremap = true,
@@ -8,76 +8,74 @@ local opts = {
 }
 
 local mappings = {
-  ["l"] = {
-    name = "lsp",
-    R = { ":RustRunnables<CR>", "rust runnables" },
+  ['l'] = {
+    name = 'lsp',
+    R = { ':RustRunnables<CR>', 'rust runnables' },
     e = {
       function()
         vim.lsp.buf.references()
       end,
-      "references",
+      'references',
     },
-    r = { ":IncRename ", "rename" },
-    a = { ":CodeActionMenu<CR>", "code action" },
+    r = { ':IncRename ', 'rename' },
+    a = { ':CodeActionMenu<CR>', 'code action' },
     d = {
       function()
         vim.lsp.diagnostic.show_line_diagnostics()
       end,
-      "diagnostics",
+      'diagnostics',
     },
     D = {
       function()
         vim.lsp.buf.definition()
       end,
-      "definition",
+      'definition',
     },
-    p = {
-      name = { "Lazy<CR>", "Lazy" },
-    },
-    t = { ":TroubleToggle<CR>", "trouble" },
+    t = { ':TroubleToggle<CR>', 'trouble' },
   },
   f = {
-    name = "file",
-    f = { "<cmd>Telescope file_browser<cr>", "find file" },
-    r = { "<cmd>Telescope oldfiles<cr>", "open recent" },
-    e = { "<cmd>e $MYVIMRC<CR>", "edit $MYVIMRC" },
-    s = { "<cmd>source $MYVIMRC<CR>", "source $MYVIMRC" },
+    name = 'file',
+    f = { '<cmd>Telescope file_browser<cr>', 'find file' },
+    r = { '<cmd>Telescope oldfiles<cr>', 'open recent' },
+    e = { '<cmd>e $MYVIMRC<CR>', 'edit $MYVIMRC' },
+    s = { '<cmd>source $MYVIMRC<CR>', 'source $MYVIMRC' },
   },
-  ["0"] = { "<cmd>NvimTreeFocus<CR>", "nvimtree" },
-  ["t"] = { "<cmd>Tagbar<CR>", "tagbar" },
-  m = { "<cmd>Telescope keymaps<CR>", "keymaps" },
-  M = { "<cmd>Mason<CR>", "mason" },
+  ['p'] = { '<cmd>Lazy<cr>', 'lazy' },
+  ['0'] = { '<cmd>NvimTreeFocus<CR>', 'nvimtree' },
+  ['t'] = { '<cmd>Tagbar<CR>', 'tagbar' },
+  m = { '<cmd>Telescope keymaps<CR>', 'keymaps' },
+  M = { '<cmd>Mason<CR>', 'mason' },
   b = {
-    name = "buffers",
-    d = { "<cmd>Bdelete!<CR>", "close" },
-    n = { "<cmd>ene<CR>", "new" },
-    b = { "<cmd>Telescope buffers<CR>", "list" },
-    l = { "<cmd>b#<CR>", "last" },
+    name = 'buffers',
+    d = { '<cmd>Bdelete!<CR>', 'close' },
+    n = { '<cmd>ene<CR>', 'new' },
+    b = { '<cmd>Telescope buffers<CR>', 'list' },
+    l = { '<cmd>b#<CR>', 'last' },
   },
   g = {
-    name = "git",
-    s = { "<cmd>Neogit<CR>", "status" },
-    b = { "<cmd>GitBlameToggle<CR>", "blame" },
+    name = 'git',
+    s = { '<cmd>Neogit<CR>', 'status' },
+    b = { '<cmd>GitBlameToggle<CR>', 'blame' },
   },
   x = {
-    name = "autopairs",
+    name = 'autopairs',
     d = {
       function()
-        require("nvim-autopairs").disable()
+        require('nvim-autopairs').disable()
       end,
-      "disable",
+      'disable',
     },
     e = {
       function()
-        require("nvim-autopairs").enable()
+        require('nvim-autopairs').enable()
       end,
-      "enable",
+      'enable',
     },
   },
-  { prefix = "<leader>" },
+  { prefix = '<leader>' },
 }
 
-local wk = require("which-key")
+local wk = require('which-key')
 wk.register(mappings, opts)
 
 local plugins = {}

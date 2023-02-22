@@ -102,6 +102,7 @@ require('lazy').setup({
   "nvim-lua/popup.nvim")
   --]]
   { 'nvim-lua/plenary.nvim' },
+  { 'famiu/bufdelete.nvim' },
   { 'nvim-telescope/telescope.nvim' },
   { 'nvim-telescope/telescope-file-browser.nvim' },
   { 'nvim-treesitter/nvim-treesitter' },
@@ -119,6 +120,7 @@ require('lazy').setup({
           enable = true,
           update_root = false,
         },
+        auto_close = true,
         respect_buf_cwd = false,
         sync_root_with_cwd = false,
         view = {
