@@ -73,6 +73,19 @@ ins_left({
   spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
 })
 --]]
+--
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
 
 require("packer").startup({
   function(use)
@@ -181,8 +194,8 @@ require("packer").startup({
         print("loaded lsp server " .. server_name)
       end,
       -- Next, you can provide targeted overrides for specific servers.
-      ["sumneko_lua"] = function()
-        print("loaded lsp server sumneko_lua")
+      ["lua_ls"] = function()
+        print("loaded lsp server lua_ls")
         local settings = {
           Lua = {
             diagnostics = {
@@ -191,7 +204,7 @@ require("packer").startup({
             },
           },
         }
-        require("lspconfig")["sumneko_lua"].setup({ settings = settings })
+        require("lspconfig")["lua_ls"].setup({ settings = settings })
       end,
       -- For example, a handler override for the `rust_analyzer`:
       ["rust_analyzer"] = function()
