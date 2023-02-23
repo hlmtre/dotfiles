@@ -75,6 +75,29 @@ ins_left({
 --]]
 
 vim.g.mapleader = ' ' -- make sure to set `mapleader` before lazy so your mappings are correct
+local nvim_tree_setup = function()
+  require('nvim-tree').setup({
+    diagnostics = {
+      enable = true,
+    },
+    update_focused_file = {
+      enable = true,
+      update_root = false,
+    },
+    respect_buf_cwd = false,
+    sync_root_with_cwd = false,
+    view = {
+      width = 40,
+      side = 'right',
+      mappings = {
+        custom_only = false,
+        list = {
+          { key = { '<CR>', '<Tab>' }, action = 'edit' },
+        },
+      },
+    },
+  })
+end
 
 require('lazy').setup({
   'folke/which-key.nvim',
@@ -102,39 +125,16 @@ require('lazy').setup({
   "nvim-lua/popup.nvim")
   --]]
   { 'nvim-lua/plenary.nvim' },
-  { 'famiu/bufdelete.nvim' },
+  { 'famiu/bufdelete.nvim' }, -- required so nvim-tree doesn't stay open when you close the buffer
   { 'nvim-telescope/telescope.nvim' },
   { 'nvim-telescope/telescope-file-browser.nvim' },
   { 'nvim-treesitter/nvim-treesitter' },
-  { 'RishabhRD/popfix' },
+  -- { 'RishabhRD/popfix' },
   { 'wesleimp/stylua.nvim' },
   { 'simrat39/rust-tools.nvim' },
   {
     'nvim-tree/nvim-tree.lua',
-    config = function()
-      require('nvim-tree').setup({
-        diagnostics = {
-          enable = true,
-        },
-        update_focused_file = {
-          enable = true,
-          update_root = false,
-        },
-        auto_close = true,
-        respect_buf_cwd = false,
-        sync_root_with_cwd = false,
-        view = {
-          width = 40,
-          side = 'right',
-          mappings = {
-            custom_only = false,
-            list = {
-              { key = { '<CR>', '<Tab>' }, action = 'edit' },
-            },
-          },
-        },
-      })
-    end,
+    config = nvim_tree_setup,
   },
   { 'williamboman/mason-lspconfig.nvim' },
   {
@@ -306,5 +306,63 @@ require('lazy').setup({
         })
       end,
     },
+  },
+  {
+    'weilbith/nvim-code-action-menu',
+    cmd = 'CodeActionMenu',
+    config = function()
+      vim.api.nvim_set_keymap('n', 'ga', '<cmd>CodeActionMenu<CR>', { silent = true })
+    end,
+  },
+  { 'mhinz/vim-startify' },
+  {
+    'folke/todo-comments.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('todo-comments').setup({})
+    end,
+  },
+  {
+    'folke/trouble.nvim',
+    config = function()
+      require('trouble').setup({})
+    end,
+  },
+  { 'mbbill/undotree' },
+  {
+    'nvim-lualine/lualine.nvim',
+    config = function()
+      require('lualine').setup({
+        options = {
+          theme = 'gruvbox',
+          lower = true,
+        },
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = {
+            { 'filename', file_status = true, path = 2 },
+            'branch',
+            { 'diagnostics', sources = { 'nvim_diagnostic' } },
+          },
+          --lualine_c = { "lsp_progress" },
+          lualine_c = {},
+          lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' },
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { 'filename' },
+          lualine_x = { 'location' },
+          lualine_y = {},
+          lualine_z = {},
+        },
+        extensions = {
+          'nvim-tree',
+          'quickfix',
+        },
+      })
+    end,
   },
 }) -- end lazy setup
