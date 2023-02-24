@@ -14,9 +14,7 @@ lsp_status.config({
 })
 
 lsp_status.register_progress()
---]]
 
---[[
 --  conditionally sets mappings if the lsp supports it
 local alt_key_mappings = {
     {"code_lens", "n", "<leader>lcld","<Cmd>lua vim.lsp.codelens.refresh()<CR>"},
@@ -43,6 +41,7 @@ local function set_lsp_config(client, bufnr)
 
 end
 
+--[[
 -- rust_analyzer
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
@@ -71,7 +70,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
---]]
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 
@@ -89,7 +87,7 @@ require('nvim-treesitter.configs').setup {
     additional_vim_regex_highlighting = true,
   },
 }
---[[
+print('inside a comment lol')
 -- bufferline.nvim
 require("bufferline").setup {
   diagnostics = "nvim_lsp",
@@ -129,7 +127,8 @@ _G.Rename = {
 
 vim.g.gitblame_enabled = 0
 
-require('bufdelete')
+--require('bufdelete')
+print('inside config/init.lua')
 require('config.telescope')
 require('config.which')
 --require('config.nvchad_statusline')

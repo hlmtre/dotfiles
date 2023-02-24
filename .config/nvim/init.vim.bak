@@ -4,6 +4,7 @@ autocmd FileType gitcommit setlocal spell spelllang=en_gb
 autocmd FileType markdown setlocal complete+=kspell
 autocmd FileType gitcommit setlocal complete+=kspell
 autocmd FileType help setlocal nospell
+lua require('init')
 lua require('plugins')
 lua require('config.init')
 
@@ -127,6 +128,7 @@ function! PackerComplete()
   PackerSync
   PackerCompile
 endfunction
+
 "
 " automatically re-run packer after the packer file is modified
 "augroup packer_user_config
