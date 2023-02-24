@@ -1,79 +1,3 @@
--- Color for highlights
---[[
-local colors = {
-  yellow = "#ECBE7B",
-  cyan = "#008080",
-  darkblue = "#081633",
-  green = "#98be65",
-  orange = "#FF8800",
-  violet = "#a9a1e1",
-  magenta = "#c678dd",
-  blue = "#51afef",
-  red = "#ec5f67",
-}
---]]
-
---[[
-local lualine_config = {
-  options = {
-    icons_enabled = true,
-    theme = "gruvbox",
-    lower = true,
-    component_separators = { "", "" },
-    section_separators = { "", "" },
-    disabled_filetypes = {},
-  },
-  sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "filename", "branch", { "diagnostics", sources = { "nvim_diagnostic" } } },
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = { "encoding", "fileformat", "filetype" },
-    lualine_z = { "progress", "location" },
-  },
-  -- these aren't off; these are what are on when the window is unfocused
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = { "filename" },
-    lualine_x = { "location" },
-    lualine_y = {},
-    lualine_z = {},
-  },
-  tabline = {},
-  extensions = { "nvim-tree", "quickfix" },
-}
-
--- Inserts a component in lualine_c at left section
-local function ins_left(component)
-  table.insert(lualine_config.sections.lualine_c, component)
-end
-
-ins_left({
-  "lsp_progress",
-  colors = {
-    percentage = colors.cyan,
-    title = colors.cyan,
-    message = colors.cyan,
-    spinner = colors.cyan,
-    lsp_client_name = colors.magenta,
-    use = true,
-  },
-  separators = {
-    component = " ",
-    progress = " | ",
-    percentage = { pre = "", post = "%% " },
-    title = { pre = "", post = ": " },
-    lsp_client_name = { pre = "[", post = "]" },
-    spinner = { pre = "", post = "" },
-    message = { commenced = "In Progress", completed = "Completed" },
-  },
-  display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
-  timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
-  spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
-})
---]]
-
 vim.g.mapleader = ' ' -- make sure to set `mapleader` before lazy so your mappings are correct
 local nvim_tree_setup = function()
   require('nvim-tree').setup({
@@ -101,7 +25,6 @@ end
 
 require('lazy').setup({
   'folke/which-key.nvim',
-  { 'folke/neoconf.nvim', cmd = 'Neoconf' },
   'folke/neodev.nvim',
   {
     'morhetz/gruvbox',
@@ -117,6 +40,7 @@ require('lazy').setup({
       require('nvim-surround').setup({})
     end,
   },
+  { 'sbdchd/neoformat' },
   { 'preservim/tagbar' },
   { 'mboughaba/i3config.vim' },
   --[[
@@ -312,6 +236,12 @@ require('lazy').setup({
     cmd = 'CodeActionMenu',
     config = function()
       vim.api.nvim_set_keymap('n', 'ga', '<cmd>CodeActionMenu<CR>', { silent = true })
+    end,
+  },
+  {
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    config = function()
+      require('lsp_lines').setup()
     end,
   },
   { 'mhinz/vim-startify' },

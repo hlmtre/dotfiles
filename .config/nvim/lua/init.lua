@@ -1,15 +1,15 @@
 -- bootstrap lazy
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-	print("downloading lazy.nvim...")
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+  print('downloading lazy.nvim...')
+  vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -24,28 +24,28 @@ vim.cmd([[autocmd FileType help setlocal nospell]])
 vim.cmd([[source $HOME/.config/nvim/bedit.vim]])
 --" general editor stuff
 --autocmd vimenter * ++nested colorscheme gruvbox
-vim.g.gruvbox_contrast_dark = "hard"
+vim.g.gruvbox_contrast_dark = 'hard'
 -- let g:gruvbox_contrast_dark = 'hard'
 
 -- Set updatetime for CursorHold
-vim.api.nvim_set_option("updatetime", 1000)
+vim.api.nvim_set_option('updatetime', 1000)
 vim.opt.updatetime = 1000
 -- autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})
 
-vim.keymap.set("n", "g[", function()
-	vim.lsp.diagnostic.goto_prev()
+vim.keymap.set('n', 'g[', function()
+  vim.lsp.diagnostic.goto_prev()
 end)
-vim.keymap.set("n", "g]", function()
-	vim.lsp.diagnostic.goto_next()
+vim.keymap.set('n', 'g]', function()
+  vim.lsp.diagnostic.goto_next()
 end)
-vim.keymap.set("n", "gD", function()
-	vim.lsp.buf.definition()
+vim.keymap.set('n', 'gD', function()
+  vim.lsp.buf.definition()
 end)
-vim.keymap.set("n", "ga", function()
-	vim.lsp.buf.code_action()
+vim.keymap.set('n', 'ga', function()
+  vim.lsp.buf.code_action()
 end)
-vim.keymap.set("n", "K", function()
-	vim.lsp.buf.hover()
+vim.keymap.set('n', 'K', function()
+  vim.lsp.buf.hover()
 end)
 --nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 --nnoremap <silent> gD    <cmd>lua vim.lsp.buf.definition()<CR>
@@ -72,7 +72,7 @@ end)
 --
 --
 --" nvimtree now set in plugins.lua setup
-vim.g.nvim_tree_side = "right" --left by default
+vim.g.nvim_tree_side = 'right' --left by default
 vim.g.nvim_tree_width = 40 --30 by default, can be width_in_columns or 'width_in_percent%'
 vim.g.nvim_tree_follow = 1
 vim.g.nvim_tree_highlight_opened_files = 1
@@ -115,16 +115,16 @@ vim.o.showtabline = 2
 vim.o.ts = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
-vim.opt.listchars.extends = { tab = ">-" }
+vim.opt.listchars.extends = { tab = '>-' }
 vim.o.ai = true
 vim.o.si = true
-vim.o.mouse = "a"
+vim.o.mouse = 'a'
 --autocmd BufEnter * lcd %:p:h
 --set completeopt=menuone,noinsert,noselect
-vim.o.omnifunc = "v:vim.lsp.omnifunc"
+vim.o.omnifunc = 'v:vim.lsp.omnifunc'
 --set shortmess+=c
 --set timeoutlen=300
-vim.o.signcolumn = "number"
+vim.o.signcolumn = 'number'
 vim.o.termguicolors = true
 vim.oignorecase = true
 vim.o.smartcase = true
@@ -141,7 +141,7 @@ vim.o.breakindentopt = true
 --set nofoldenable
 --
 --" persistent undo!
-vim.o.undodir = "/tmp/.undodir_" .. os.getenv("USER")
+vim.o.undodir = '/tmp/.undodir_' .. os.getenv('USER')
 --if !isdirectory(s:undodir)
 --    call mkdir(s:undodir, "", 0700)
 --endif
@@ -152,7 +152,12 @@ vim.o.undofile = true
 vim.g.do_filetype_lua = 1
 --vim.o.filetype plugin on
 --
-vim.g.tagbar_position = "topleft vertical"
+vim.g.tagbar_position = 'topleft vertical'
 --
-require("plugins")
-require("config.init")
+
+-- made obsolete by lsp_lines plugin
+vim.diagnostic.config({
+  virtual_text = false,
+})
+require('plugins')
+require('config.init')
