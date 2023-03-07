@@ -7,5 +7,6 @@
 # split on '-' and get the first instance - 2 (if this were now 20, since it's reversed)
 # reverse it again so it's 02, not 20
 # all this to get the index of the currently focused monitor in wayland
-MONITOR=$(swaymsg -p -t 'get_outputs' | /home/hlmtre/.cargo/bin/rg 'focused' | awk '{print $2}' | rev | cut -d'-' -f1 | rev)
-bemenu-run -l 20 -w 0.2 -p 'run:' -m $MONITOR | xargs swaymsg exec
+#MONITOR=$(swaymsg -p -t 'get_outputs' | /home/hlmtre/.cargo/bin/rg 'focused' | awk '{print $2}' | rev | cut -d'-' -f1 | rev)
+# -1 is always focused monitor ffs
+bemenu-run -l 20 -w 0.2 -p 'run:' -m -1 | xargs swaymsg exec
