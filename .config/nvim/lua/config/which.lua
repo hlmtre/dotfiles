@@ -33,6 +33,10 @@ local mappings = {
     },
     t = { ':TroubleToggle<CR>', 'trouble' },
   },
+  s = {
+    name = 'session',
+    l = { '<cmd>SessionManager load_last_session<cr>', 'load last session' },
+  },
   f = {
     name = 'file',
     f = { '<cmd>Telescope file_browser<cr>', 'find file' },
