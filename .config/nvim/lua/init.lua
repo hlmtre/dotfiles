@@ -126,7 +126,7 @@ vim.o.omnifunc = 'v:vim.lsp.omnifunc'
 --set timeoutlen=300
 vim.o.signcolumn = 'number'
 vim.o.termguicolors = true
-vim.oignorecase = true
+vim.o.ignorecase = true
 vim.o.smartcase = true
 --" ctrl+a/x (inc/dec)
 --vim.api.nvim_exec([[nnoremap + <C-a>]])

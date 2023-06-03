@@ -189,19 +189,24 @@ require('lazy').setup({
         enable_check_bracket_line = false,
       })
     end,
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-vsnip' },
-    { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/cmp-buffer' },
     {
       'hrsh7th/nvim-cmp',
+      dependencies = {
+        'hrsh7th/cmp-nvim-lsp',
+        --{ 'hrsh7th/cmp-vsnip', commit = '1ae05c6' },
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-buffer',
+        'L3MON4D3/LuaSnip',
+        'saadparwaiz1/cmp_luasnip',
+      },
       config = function()
         local cmp = require('cmp')
         cmp.setup({
           -- Enable LSP snippets
           snippet = {
             expand = function(args)
-              vim.fn['vsnip#anonymous'](args.body)
+              -- vim.fn['vsnip#anonymous'](args.body) -- vsnip broke ('unknown function vsnip#anonymous')
+              require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
             end,
           },
           mapping = {
@@ -223,7 +228,8 @@ require('lazy').setup({
           -- Installed sources
           sources = {
             { name = 'nvim_lsp' },
-            { name = 'vsnip' },
+            -- { name = 'vsnip' },
+            { name = 'luasnip' },
             { name = 'path' },
             { name = 'buffer' },
           },
