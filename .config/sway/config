@@ -45,7 +45,7 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec urxvt
 #bindsym $mod+Return exec gnome-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec $HOME/.cargo/bin/alacritty
 #bindsym $mod+Return exec kitty
 
 # kill focused window
@@ -57,7 +57,7 @@ bindsym $mod+Shift+Q kill
 # bindsym $mod+d exec "rofi -combi-modi window,run,ssh -show combi"
 # set $menu bemenu-run --fn $uifont -b -p "▶" --tf "$prompt" --hf "$highlight" --sf "$highlight" --scf "$highlight" | xargs swaymsg exec
 #set $menu bemenu-run -l 20 -w 0.2 -p 'run:' -m $(swaymsg -p -t get_outputs | /home/hlmtre/.cargo/bin/rg 'focused' | awk '{print $2}' | rev | cut -d'-' -f1 | rev) | xargs swaymsg exec
-set $menu /home/hlmtre/dotfiles/bemenu_start.sh
+set $menu $HOME/dotfiles/bemenu_start.sh
 #set $menu /home/hlmtre/dotfiles/wofi.sh
 bindsym $mod+d exec $menu
 
@@ -225,10 +225,10 @@ bar {
 #exec  polybar --reload -c ~/.config/polybar/config primary &
 
 #zt
-bindsym $mod+Control+Shift+s exec /home/hlmtre/dotfiles/zt/zt
-bindsym $mod+Control+Shift+c exec /home/hlmtre/dotfiles/zt/zt -c
+bindsym $mod+Control+Shift+s exec $HOME/dotfiles/zt/zt
+bindsym $mod+Control+Shift+c exec $HOME/dotfiles/zt/zt -c
 
-#bindsym $mod+Control+Shift+r exec /home/hlmtre/dotfiles/screen_wake.sh
+#bindsym $mod+Control+Shift+r exec $HOME/dotfiles/screen_wake.sh
 
 #lockscreen
 bindsym $mod+Control+l exec swaylock -c 000000
