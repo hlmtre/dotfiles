@@ -260,7 +260,7 @@ input 2:10:TPPS/2_IBM_TrackPoint {
       pointer_accel -0.6
 }
 input 2:7:SynPS/2_Synaptics_TouchPad {
-      events disabled
+      events enabled
 }
 
 input "type:keyboard" {

@@ -4,10 +4,10 @@
                           //"height": 30, // Waybar height (to be removed for auto height)
                           // "width": 1280, // Waybar width
                           // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode",],
-    //"modules-center": ["sway/window"],
+    //"modules-left": ["wlr/workspaces", "hyprland/window", "hyprland/submap", ],
+    "modules-left": ["sway/workspaces", "sway/window"],
     "modules-center": ["custom/media"],
-    "modules-right": ["network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "pulseaudio", "clock", "custom/weather","tray"],
+    "modules-right": ["network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat1", "pulseaudio", "clock", "custom/weather","tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -105,8 +105,8 @@
       // "format-full": "",
       "format-icons": ["", "", "", "", ""]
     },
-    "battery#bat2": {
-      "bat": "BAT2"
+    "battery#bat1": {
+      "bat": "BAT1"
     },
     "network": {
       "interface": "wlp3*", // (Optional) To force the use of this interface
@@ -156,5 +156,10 @@
       "interval": 1800,
       "exec": "$HOME/.config/waybar/wttr.py",
       "return-type": "json"
-    }
+    },
+    "hyprland/submap": {
+      "format": "✌️ {}",
+      "max-length": 8,
+      "tooltip": false
+    },
 }
