@@ -227,6 +227,7 @@ bar {
 #zt
 bindsym $mod+Control+Shift+s exec $HOME/dotfiles/zt/zt
 bindsym $mod+Control+Shift+c exec $HOME/dotfiles/zt/zt -c
+bindsym Print exec $HOME/dotfiles/zt/zt -a
 
 #bindsym $mod+Control+Shift+r exec $HOME/dotfiles/screen_wake.sh
 

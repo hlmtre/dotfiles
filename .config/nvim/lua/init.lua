@@ -134,7 +134,7 @@ vim.o.smartcase = true
 --
 vim.o.breakindent = true
 -- vim.o.breakindentopt = true
---vim.o.showbreak="\\\\\""
+-- vim.o.showbreak="\\\\\""
 --
 --set foldmethod=expr
 --set foldexpr=nvim_treesitter#foldexpr()
