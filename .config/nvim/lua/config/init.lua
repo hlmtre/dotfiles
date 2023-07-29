@@ -108,8 +108,8 @@ require("bufferline").setup {
 vim.api.nvim_set_keymap('n', '<C-l>', '<Plug>(cokeline-focus-next)', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-h>', '<Plug>(cokeline-focus-prev)', {silent = true})
 --]]
-vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>BufferLineCycleNext<CR>', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>BufferLineCyclePrev<CR>', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>BufferLineCycleNext<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>BufferLineCyclePrev<CR>', { silent = true })
 
 --[[
 _G._rename = require('util')._rename
@@ -123,9 +123,18 @@ _G.Rename = {
 
 --vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>lua Rename.rename()<CR>', {silent = true})
 
-
-
 vim.g.gitblame_enabled = 0
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint(args.buf, true)
+    end
+    -- whatever other lsp config you want
+  end,
+})
 
 --require('bufdelete')
 print('inside config/init.lua')

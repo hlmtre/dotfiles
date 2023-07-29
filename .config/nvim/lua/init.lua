@@ -107,7 +107,7 @@ vim.g.neoformat_basic_format_trim = 1
 --" spcbr
 --let mapleader = " "
 vim.o.number = true
-vim.o.syntax = true
+-- vim.o.syntax = true
 vim.o.showtabline = 2
 --nnoremap <silent> <leader>bx :Bdelete<CR>
 --"execute "nnoremap <silent> " . g:magit_show_magit_mapping . " :call magit#show_magit('h')<cr>"
@@ -133,7 +133,7 @@ vim.o.smartcase = true
 --vim.api.nvim_exec([[nnoremap - <C-x>]])
 --
 vim.o.breakindent = true
-vim.o.breakindentopt = true
+-- vim.o.breakindentopt = true
 --vim.o.showbreak="\\\\\""
 --
 --set foldmethod=expr
