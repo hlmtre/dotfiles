@@ -100,6 +100,7 @@ end
 require('lazy').setup({
   'folke/which-key.nvim',
   'folke/neodev.nvim',
+  'kdheepak/lazygit.nvim',
   {
     'morhetz/gruvbox',
     lazy = false,
