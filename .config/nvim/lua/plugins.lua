@@ -117,6 +117,28 @@ require('lazy').setup({
   },
   { 'sbdchd/neoformat' },
   { 'preservim/tagbar' },
+  {
+    'shellRaining/hlchunk.nvim',
+    event = { 'UIEnter' },
+    config = function()
+      require('hlchunk').setup({
+        support_filetypes = {
+          '*.lua',
+          '*.rs',
+        },
+        chunk = {
+          chars = {
+            horizontal_line = '─',
+            vertical_line = '│',
+            left_top = '╭',
+            left_bottom = '╰',
+            right_arrow = '>',
+          },
+          style = '#806d9c',
+        },
+      })
+    end,
+  },
   { 'mboughaba/i3config.vim' },
   --[[
   "nvim-lua/lsp-status.nvim")
@@ -127,7 +149,15 @@ require('lazy').setup({
   { 'famiu/bufdelete.nvim' }, -- required so nvim-tree doesn't stay open when you close the buffer
   { 'nvim-telescope/telescope.nvim' },
   { 'nvim-telescope/telescope-file-browser.nvim' },
-  { 'nvim-treesitter/nvim-treesitter' },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = 'all',
+        auto_install = true,
+      })
+    end,
+  },
   -- { 'RishabhRD/popfix' },
   { 'wesleimp/stylua.nvim' },
   { 'simrat39/rust-tools.nvim' },
