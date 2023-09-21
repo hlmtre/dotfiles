@@ -209,7 +209,9 @@ require('lazy').setup({
         ['rust_analyzer'] = function()
           print('loaded lsp server rust-analyzer')
           local tools = {
-            autoSetHints = false,
+            inlay_hints = {
+              auto = false, -- inlay hints are native in nvim greater than some 0.10 version!
+            },
             runnables = { use_telescope = true },
             -- inlay_hints = { show_parameter_hints = true },
             hover_actions = { auto_focus = true },
