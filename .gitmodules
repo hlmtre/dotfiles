@@ -45,3 +45,6 @@
 [submodule "wordlrs"]
 	path = wordlrs
 	url = git@github.com:hlmtre/wordlrs.git
+[submodule "sspush"]
+	path = sspush
+	url = https://github.com/CtrlAltMech/sspush.git
