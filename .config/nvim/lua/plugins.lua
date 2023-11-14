@@ -87,12 +87,12 @@ local nvim_tree_setup = function()
     view = {
       width = 40,
       side = 'right',
-      mappings = {
-        custom_only = false,
-        list = {
-          { key = { '<CR>', '<Tab>' }, action = 'edit' },
-        },
-      },
+      --mappings = {
+      --  custom_only = false,
+      --  list = {
+      --    { key = { '<CR>', '<Tab>' }, action = 'edit' },
+      --  },
+      --},
     },
   })
 end
@@ -253,9 +253,15 @@ require('lazy').setup({
   },
   {
     'j-hui/fidget.nvim',
-    tag = 'legacy',
+    --tag = 'legacy',
     config = function()
-      require('fidget').setup()
+      require('fidget').setup({
+        notification = {
+          window = {
+            relative = 'win',
+          },
+        },
+      })
     end,
   },
   {
@@ -491,6 +497,12 @@ require('lazy').setup({
       require('nibbler').setup({
         display_enabled = true, -- Set to false to disable real-time display (default: true)
       })
+    end,
+  },
+  {
+    'smjonas/inc-rename.nvim',
+    config = function()
+      require('inc_rename').setup()
     end,
   },
 }) -- end lazy setup
