@@ -170,7 +170,7 @@ require('lazy').setup({
   },
   -- { 'RishabhRD/popfix' },
   { 'wesleimp/stylua.nvim' },
-  { 'simrat39/rust-tools.nvim' },
+  { 'mrcjkb/rustaceanvim', version = '^3', ft = { 'rust' } },
   {
     'nvim-tree/nvim-tree.lua',
     config = nvim_tree_setup,
@@ -226,27 +226,28 @@ require('lazy').setup({
             -- inlay_hints = { show_parameter_hints = true },
             hover_actions = { auto_focus = true },
           }
-          require('rust-tools').setup({
-            tools = tools,
-            server = {
-              flags = { debounce_text_changes = 150 },
-              settings = {
-                ['rust-analyzer'] = {
-                  checkOnSave = {
-                    allFeatures = true,
-                    overrideCommand = {
-                      'cargo',
-                      'clippy',
-                      '--workspace',
-                      '--message-format=json',
-                      '--all-targets',
-                      '--all-features',
-                    },
-                  },
-                },
-              },
-            },
-          })
+
+          --          require('rust-tools').setup({
+          --            tools = tools,
+          --            server = {
+          --              flags = { debounce_text_changes = 150 },
+          --              settings = {
+          --                ['rust-analyzer'] = {
+          --                  checkOnSave = {
+          --                    allFeatures = true,
+          --                    overrideCommand = {
+          --                      'cargo',
+          --                      'clippy',
+          --                      '--workspace',
+          --                      '--message-format=json',
+          --                      '--all-targets',
+          --                      '--all-features',
+          --                    },
+          --                  },
+          --                },
+          --              },
+          --            },
+          --          })
         end,
       })
     end,
