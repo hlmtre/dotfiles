@@ -165,6 +165,9 @@ require('lazy').setup({
           'css',
         },
         auto_install = true,
+        highlight = {
+          enable = true,
+        },
       })
     end,
   },
