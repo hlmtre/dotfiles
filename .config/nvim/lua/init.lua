@@ -154,6 +154,7 @@ vim.g.do_filetype_lua = 1
 --
 vim.g.tagbar_position = 'topleft vertical'
 --
+--
 
 -- made obsolete by lsp_lines plugin
 vim.diagnostic.config({

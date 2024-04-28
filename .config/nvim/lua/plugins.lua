@@ -87,12 +87,12 @@ local nvim_tree_setup = function()
     view = {
       width = 40,
       side = 'right',
-      mappings = {
-        custom_only = false,
-        list = {
-          { key = { '<CR>', '<Tab>' }, action = 'edit' },
-        },
-      },
+      --mappings = {
+      --  custom_only = false,
+      --  list = {
+      --    { key = { '<CR>', '<Tab>' }, action = 'edit' },
+      --  },
+      --},
     },
   })
 end
@@ -153,14 +153,27 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = 'all',
+        ensure_installed = {
+          'bash',
+          'python',
+          'rust',
+          'yaml',
+          'lua',
+          'toml',
+          'regex',
+          'html',
+          'css',
+        },
         auto_install = true,
+        highlight = {
+          enable = true,
+        },
       })
     end,
   },
   -- { 'RishabhRD/popfix' },
   { 'wesleimp/stylua.nvim' },
-  { 'simrat39/rust-tools.nvim' },
+  { 'mrcjkb/rustaceanvim', version = '^3', ft = { 'rust' } },
   {
     'nvim-tree/nvim-tree.lua',
     config = nvim_tree_setup,
@@ -216,36 +229,43 @@ require('lazy').setup({
             -- inlay_hints = { show_parameter_hints = true },
             hover_actions = { auto_focus = true },
           }
-          require('rust-tools').setup({
-            tools = tools,
-            server = {
-              flags = { debounce_text_changes = 150 },
-              settings = {
-                ['rust-analyzer'] = {
-                  checkOnSave = {
-                    allFeatures = true,
-                    overrideCommand = {
-                      'cargo',
-                      'clippy',
-                      '--workspace',
-                      '--message-format=json',
-                      '--all-targets',
-                      '--all-features',
-                    },
-                  },
-                },
-              },
-            },
-          })
+
+          --          require('rust-tools').setup({
+          --            tools = tools,
+          --            server = {
+          --              flags = { debounce_text_changes = 150 },
+          --              settings = {
+          --                ['rust-analyzer'] = {
+          --                  checkOnSave = {
+          --                    allFeatures = true,
+          --                    overrideCommand = {
+          --                      'cargo',
+          --                      'clippy',
+          --                      '--workspace',
+          --                      '--message-format=json',
+          --                      '--all-targets',
+          --                      '--all-features',
+          --                    },
+          --                  },
+          --                },
+          --              },
+          --            },
+          --          })
         end,
       })
     end,
   },
   {
     'j-hui/fidget.nvim',
-    tag = 'legacy',
+    --tag = 'legacy',
     config = function()
-      require('fidget').setup()
+      require('fidget').setup({
+        notification = {
+          window = {
+            relative = 'win',
+          },
+        },
+      })
     end,
   },
   {
@@ -481,6 +501,12 @@ require('lazy').setup({
       require('nibbler').setup({
         display_enabled = true, -- Set to false to disable real-time display (default: true)
       })
+    end,
+  },
+  {
+    'smjonas/inc-rename.nvim',
+    config = function()
+      require('inc_rename').setup()
     end,
   },
 }) -- end lazy setup
