@@ -226,6 +226,10 @@ bar {
 
 #zt
 bindsym $mod+Control+Shift+s exec $HOME/dotfiles/sspush/sspush -i
+<<<<<<< Updated upstream
+=======
+bindsym $mod+Control+Shift+c exec $HOME/dotfiles/sspush/sspush -a
+>>>>>>> Stashed changes
 bindsym Print exec $HOME/dotfiles/sspush/sspush -a
 
 #bindsym $mod+Control+Shift+r exec $HOME/dotfiles/screen_wake.sh

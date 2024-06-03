@@ -312,6 +312,7 @@ require('lazy').setup({
       })
     end,
   },
+  { 'akinsho/toggleterm.nvim', version = '*', config = true },
   { 'nvim-tree/nvim-web-devicons' },
   {
     'karb94/neoscroll.nvim',
