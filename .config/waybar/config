@@ -1,7 +1,7 @@
 {
   "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
-                          //"height": 30, // Waybar height (to be removed for auto height)
+                          "height": 40, // Waybar height (to be removed for auto height)
                           // "width": 1280, // Waybar width
                           // Choose the order of the modules
     //"modules-left": ["wlr/workspaces", "hyprland/window", "hyprland/submap", ],
@@ -68,7 +68,7 @@
       // "timezone": "America/New_York",
       "format": "{:%a %Y-%m-%d %H:%M}",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-      "format-alt": "{:%H:%M}"
+      "format-alt": "{:%a %Y-%m-%d %H:%M}"
     },
     "cpu": {
       "format": "{usage}% ",
