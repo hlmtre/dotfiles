@@ -100,6 +100,19 @@ end
 require('lazy').setup({
   'folke/which-key.nvim',
   'folke/neodev.nvim',
+  {
+    'folke/todo-comments.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('todo-comments').setup({})
+    end,
+  },
+  {
+    'folke/trouble.nvim',
+    config = function()
+      require('trouble').setup({})
+    end,
+  },
   'kdheepak/lazygit.nvim',
   {
     'morhetz/gruvbox',
@@ -107,6 +120,12 @@ require('lazy').setup({
     priority = 1000,
     config = function()
       vim.cmd([[colorscheme gruvbox]])
+    end,
+  },
+  {
+    'FabijanZulj/blame.nvim',
+    config = function()
+      require('blame').setup()
     end,
   },
   {
@@ -417,19 +436,6 @@ require('lazy').setup({
   --  end,
   --},
   --{ 'mhinz/vim-startify' },
-  {
-    'folke/todo-comments.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-    config = function()
-      require('todo-comments').setup({})
-    end,
-  },
-  {
-    'folke/trouble.nvim',
-    config = function()
-      require('trouble').setup({})
-    end,
-  },
   { 'mbbill/undotree' },
   {
     'nvim-lualine/lualine.nvim',

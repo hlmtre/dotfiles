@@ -58,8 +58,8 @@ local mappings = {
   },
   g = {
     name = 'git',
-    s = { '<cmd>Neogit<CR>', 'status' },
-    b = { '<cmd>GitBlameToggle<CR>', 'blame' },
+    s = { '<cmd>LazyGit<CR>', 'LazyGit' },
+    b = { '<cmd>BlameToggle<CR>', 'blame' },
   },
   x = {
     name = 'autopairs',
