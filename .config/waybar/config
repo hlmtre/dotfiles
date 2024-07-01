@@ -4,8 +4,8 @@
                           //"height": 30, // Waybar height (to be removed for auto height)
                           // "width": 1280, // Waybar width
                           // Choose the order of the modules
-    //"modules-left": ["wlr/workspaces", "hyprland/window", "hyprland/submap", ],
-    "modules-left": ["sway/workspaces", "sway/window"],
+    "modules-left": ["sway/workspaces", "sway/window", "wlr/workspaces", "hyprland/workspaces", "hyprland/window", "hyprland/submap", ],
+    //"modules-left": ["sway/workspaces", "sway/window"],
     "modules-center": ["custom/media"],
     "modules-right": ["network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat1", "pulseaudio", "clock", "custom/weather","tray"],
     // Modules configuration
@@ -109,7 +109,7 @@
       "bat": "BAT1"
     },
     "network": {
-      "interface": "wlp3*", // (Optional) To force the use of this interface
+      "interface": "enp*", // (Optional) To force the use of this interface
       "interval": 2,
       "format-wifi": "{ifname} ↑{bandwidthUpBits}↓{bandwidthDownBits}  {essid} {ipaddr}/{cidr} ",
       "format-ethernet": "{ifname} ↑{bandwidthUpBits}↓{bandwidthDownBits} {ipaddr}/{cidr}",
