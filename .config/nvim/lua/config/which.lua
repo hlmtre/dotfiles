@@ -1,12 +1,93 @@
-local opts = {
-  mode = 'n',
-  prefix = '<leader>',
-  buffer = nil,
-  silent = false,
-  noremap = true,
-  nowait = true,
+local mappings = {
+  { mode = 'n' },
+  { '<leader>0', '<cmd>Neotree focus<CR>', desc = 'neotree', nowait = true, remap = false, silent = false },
+  { '<leader>M', '<cmd>Mason<CR>', desc = 'mason', nowait = true, remap = false, silent = false },
+  { '<leader>b', group = 'buffers', nowait = true, remap = false, silent = false },
+  { '<leader>bb', '<cmd>Telescope buffers<CR>', desc = 'list', nowait = true, remap = false, silent = false },
+  { '<leader>bd', '<cmd>Bdelete!<CR>', desc = 'close', nowait = true, remap = false, silent = false },
+  { '<leader>bl', '<cmd>b#<CR>', desc = 'last', nowait = true, remap = false, silent = false },
+  { '<leader>bn', '<cmd>ene<CR>', desc = 'new', nowait = true, remap = false, silent = false },
+  { '<leader>f', group = 'file', nowait = true, remap = false, silent = false },
+  { '<leader>fe', '<cmd>e $MYVIMRC<CR>', desc = 'edit $MYVIMRC', nowait = true, remap = false, silent = false },
+  { '<leader>ff', '<cmd>Telescope file_browser<cr>', desc = 'find file', nowait = true, remap = false, silent = false },
+  { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'open recent', nowait = true, remap = false, silent = false },
+  { '<leader>fs', '<cmd>source $MYVIMRC<CR>', desc = 'source $MYVIMRC', nowait = true, remap = false, silent = false },
+  { '<leader>g', group = 'git', nowait = true, remap = false, silent = false },
+  { '<leader>gb', '<cmd>BlameToggle<CR>', desc = 'blame', nowait = true, remap = false, silent = false },
+  { '<leader>gs', '<cmd>LazyGit<CR>', desc = 'LazyGit', nowait = true, remap = false, silent = false },
+  { '<leader>l', group = 'lsp', nowait = true, remap = false, silent = false },
+  {
+    '<leader>lD',
+    function()
+      vim.lsp.buf.definition()
+    end,
+    desc = 'definition',
+    nowait = true,
+    remap = false,
+    silent = false,
+  },
+  { '<leader>lR', ':RustRunnables<CR>', desc = 'rust runnables', nowait = true, remap = false, silent = false },
+  { '<leader>la', ':CodeActionMenu<CR>', desc = 'code action', nowait = true, remap = false, silent = false },
+  {
+    '<leader>ld',
+    function()
+      vim.lsp.diagnostic.show_line_diagnostics()
+    end,
+    desc = 'diagnostics',
+    nowait = true,
+    remap = false,
+    silent = false,
+  },
+  {
+    '<leader>le',
+    function()
+      vim.lsp.buf.references()
+    end,
+    desc = 'references',
+    nowait = true,
+    remap = false,
+    silent = false,
+  },
+  { '<leader>lr', ':IncRename ', desc = 'rename', nowait = true, remap = false, silent = false },
+  { '<leader>lt', ':Trouble<CR>', desc = 'trouble', nowait = true, remap = false, silent = false },
+  { '<leader>m', '<cmd>Telescope keymaps<CR>', desc = 'keymaps', nowait = true, remap = false, silent = false },
+  { '<leader>p', '<cmd>Lazy<cr>', desc = 'lazy', nowait = true, remap = false, silent = false },
+  { '<leader>s', group = 'session', nowait = true, remap = false, silent = false },
+  {
+    '<leader>sl',
+    '<cmd>SessionManager load_last_session<cr>',
+    desc = 'load last session',
+    nowait = true,
+    remap = false,
+    silent = false,
+  },
+  { '<leader>t', '<cmd>Tagbar<CR>', desc = 'tagbar', nowait = true, remap = false, silent = false },
+  { '<leader>w', '<cmd>WhichKey<CR>', desc = 'which', nowait = true, remap = false, silent = false },
+  { '<leader>x', group = 'autopairs', nowait = true, remap = false, silent = false },
+  {
+    '<leader>xd',
+    function()
+      require('nvim-autopairs').disable()
+    end,
+    desc = 'disable',
+    nowait = true,
+    remap = false,
+    silent = false,
+  },
+  {
+    '<leader>xe',
+    function()
+      require('nvim-autopairs').enable()
+    end,
+    desc = 'enable',
+    nowait = true,
+    remap = false,
+    silent = false,
+  },
+  --  { prefix = '<leader>' },
 }
 
+--[[
 local mappings = {
   ['l'] = {
     name = 'lsp',
@@ -31,7 +112,7 @@ local mappings = {
       end,
       'definition',
     },
-    t = { ':TroubleToggle<CR>', 'trouble' },
+    t = { ':Trouble<CR>', 'trouble' },
   },
   s = {
     name = 'session',
@@ -56,6 +137,10 @@ local mappings = {
     b = { '<cmd>Telescope buffers<CR>', 'list' },
     l = { '<cmd>b#<CR>', 'last' },
   },
+  w = {
+    ':WhichKey<CR>',
+    'which',
+  },
   g = {
     name = 'git',
     s = { '<cmd>LazyGit<CR>', 'LazyGit' },
@@ -78,9 +163,14 @@ local mappings = {
   },
   { prefix = '<leader>' },
 }
+]]
 
 local wk = require('which-key')
-wk.register(mappings, opts)
+wk.add(mappings)
+
+local opts = {
+  preset = 'helix',
+}
 
 local plugins = {}
 plugins = {
@@ -93,4 +183,4 @@ plugins = {
 }
 
 -- the rest of our defaults are fine atm
-wk.setup({ plugins = plugins })
+wk.setup({ plugins = plugins, opts = opts })
