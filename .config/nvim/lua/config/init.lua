@@ -137,7 +137,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 --require('bufdelete')
-print('inside config/init.lua')
+-- print('inside config/init.lua')
 require('config.telescope')
 require('config.which')
 --require('config.nvchad_statusline')
