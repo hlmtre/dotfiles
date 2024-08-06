@@ -43,10 +43,8 @@ focus_follows_mouse yes
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec urxvt
-#bindsym $mod+Return exec gnome-terminal
-bindsym $mod+Return exec $HOME/.cargo/bin/alacritty
-#bindsym $mod+Return exec kitty
+set $terminal foot
+bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -199,7 +197,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-    swaybar_command waybar
+    swaybar_command waybar --config $HOME/.config/waybar/config.jsonc
 }
 
 #bar {
@@ -226,15 +224,11 @@ bar {
 
 #zt
 bindsym $mod+Control+Shift+s exec $HOME/dotfiles/sspush/sspush -i
-<<<<<<< Updated upstream
-=======
 bindsym $mod+Control+Shift+c exec $HOME/dotfiles/sspush/sspush -a
->>>>>>> Stashed changes
-bindsym Print exec $HOME/dotfiles/sspush/sspush -a
 
-#bindsym $mod+Control+Shift+r exec $HOME/dotfiles/screen_wake.sh
+# bindsym $mod+Control+Shift+r exec $HOME/dotfiles/screen_wake.sh
 
-#lockscreen
+# lockscreen
 bindsym $mod+Control+l exec swaylock -c 000000
 
 # wallpaper
