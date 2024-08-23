@@ -244,7 +244,7 @@ local nt_config = {
       required_width = 40, -- min width of window required to show this column
     },
     last_modified = {
-      enabled = true,
+      enabled = false,
       required_width = 40, -- min width of window required to show this column
     },
     created = {
