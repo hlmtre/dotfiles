@@ -431,4 +431,5 @@ require('lazy').setup({
       require('inc_rename').setup()
     end,
   },
+  { 'nvchad/showkeys', cmd = 'ShowkeysToggle' },
 }) -- end lazy setup
