@@ -48,3 +48,6 @@
 [submodule "sspush"]
 	path = sspush
 	url = https://github.com/CtrlAltMech/sspush.git
+[submodule "whrr"]
+	path = whrr
+	url = ./whrr/
