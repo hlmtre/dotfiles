@@ -15,6 +15,45 @@ require('lazy').setup({
       require('trouble').setup({})
     end,
   },
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
+  { -- optional cmp completion source for require statements and module annotations
+    'hrsh7th/nvim-cmp',
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        name = 'lazydev',
+        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      })
+    end,
+  },
+  { -- optional blink completion source for require statements and module annotations
+    'saghen/blink.cmp',
+    version = '1.*',
+    opts = {
+      sources = {
+        -- add lazydev to your completion providers
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          lazydev = {
+            name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+        },
+      },
+    },
+  },
   'kdheepak/lazygit.nvim',
   {
     'morhetz/gruvbox',
@@ -94,7 +133,7 @@ require('lazy').setup({
   },
   -- { 'RishabhRD/popfix' },
   { 'wesleimp/stylua.nvim' },
-  { 'mrcjkb/rustaceanvim', version = '^4', ft = { 'rust' } },
+  { 'mrcjkb/rustaceanvim', version = '^8', ft = { 'rust' } },
   --[[
   {
     'nvim-tree/nvim-tree.lua',
@@ -121,73 +160,32 @@ require('lazy').setup({
       require('oil').setup()
     end,
   },
-  { 'williamboman/mason-lspconfig.nvim' },
   {
     'williamboman/mason.nvim',
+    version = '^10',
     config = function()
       require('mason').setup()
     end,
   },
   {
-    'neovim/nvim-lspconfig',
-    config = function()
-      require('mason-lspconfig').setup_handlers({
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
-        function(server_name) -- default handler (optional)
-          require('lspconfig')[server_name].setup({})
-          print('loaded lsp server ' .. server_name)
-        end,
-        -- Next, you can provide targeted overrides for specific servers.
-        ['lua_ls'] = function()
-          print('loaded lsp server lua_ls')
-          local settings = {
-            Lua = {
-              diagnostics = {
-                -- GAHH this has to be single-quoted
-                globals = { 'vim' },
-              },
-            },
-          }
-          require('lspconfig')['lua_ls'].setup({ settings = settings })
-        end,
-        -- For example, a handler override for the `rust_analyzer`:
-        ['rust_analyzer'] = function()
-          print('loaded lsp server rust-analyzer')
-          local tools = {
-            inlay_hints = {
-              auto = false, -- inlay hints are native in nvim greater than some 0.10 version!
-            },
-            runnables = { use_telescope = true },
-            -- inlay_hints = { show_parameter_hints = true },
-            hover_actions = { auto_focus = true },
-          }
-
-          --          require('rust-tools').setup({
-          --            tools = tools,
-          --            server = {
-          --              flags = { debounce_text_changes = 150 },
-          --              settings = {
-          --                ['rust-analyzer'] = {
-          --                  checkOnSave = {
-          --                    allFeatures = true,
-          --                    overrideCommand = {
-          --                      'cargo',
-          --                      'clippy',
-          --                      '--workspace',
-          --                      '--message-format=json',
-          --                      '--all-targets',
-          --                      '--all-features',
-          --                    },
-          --                  },
-          --                },
-          --              },
-          --            },
-          --          })
-        end,
-      })
-    end,
+    'williamboman/mason-lspconfig.nvim',
+    opts = {
+      ensure_installed = { 'lua_ls', 'rust_analyzer' },
+      automatic_enable = {
+        exclude = { 'rust_analyzer' },
+        'lua_ls',
+      },
+    },
+    dependencies = {
+      {
+        'mason-org/mason.nvim',
+        opts = {},
+      },
+      'neovim/nvim-lspconfig',
+      opts = {
+        servers = {},
+      },
+    },
   },
   {
     'j-hui/fidget.nvim',
@@ -246,7 +244,13 @@ require('lazy').setup({
       })
     end,
   },
-  { 'akinsho/toggleterm.nvim', version = '*', config = true },
+  --{ 'akinsho/toggleterm.nvim', version = '*', config = true },
+  {
+    'nvzone/floaterm',
+    dependencies = 'nvzone/volt',
+    opts = {},
+    cmd = 'FloatermToggle',
+  },
   { 'nvim-tree/nvim-web-devicons' },
   {
     'karb94/neoscroll.nvim',
@@ -261,6 +265,7 @@ require('lazy').setup({
         enable_check_bracket_line = false,
       })
     end,
+    --[[
     {
       'hrsh7th/nvim-cmp',
       dependencies = {
@@ -308,6 +313,7 @@ require('lazy').setup({
         })
       end,
     },
+    --]]
   },
   {
     'weilbith/nvim-code-action-menu',
@@ -432,4 +438,5 @@ require('lazy').setup({
     end,
   },
   { 'nvchad/showkeys', cmd = 'ShowkeysToggle' },
+  { 'meznaric/key-analyzer.nvim', opts = {} },
 }) -- end lazy setup

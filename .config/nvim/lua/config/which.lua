@@ -31,9 +31,17 @@ local mappings = {
   {
     '<leader>ld',
     function()
-      vim.lsp.diagnostic.show_line_diagnostics()
+      vim.diagnostic.open_float()
     end,
     desc = 'diagnostics',
+    nowait = true,
+    remap = false,
+    silent = false,
+  },
+  {
+    '<leader><Space>',
+    '<cmd>FloatermToggle<CR>',
+    desc = 'FloatermToggle',
     nowait = true,
     remap = false,
     silent = false,
