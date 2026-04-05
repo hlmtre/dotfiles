@@ -77,6 +77,7 @@ require('lazy').setup({
   },
   { 'sbdchd/neoformat' },
   { 'preservim/tagbar' },
+  --[[
   {
     'shellRaining/hlchunk.nvim',
     event = { 'UIEnter' },
@@ -97,6 +98,14 @@ require('lazy').setup({
           style = '#806d9c',
         },
       })
+    end,
+  },
+  --]]
+  {
+    'shellRaining/hlchunk.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      require('hlchunk').setup({ chunk = { enable = true } })
     end,
   },
   { 'mboughaba/i3config.vim' },
