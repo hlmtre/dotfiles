@@ -24,12 +24,14 @@ NVIM_APPNAME=hlmtre/dotfiles/.config/nvim nvim
 
 ## Plugins
 
+### buffers
+
++ [famiu/bufdelete.nvim](https://dotfyle.com/plugins/famiu/bufdelete.nvim)
 ### comment
 
 + [folke/todo-comments.nvim](https://dotfyle.com/plugins/folke/todo-comments.nvim)
 ### completion
 
-+ [simrat39/rust-tools.nvim](https://dotfyle.com/plugins/simrat39/rust-tools.nvim)
 + [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
 ### diagnostics
 
@@ -39,6 +41,8 @@ NVIM_APPNAME=hlmtre/dotfiles/.config/nvim nvim
 + [windwp/nvim-autopairs](https://dotfyle.com/plugins/windwp/nvim-autopairs)
 ### file-explorer
 
++ [nvim-neo-tree/neo-tree.nvim](https://dotfyle.com/plugins/nvim-neo-tree/neo-tree.nvim)
++ [nvim-tree/nvim-tree.lua](https://dotfyle.com/plugins/nvim-tree/nvim-tree.lua)
 + [stevearc/oil.nvim](https://dotfyle.com/plugins/stevearc/oil.nvim)
 ### formatting
 
@@ -49,23 +53,39 @@ NVIM_APPNAME=hlmtre/dotfiles/.config/nvim nvim
 ### game
 
 + [jim-fx/sudoku.nvim](https://dotfyle.com/plugins/jim-fx/sudoku.nvim)
+### git
+
++ [kdheepak/lazygit.nvim](https://dotfyle.com/plugins/kdheepak/lazygit.nvim)
++ [FabijanZulj/blame.nvim](https://dotfyle.com/plugins/FabijanZulj/blame.nvim)
+### icon
+
++ [nvim-tree/nvim-web-devicons](https://dotfyle.com/plugins/nvim-tree/nvim-web-devicons)
+### indent
+
++ [shellRaining/hlchunk.nvim](https://dotfyle.com/plugins/shellRaining/hlchunk.nvim)
 ### keybinding
 
 + [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
 ### lsp
 
-+ [nvim-lua/lsp-status.nvim](https://dotfyle.com/plugins/nvim-lua/lsp-status.nvim)
-+ [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
-+ [weilbith/nvim-code-action-menu](https://dotfyle.com/plugins/weilbith/nvim-code-action-menu)
++ [smjonas/inc-rename.nvim](https://dotfyle.com/plugins/smjonas/inc-rename.nvim)
 + [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
++ [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
++ [mrcjkb/rustaceanvim](https://dotfyle.com/plugins/mrcjkb/rustaceanvim)
++ [weilbith/nvim-code-action-menu](https://dotfyle.com/plugins/weilbith/nvim-code-action-menu)
++ [nvim-lua/lsp-status.nvim](https://dotfyle.com/plugins/nvim-lua/lsp-status.nvim)
 ### lsp-installer
 
 + [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
+### media
+
++ [3rd/image.nvim](https://dotfyle.com/plugins/3rd/image.nvim)
 ### nvim-dev
 
-+ [folke/neodev.nvim](https://dotfyle.com/plugins/folke/neodev.nvim)
 + [nvim-lua/popup.nvim](https://dotfyle.com/plugins/nvim-lua/popup.nvim)
 + [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
++ [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
++ [folke/neodev.nvim](https://dotfyle.com/plugins/folke/neodev.nvim)
 ### plugin-manager
 
 + [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
@@ -78,9 +98,6 @@ NVIM_APPNAME=hlmtre/dotfiles/.config/nvim nvim
 ### snippet
 
 + [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
-### split-and-window
-
-+ [famiu/bufdelete.nvim](https://dotfyle.com/plugins/famiu/bufdelete.nvim)
 ### startup
 
 + [goolord/alpha-nvim](https://dotfyle.com/plugins/goolord/alpha-nvim)
@@ -89,13 +106,17 @@ NVIM_APPNAME=hlmtre/dotfiles/.config/nvim nvim
 + [nvim-lualine/lualine.nvim](https://dotfyle.com/plugins/nvim-lualine/lualine.nvim)
 ### syntax
 
-+ [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
 + [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
++ [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
 ### tabline
 
 + [akinsho/bufferline.nvim](https://dotfyle.com/plugins/akinsho/bufferline.nvim)
+### terminal-integration
+
++ [akinsho/toggleterm.nvim](https://dotfyle.com/plugins/akinsho/toggleterm.nvim)
 ## Language Servers
 
++ html
 + lua_ls
 + rust_analyzer
 

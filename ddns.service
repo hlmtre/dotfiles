@@ -1,0 +1,24 @@
+[Unit]
+Description=Dynamic DNS Updater Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/etc/ddns
+
+# The command to start your program
+ExecStart=/usr/local/bin/ddns
+
+# Restart logic: Wait 5 seconds and try again if it fails
+Restart=always
+RestartSec=5
+
+# Optional: Environment variables (e.g., API keys)
+# Environment=API_KEY=your_secret_here
+
+[Install]
+# Start this service when the system reaches the normal multi-user state
+WantedBy=multi-user.target

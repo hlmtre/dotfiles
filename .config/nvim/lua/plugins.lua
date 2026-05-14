@@ -29,6 +29,21 @@ require('lazy').setup({
   { -- optional cmp completion source for require statements and module annotations
     'hrsh7th/nvim-cmp',
     opts = function(_, opts)
+      opts.mapping = {
+        ['<C-k>'] = require('cmp').mapping.select_prev_item(),
+        ['<C-j>'] = require('cmp').mapping.select_next_item(),
+        -- Add tab support
+        ['<S-Tab>'] = require('cmp').mapping.select_prev_item(),
+        ['<Tab>'] = require('cmp').mapping.select_next_item(),
+        ['<C-d>'] = require('cmp').mapping.scroll_docs(-4),
+        ['<C-u>'] = require('cmp').mapping.scroll_docs(4),
+        ['<C-Space>'] = require('cmp').mapping.complete(),
+        ['<C-e>'] = require('cmp').mapping.close(),
+        ['<CR>'] = require('cmp').mapping.confirm({
+          behavior = require('cmp').ConfirmBehavior.Insert,
+          select = true,
+        }),
+      }
       opts.sources = opts.sources or {}
       table.insert(opts.sources, {
         name = 'lazydev',
@@ -53,6 +68,15 @@ require('lazy').setup({
         },
       },
     },
+  },
+  {
+    's1n7ax/nvim-window-picker',
+    name = 'window-picker',
+    event = 'VeryLazy',
+    version = '2.*',
+    config = function()
+      require('window-picker').setup()
+    end,
   },
   'kdheepak/lazygit.nvim',
   {
@@ -120,24 +144,10 @@ require('lazy').setup({
   { 'nvim-telescope/telescope-file-browser.nvim' },
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = {
-          'bash',
-          'python',
-          'rust',
-          'yaml',
-          'lua',
-          'toml',
-          'regex',
-          'html',
-          'css',
-        },
-        auto_install = true,
-        highlight = {
-          enable = true,
-        },
-      })
+      require('nvim-treesitter').install({ 'rust', 'python', 'bash', 'yaml', 'toml', 'regex', 'html', 'css' })
     end,
   },
   -- { 'RishabhRD/popfix' },
@@ -338,12 +348,12 @@ require('lazy').setup({
     end,
   },
   -- starts
-  {
-    'goolord/alpha-nvim',
-    config = function()
-      require('alpha').setup(require('alpha.themes.dashboard').config)
-    end,
-  },
+  -- {
+  --   'goolord/alpha-nvim',
+  --   config = function()
+  --     require('alpha').setup(require('alpha.themes.dashboard').config)
+  --   end,
+  -- },
   --{
   --  'Shatur/neovim-session-manager',
   --  config = function()
